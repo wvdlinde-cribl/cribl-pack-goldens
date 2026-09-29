@@ -14513,6 +14513,22 @@
         "score": 95,
         "band": "good"
       }
+    },
+    {
+      "key": "syslog_ng_2@text::__extraction__",
+      "sourcetype": "syslog_ng_2@text",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:14:24.605Z",
+      "path": "shared-goldens/syslog_ng_2@text____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
