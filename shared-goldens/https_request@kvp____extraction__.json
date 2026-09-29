@@ -1,0 +1,97 @@
+{
+  "key": "https_request@kvp::__extraction__",
+  "sourcetype": "https_request@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:31:25.527Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse combined HTTPS access log line into base fields (client IP, user, timestamp, request line, status, bytes, referrer, UA, TLS info, host, response time, request id, upstream)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<src_ip>\\S+) - (?<user>\\S+) \\[(?<timestamp>[^\\]]+)\\] \"(?<http_method>\\S+) (?<url_path>\\S+) HTTP\\/(?<http_version>[\\d.]+)\" (?<status_code>\\d+) (?<bytes>\\d+) \"(?<referrer>[^\"]*)\" \"(?<user_agent>[^\"]*)\" (?<tls_version>\\S+) (?<tls_cipher>\\S+) host=(?<dst_host>\\S+) rt=(?<response_time>[\\d.]+) reqid=(?<request_id>\\S+) upstream=(?<upstream>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "upstream && upstream !== '-'",
+      "disabled": false,
+      "description": "Split upstream host:port into dst_ip and dst_port when upstream is present (handles IPv4; IPv6 upstream not seen in samples)",
+      "conf": {
+        "source": "upstream",
+        "regex": "/^(?<dst_ip>[^:]+):(?<dst_port>\\d+)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize placeholder '-' values to null for user, referrer and upstream fields",
+      "conf": {
+        "add": [
+          {
+            "name": "user",
+            "value": "user === '-' ? null : user"
+          },
+          {
+            "name": "referrer",
+            "value": "referrer === '-' ? null : referrer"
+          },
+          {
+            "name": "upstream",
+            "value": "upstream === '-' ? null : upstream"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive protocol, action, and severity classification from HTTP status code",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "'https'"
+          },
+          {
+            "name": "action",
+            "value": "status_code < '400' ? 'allowed' : (status_code < '500' ? 'denied' : 'error')"
+          },
+          {
+            "name": "severity",
+            "value": "status_code >= '500' ? 'high' : (status_code >= '400' ? 'medium' : 'low')"
+          },
+          {
+            "name": "message",
+            "value": "http_method + ' ' + url_path + ' -> ' + status_code"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "host",
+        "reqid",
+        "rt",
+        "upstream"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
