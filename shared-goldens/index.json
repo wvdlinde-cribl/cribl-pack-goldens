@@ -13761,6 +13761,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "servicestatus@kvp::__extraction__",
+      "sourcetype": "servicestatus@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:44:19.755Z",
+      "path": "shared-goldens/servicestatus@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
