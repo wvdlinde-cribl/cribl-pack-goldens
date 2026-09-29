@@ -14241,6 +14241,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "infoblox_port@text::__extraction__",
+      "sourcetype": "infoblox_port@text",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:31:47.318Z",
+      "path": "shared-goldens/infoblox_port@text____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
