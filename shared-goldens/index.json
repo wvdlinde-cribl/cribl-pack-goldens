@@ -14417,6 +14417,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "sysmon_deploy_log@kvp::cim#endpoint::__mapping__",
+      "sourcetype": "sysmon_deploy_log@kvp",
+      "dest_format": "cim#endpoint::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:58:59.009Z",
+      "path": "shared-goldens/sysmon_deploy_log@kvp__cim#endpoint____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
