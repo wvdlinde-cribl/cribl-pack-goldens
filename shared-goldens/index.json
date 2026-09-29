@@ -14001,6 +14001,22 @@
         "score": 93,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_healthdplugins@kvp::cim#network::__mapping__",
+      "sourcetype": "vmware_esxlog_healthdplugins@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:05:24.429Z",
+      "path": "shared-goldens/vmware_esxlog_healthdplugins@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
