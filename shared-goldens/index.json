@@ -14545,6 +14545,22 @@
         "score": 92,
         "band": "good"
       }
+    },
+    {
+      "key": "fml_spam@kvp::__extraction__",
+      "sourcetype": "fml_spam@kvp",
+      "dest_format": "__extraction__",
+      "score": 99,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:23:48.312Z",
+      "path": "shared-goldens/fml_spam@kvp____extraction__.json",
+      "report": {
+        "score": 99,
+        "band": "good"
+      }
     }
   ]
 }
