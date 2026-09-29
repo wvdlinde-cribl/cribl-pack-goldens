@@ -14065,6 +14065,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "nci_splk_nci_splk_nu_network_data@kvp::__extraction__",
+      "sourcetype": "nci_splk_nci_splk_nu_network_data@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:12:54.934Z",
+      "path": "shared-goldens/nci_splk_nci_splk_nu_network_data@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
