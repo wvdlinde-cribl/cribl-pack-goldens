@@ -1,0 +1,92 @@
+{
+  "key": "sysmon_deploy_log@kvp::__extraction__",
+  "sourcetype": "sysmon_deploy_log@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:56:04.527Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse the common Sysmon deployment log prefix: timestamp, level, host, action, status, user; capture the remaining key=value tail into a scratch field for further extraction",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) (?<level>\\S+) \\[SysmonDeploy\\] host=(?<host>\\S+) action=(?<action>\\S+) status=(?<status>\\S+) user=(?<user>\\S+)(?<__rest>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "__rest",
+      "disabled": false,
+      "description": "Extract remaining variable key=value pairs (src_ip, version, config_hash, duration_ms, error, exit_code, service_state, detail, sha256, targets, current_version, required_version, pid, share, config_file) from the tail of the log line as KVP data",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__rest",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity from log level, derive event epoch timestamp, and clean up scratch field",
+      "conf": {
+        "add": [
+          {
+            "name": "severity",
+            "value": "level == 'CRITICAL' ? 'critical' : level == 'ERROR' ? 'high' : level == 'WARN' ? 'medium' : 'low'"
+          },
+          {
+            "name": "_time",
+            "value": "new Date(timestamp.replace(' ', 'T') + 'Z').getTime() / 1000"
+          },
+          {
+            "name": "protocol",
+            "value": "'tcp'"
+          }
+        ],
+        "remove": [
+          "__rest"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "config_file",
+        "config_hash",
+        "current_version",
+        "detail",
+        "duration_ms",
+        "error",
+        "exit_code",
+        "host",
+        "payload_size_bytes",
+        "pid",
+        "previous_version",
+        "required_version",
+        "service_state",
+        "sha256",
+        "share",
+        "src_ip",
+        "status",
+        "target_version",
+        "targets",
+        "user",
+        "version"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
