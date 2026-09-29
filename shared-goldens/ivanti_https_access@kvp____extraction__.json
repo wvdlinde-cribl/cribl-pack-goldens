@@ -1,0 +1,90 @@
+{
+  "key": "ivanti_https_access@kvp::__extraction__",
+  "sourcetype": "ivanti_https_access@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:33:21.598Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse Ivanti HTTPS access log into structured fields (src_ip, user, timestamp, method, url, protocol, status, bytes, referrer, user_agent, sid, realm, role)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<src_ip>\\S+) - (?<user>\\S+) \\[(?<timestamp>[^\\]]+)\\] \"(?<method>\\S+) (?<url>\\S+) (?<protocol>[^\"]+)\" (?<status>\\d+) (?<bytes>\\d+) \"(?<referrer>[^\"]*)\" \"(?<user_agent>[^\"]*)\" sid=(?<sid>\\S+) realm=\"(?<realm>[^\"]*)\" role=\"(?<role>[^\"]*)\"/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize protocol field and convert HTTP status to numeric",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "protocol ? protocol.toLowerCase().split('/')[0] : 'http'"
+          },
+          {
+            "name": "status",
+            "value": "parseInt(status)"
+          },
+          {
+            "name": "bytes",
+            "value": "parseInt(bytes)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive action and severity from HTTP status code",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "status>=200 && status<400 ? 'allowed' : (status==401 || status==403) ? 'denied' : status>=500 ? 'error' : 'unknown'"
+          },
+          {
+            "name": "severity",
+            "value": "status>=500 ? 'high' : (status==401 || status==403) ? 'medium' : 'low'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Convert extracted timestamp string to epoch _time",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "strptime(timestamp,'%d/%b/%Y:%H:%M:%S %z')"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "realm",
+        "role",
+        "sid"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
