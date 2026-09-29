@@ -1,0 +1,91 @@
+{
+  "key": "ivanti_https_request@kvp::__extraction__",
+  "sourcetype": "ivanti_https_request@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:33:16.281Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse Ivanti VPN httpd access log line into structured fields",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}) (?<dst_host>\\S+) httpd\\[(?<pid>\\d+)\\]: \\[(?<src_ip>[0-9a-fA-F:.]+)\\] \"(?<http_method>\\S+) (?<url>\\S+) HTTP\\/(?<http_version>[\\d.]+)\" (?<status_code>\\d+) (?<bytes_out>\\d+) \"(?<referrer>[^\"]*)\" \"(?<user_agent>[^\"]*)\" (?<response_time>[\\d.]+)s user=(?<user>\\S+) realm=(?<realm>\\S+) role=(?<role>\\S+)(?: reason=\"(?<reason>[^\"]*)\")?(?: bytes_in=(?<bytes_in>\\d+))?$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize timestamp, protocol, and direction fields",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "new Date(timestamp.replace(' ','T')+'Z').getTime()/1000"
+          },
+          {
+            "name": "protocol",
+            "value": "'https'"
+          },
+          {
+            "name": "direction",
+            "value": "'inbound'"
+          },
+          {
+            "name": "user",
+            "value": "user === '-' ? null : user"
+          },
+          {
+            "name": "role",
+            "value": "role === '-' ? null : role"
+          },
+          {
+            "name": "realm",
+            "value": "realm === '-' ? null : realm"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify action and severity based on HTTP status code and blocked-request reason",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "reason && reason.match(/blocked|malformed|invalid/) ? 'blocked' : status_code >= 500 ? 'error' : status_code >= 400 ? 'denied' : 'allowed'"
+          },
+          {
+            "name": "severity",
+            "value": "reason && reason.match(/xss|path_traversal|malformed_saml/) ? 'high' : status_code >= 500 ? 'medium' : status_code >= 400 ? 'low' : 'info'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "bytes_in",
+        "bytes_out",
+        "realm",
+        "reason",
+        "role",
+        "user"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
