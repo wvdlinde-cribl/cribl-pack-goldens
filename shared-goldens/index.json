@@ -14433,6 +14433,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_snmpd@text::__extraction__",
+      "sourcetype": "vmware_esxlog_snmpd@text",
+      "dest_format": "__extraction__",
+      "score": 93,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:05:10.173Z",
+      "path": "shared-goldens/vmware_esxlog_snmpd@text____extraction__.json",
+      "report": {
+        "score": 93,
+        "band": "good"
+      }
     }
   ]
 }
