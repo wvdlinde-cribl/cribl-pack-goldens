@@ -13777,6 +13777,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "cisco_ise@kvp::cim#network::__mapping__",
+      "sourcetype": "cisco_ise@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 93,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:46:34.103Z",
+      "path": "shared-goldens/cisco_ise@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 93,
+        "band": "good"
+      }
     }
   ]
 }
