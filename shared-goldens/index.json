@@ -13969,6 +13969,22 @@
         "score": 94,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_sut@text::cim#network::__mapping__",
+      "sourcetype": "vmware_esxlog_sut@text",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:04:18.132Z",
+      "path": "shared-goldens/vmware_esxlog_sut@text__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
