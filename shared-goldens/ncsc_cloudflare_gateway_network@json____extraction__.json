@@ -1,0 +1,70 @@
+{
+  "key": "ncsc_cloudflare_gateway_network@json::__extraction__",
+  "sourcetype": "ncsc_cloudflare_gateway_network@json",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:15:20.730Z",
+  "functions": [
+    {
+      "id": "serde",
+      "description": "Try JSON parse",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "json",
+      "keys": [
+        "accountid",
+        "accountid",
+        "action",
+        "action",
+        "datetime",
+        "datetime",
+        "destinationip",
+        "destinationip",
+        "destinationport",
+        "destinationport",
+        "deviceid",
+        "deviceid",
+        "devicename",
+        "devicename",
+        "email",
+        "email",
+        "overrideip",
+        "overrideip",
+        "overrideport",
+        "overrideport",
+        "policyid",
+        "policyid",
+        "policyname",
+        "policyname",
+        "registrationid",
+        "registrationid",
+        "sessionid",
+        "sessionid",
+        "sni",
+        "sni",
+        "sourceinternalip",
+        "sourceinternalip",
+        "sourceip",
+        "sourceip",
+        "sourceport",
+        "sourceport",
+        "transport",
+        "transport",
+        "userid",
+        "userid"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "json"
+}
