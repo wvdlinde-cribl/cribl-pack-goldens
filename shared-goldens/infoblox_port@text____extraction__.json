@@ -1,0 +1,90 @@
+{
+  "key": "infoblox_port@text::__extraction__",
+  "sourcetype": "infoblox_port@text",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:31:47.318Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse syslog header: timestamp, host, process, pid, message",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w+\\s+\\d+\\s+\\d+:\\d+:\\d+)\\s+(?<host>\\S+)\\s+(?<process>\\w+)\\[(?<pid>\\d+)\\]:\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.startsWith('client')",
+      "disabled": false,
+      "description": "Parse DNS query events from named process",
+      "conf": {
+        "source": "message",
+        "regex": "/^client\\s+(?<src_ip>[\\d.]+)#(?<src_port>\\d+):\\s+query:\\s+(?<dst_host>\\S+)\\s+IN\\s+(?<record_type>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.startsWith('DHCPACK')",
+      "disabled": false,
+      "description": "Parse DHCPACK lease confirmation events from dhcpd",
+      "conf": {
+        "source": "message",
+        "regex": "/^DHCPACK\\s+on\\s+(?<dst_ip>[\\d.]+)\\s+to\\s+(?<mac>[0-9a-f:]+)\\s+\\((?<hostname>[^)]+)\\)\\s+via\\s+(?<interface>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.startsWith('DHCPREQUEST')",
+      "disabled": false,
+      "description": "Parse DHCPREQUEST lease request events from dhcpd",
+      "conf": {
+        "source": "message",
+        "regex": "/^DHCPREQUEST\\s+for\\s+(?<dst_ip>[\\d.]+)\\s+from\\s+(?<mac>[0-9a-f:]+)\\s+via\\s+(?<interface>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify action, protocol, and severity based on process/message type",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "process=='named' ? 'dns' : process=='dhcpd' ? 'dhcp' : 'unknown'"
+          },
+          {
+            "name": "action",
+            "value": "process=='named' ? 'dns_query' : (message && message.startsWith('DHCPACK')) ? 'dhcp_ack' : (message && message.startsWith('DHCPREQUEST')) ? 'dhcp_request' : 'unknown'"
+          },
+          {
+            "name": "severity",
+            "value": "'info'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
