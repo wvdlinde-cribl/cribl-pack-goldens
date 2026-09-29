@@ -13985,6 +13985,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_hastatus@text::__extraction__",
+      "sourcetype": "ivanti_hastatus@text",
+      "dest_format": "__extraction__",
+      "score": 93,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:04:19.834Z",
+      "path": "shared-goldens/ivanti_hastatus@text____extraction__.json",
+      "report": {
+        "score": 93,
+        "band": "good"
+      }
     }
   ]
 }
