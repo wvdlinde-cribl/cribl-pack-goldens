@@ -13617,6 +13617,22 @@
         "score": 97,
         "band": "good"
       }
+    },
+    {
+      "key": "aemcdn_waf@json::__extraction__",
+      "sourcetype": "aemcdn_waf@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:26:26.754Z",
+      "path": "shared-goldens/aemcdn_waf@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
