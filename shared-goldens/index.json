@@ -13793,6 +13793,22 @@
         "score": 93,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_iofiltervpd@text::__extraction__",
+      "sourcetype": "vmware_esxlog_iofiltervpd@text",
+      "dest_format": "__extraction__",
+      "score": 90,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:46:37.474Z",
+      "path": "shared-goldens/vmware_esxlog_iofiltervpd@text____extraction__.json",
+      "report": {
+        "score": 90,
+        "band": "good"
+      }
     }
   ]
 }
