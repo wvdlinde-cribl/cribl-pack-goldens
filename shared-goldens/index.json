@@ -14497,6 +14497,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_localcli@text::__extraction__",
+      "sourcetype": "vmware_esxlog_localcli@text",
+      "dest_format": "__extraction__",
+      "score": 95,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:08:55.623Z",
+      "path": "shared-goldens/vmware_esxlog_localcli@text____extraction__.json",
+      "report": {
+        "score": 95,
+        "band": "good"
+      }
     }
   ]
 }
