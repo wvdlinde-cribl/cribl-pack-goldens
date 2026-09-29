@@ -13569,6 +13569,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "windows_dns_client::cim#dns::__mapping__",
+      "sourcetype": "windows_dns_client",
+      "dest_format": "cim#dns::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "xml",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:19:03.932Z",
+      "path": "shared-goldens/windows_dns_client__cim#dns____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
