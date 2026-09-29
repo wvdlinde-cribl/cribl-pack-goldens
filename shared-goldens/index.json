@@ -13873,6 +13873,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "9039_log@kvp::__extraction__",
+      "sourcetype": "9039_log@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:54:50.118Z",
+      "path": "shared-goldens/9039_log@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
