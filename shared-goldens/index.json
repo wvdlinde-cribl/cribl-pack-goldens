@@ -14529,6 +14529,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "syslog_ng_2@text::cim#network::__mapping__",
+      "sourcetype": "syslog_ng_2@text",
+      "dest_format": "cim#network::__mapping__",
+      "score": 92,
+      "part": "mapping",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:17:32.017Z",
+      "path": "shared-goldens/syslog_ng_2@text__cim#network____mapping__.json",
+      "report": {
+        "score": 92,
+        "band": "good"
+      }
     }
   ]
 }
