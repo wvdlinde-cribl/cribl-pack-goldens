@@ -14081,6 +14081,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "mcafee_epo_dlpevents@cef::__extraction__",
+      "sourcetype": "mcafee_epo_dlpevents@cef",
+      "dest_format": "__extraction__",
+      "score": 95,
+      "part": "extraction",
+      "wireFormat": "cef",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:13:02.361Z",
+      "path": "shared-goldens/mcafee_epo_dlpevents@cef____extraction__.json",
+      "report": {
+        "score": 95,
+        "band": "good"
+      }
     }
   ]
 }
