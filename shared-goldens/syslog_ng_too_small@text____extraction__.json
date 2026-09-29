@@ -1,0 +1,112 @@
+{
+  "key": "syslog_ng_too_small@text::__extraction__",
+  "sourcetype": "syslog_ng_too_small@text",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:43:52.350Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract base syslog fields: timestamp, host, process, pid, message",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d{1,2} \\d{2}:\\d{2}:\\d{2}) (?<host>\\S+) (?<process>[^\\[]+)\\[(?<pid>\\d+)\\]: (?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.startsWith('Syslog connection established')",
+      "disabled": false,
+      "description": "Extract remote and local socket details for established connections",
+      "conf": {
+        "source": "message",
+        "regex": "/fd='(?<fd>\\d+)', server='AF_INET\\((?<dst_ip>[\\d.]+):(?<dst_port>\\d+)\\)', local='AF_INET\\((?<local_ip>[\\d.]+):(?<local_port>\\d+)\\)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.startsWith('Error connecting')",
+      "disabled": false,
+      "description": "Extract remote host and error details for failed connections",
+      "conf": {
+        "source": "message",
+        "regex": "/server='AF_INET\\((?<dst_ip>[\\d.]+):(?<dst_port>\\d+)\\)', error='(?<error_msg>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.startsWith('Destination queue full')",
+      "disabled": false,
+      "description": "Extract queue length and memory fifo size for queue full events",
+      "conf": {
+        "source": "message",
+        "regex": "/queue_len='(?<queue_len>\\d+)', mem_fifo_size='(?<mem_fifo_size>\\d+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify event action and severity based on message content, and normalize protocol",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "message.startsWith('Syslog connection established') ? 'connected' : message.startsWith('Error connecting') ? 'connection_error' : message.startsWith('Destination queue full') ? 'queue_full' : message.startsWith('syslog-ng starting up') ? 'startup' : message.startsWith('Configuration reload') ? 'reload' : 'other'"
+          },
+          {
+            "name": "severity",
+            "value": "action == 'connection_error' ? 'error' : action == 'queue_full' ? 'warning' : 'info'"
+          },
+          {
+            "name": "protocol",
+            "value": "(dst_port == '514' || dst_port == '6514') ? 'tcp' : undefined"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Convert syslog timestamp (no year) to epoch _time using current year",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp + ' ' + new Date().getFullYear())/1000"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "error",
+        "fd",
+        "local",
+        "mem_fifo_size",
+        "queue_len",
+        "server",
+        "version"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
