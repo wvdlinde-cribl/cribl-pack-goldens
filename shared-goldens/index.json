@@ -13537,6 +13537,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "ncsc_cloudflare_device_posture@json::__extraction__",
+      "sourcetype": "ncsc_cloudflare_device_posture@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:16:50.018Z",
+      "path": "shared-goldens/ncsc_cloudflare_device_posture@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
