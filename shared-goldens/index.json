@@ -2,21 +2,6 @@
   "version": 1,
   "goldens": [
     {
-      "key": "8010_log::__optimization__",
-      "sourcetype": "8010_log",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:22:58.833Z",
-      "path": "shared-goldens/8010_log____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "9039_log::__extraction__",
       "sourcetype": "9039_log",
       "dest_format": "__extraction__",
@@ -29,36 +14,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "9039_log::__optimization__",
-      "sourcetype": "9039_log",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:16:45.083Z",
-      "path": "shared-goldens/9039_log____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
-      "key": "access_combined::__optimization__",
-      "sourcetype": "access_combined",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:45:58.891Z",
-      "path": "shared-goldens/access_combined____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -77,36 +32,6 @@
       }
     },
     {
-      "key": "access_combined_wcookie::__optimization__",
-      "sourcetype": "access_combined_wcookie",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:58:09.861Z",
-      "path": "shared-goldens/access_combined_wcookie____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
-      "key": "access_common::__optimization__",
-      "sourcetype": "access_common",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:56:33.600Z",
-      "path": "shared-goldens/access_common____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "access_common::cim::__mapping__",
       "sourcetype": "access_common",
       "dest_format": "cim::__mapping__",
@@ -118,21 +43,6 @@
       "path": "shared-goldens/access_common__cim____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "access_log::__optimization__",
-      "sourcetype": "access_log",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:10:50.459Z",
-      "path": "shared-goldens/access_log____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -152,21 +62,6 @@
       }
     },
     {
-      "key": "access_log_too_small::__optimization__",
-      "sourcetype": "access_log_too_small",
-      "dest_format": "__optimization__",
-      "score": 83,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:15:55.208Z",
-      "path": "shared-goldens/access_log_too_small____optimization__.json",
-      "report": {
-        "score": 83,
-        "band": "warn"
-      }
-    },
-    {
       "key": "access_log_too_small::cim::__mapping__",
       "sourcetype": "access_log_too_small",
       "dest_format": "cim::__mapping__",
@@ -178,21 +73,6 @@
       "path": "shared-goldens/access_log_too_small__cim____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aemaccess::__optimization__",
-      "sourcetype": "aemaccess",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:22:45.404Z",
-      "path": "shared-goldens/aemaccess____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -227,21 +107,6 @@
       }
     },
     {
-      "key": "aemcdn::__optimization__",
-      "sourcetype": "aemcdn",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:21:04.284Z",
-      "path": "shared-goldens/aemcdn____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "aemcdn_waf::__extraction__",
       "sourcetype": "aemcdn_waf",
       "dest_format": "__extraction__",
@@ -253,36 +118,6 @@
       "path": "shared-goldens/aemcdn_waf____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aemcdn_waf::__optimization__",
-      "sourcetype": "aemcdn_waf",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:43:13.031Z",
-      "path": "shared-goldens/aemcdn_waf____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aemdispatcher::__optimization__",
-      "sourcetype": "aemdispatcher",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:23:22.678Z",
-      "path": "shared-goldens/aemdispatcher____optimization__.json",
-      "report": {
-        "score": 92,
         "band": "good"
       }
     },
@@ -302,36 +137,6 @@
       }
     },
     {
-      "key": "aemerror::__optimization__",
-      "sourcetype": "aemerror",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:06:16.461Z",
-      "path": "shared-goldens/aemerror____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aemhttpdaccess::__optimization__",
-      "sourcetype": "aemhttpdaccess",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:21:22.665Z",
-      "path": "shared-goldens/aemhttpdaccess____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "aemhttpdaccess::cim::__mapping__",
       "sourcetype": "aemhttpdaccess",
       "dest_format": "cim::__mapping__",
@@ -347,21 +152,6 @@
       }
     },
     {
-      "key": "aemhttpderror::__optimization__",
-      "sourcetype": "aemhttpderror",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:47:30.728Z",
-      "path": "shared-goldens/aemhttpderror____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "aemhttpderror::cim::__mapping__",
       "sourcetype": "aemhttpderror",
       "dest_format": "cim::__mapping__",
@@ -373,21 +163,6 @@
       "path": "shared-goldens/aemhttpderror__cim____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aemrequest::__optimization__",
-      "sourcetype": "aemrequest",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:16:54.886Z",
-      "path": "shared-goldens/aemrequest____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -416,21 +191,6 @@
       "build": 0,
       "updated_at": "2026-08-06T08:34:48.324Z",
       "path": "shared-goldens/alibaba_cloud_actiontrail__xsiam.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
-      "key": "apache_access::__optimization__",
-      "sourcetype": "apache_access",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:19:03.651Z",
-      "path": "shared-goldens/apache_access____optimization__.json",
       "report": {
         "score": 80,
         "band": "warn"
@@ -467,21 +227,6 @@
       }
     },
     {
-      "key": "arbor_pravailaps::__optimization__",
-      "sourcetype": "arbor_pravailaps",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:19:03.482Z",
-      "path": "shared-goldens/arbor_pravailaps____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "arbor_pravailaps::commonsecuritylog::__mapping__",
       "sourcetype": "arbor_pravailaps",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -493,36 +238,6 @@
       "path": "shared-goldens/arbor_pravailaps__commonsecuritylog____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aruba_wireless::__optimization__",
-      "sourcetype": "aruba_wireless",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 365,
-      "updated_at": "2026-08-07T04:26:14.739Z",
-      "path": "shared-goldens/aruba_wireless____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
-      "key": "audit_log::__optimization__",
-      "sourcetype": "audit_log",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:08:52.468Z",
-      "path": "shared-goldens/audit_log____optimization__.json",
-      "report": {
-        "score": 86,
         "band": "good"
       }
     },
@@ -569,21 +284,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "aws_cloudtrail::__optimization__",
-      "sourcetype": "aws_cloudtrail",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 302,
-      "updated_at": "2026-08-04T05:59:30.560Z",
-      "path": "shared-goldens/aws_cloudtrail____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -692,21 +392,6 @@
       }
     },
     {
-      "key": "aws_cloudwatchlogs_vpcflow::__optimization__",
-      "sourcetype": "aws_cloudwatchlogs_vpcflow",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:05:13.170Z",
-      "path": "shared-goldens/aws_cloudwatchlogs_vpcflow____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "aws_elb_accesslog::__extraction__",
       "sourcetype": "aws_elb_accesslog",
       "dest_format": "__extraction__",
@@ -718,21 +403,6 @@
       "path": "shared-goldens/aws_elb_accesslog____extraction__.json",
       "report": {
         "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "aws_elb_accesslog::__optimization__",
-      "sourcetype": "aws_elb_accesslog",
-      "dest_format": "__optimization__",
-      "score": 96,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T12:00:50.868Z",
-      "path": "shared-goldens/aws_elb_accesslog____optimization__.json",
-      "report": {
-        "score": 96,
         "band": "good"
       }
     },
@@ -767,21 +437,6 @@
       }
     },
     {
-      "key": "aws_guardduty::__optimization__",
-      "sourcetype": "aws_guardduty",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 375,
-      "updated_at": "2026-08-07T09:53:50.261Z",
-      "path": "shared-goldens/aws_guardduty____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "aws_guardduty::cim::__mapping__",
       "sourcetype": "aws_guardduty",
       "dest_format": "cim::__mapping__",
@@ -809,21 +464,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "aws_vpc_flow::__optimization__",
-      "sourcetype": "aws_vpc_flow",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:18:07.372Z",
-      "path": "shared-goldens/aws_vpc_flow____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -887,21 +527,6 @@
       }
     },
     {
-      "key": "azure_ad_audit::__optimization__",
-      "sourcetype": "azure_ad_audit",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 375,
-      "updated_at": "2026-08-07T09:39:07.317Z",
-      "path": "shared-goldens/azure_ad_audit____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "azure_ad_audit::cim::__mapping__",
       "sourcetype": "azure_ad_audit",
       "dest_format": "cim::__mapping__",
@@ -929,21 +554,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "azure_signin::__optimization__",
-      "sourcetype": "azure_signin",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:22:33.431Z",
-      "path": "shared-goldens/azure_signin____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -1007,21 +617,6 @@
       }
     },
     {
-      "key": "bind_dns::__optimization__",
-      "sourcetype": "bind_dns",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:43:26.478Z",
-      "path": "shared-goldens/bind_dns____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "bluecoat_proxy::__extraction__",
       "sourcetype": "bluecoat_proxy",
       "dest_format": "__extraction__",
@@ -1037,21 +632,6 @@
       }
     },
     {
-      "key": "bluecoat_proxy::__optimization__",
-      "sourcetype": "bluecoat_proxy",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:43:12.907Z",
-      "path": "shared-goldens/bluecoat_proxy____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "bluecoat_proxysg_access_syslog::__extraction__",
       "sourcetype": "bluecoat_proxysg_access_syslog",
       "dest_format": "__extraction__",
@@ -1063,21 +643,6 @@
       "path": "shared-goldens/bluecoat_proxysg_access_syslog____extraction__.json",
       "report": {
         "score": 91,
-        "band": "good"
-      }
-    },
-    {
-      "key": "bluecoat_proxysg_access_syslog::__optimization__",
-      "sourcetype": "bluecoat_proxysg_access_syslog",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:18:49.691Z",
-      "path": "shared-goldens/bluecoat_proxysg_access_syslog____optimization__.json",
-      "report": {
-        "score": 94,
         "band": "good"
       }
     },
@@ -1142,21 +707,6 @@
       }
     },
     {
-      "key": "carbonblack_edr::__optimization__",
-      "sourcetype": "carbonblack_edr",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:54:10.532Z",
-      "path": "shared-goldens/carbonblack_edr____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "carbonblack_edr::cim#endpoint::__mapping__",
       "sourcetype": "carbonblack_edr",
       "dest_format": "cim#endpoint::__mapping__",
@@ -1217,21 +767,6 @@
       }
     },
     {
-      "key": "checkpoint_firewall::__optimization__",
-      "sourcetype": "checkpoint_firewall",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 290,
-      "updated_at": "2026-07-29T12:34:05.854Z",
-      "path": "shared-goldens/checkpoint_firewall____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "checkpoint_firewall::cim::__mapping__",
       "sourcetype": "checkpoint_firewall",
       "dest_format": "cim::__mapping__",
@@ -1274,21 +809,6 @@
       "report": {
         "score": 93,
         "band": "good"
-      }
-    },
-    {
-      "key": "cisco_asa::__optimization__",
-      "sourcetype": "cisco_asa",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 248,
-      "updated_at": "2026-07-16T07:40:30.651Z",
-      "path": "shared-goldens/cisco_asa____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -1472,21 +992,6 @@
       }
     },
     {
-      "key": "cisco_esa::__optimization__",
-      "sourcetype": "cisco_esa",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:09:25.266Z",
-      "path": "shared-goldens/cisco_esa____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "cisco_esa::cim::__mapping__",
       "sourcetype": "cisco_esa",
       "dest_format": "cim::__mapping__",
@@ -1562,21 +1067,6 @@
       }
     },
     {
-      "key": "cisco_estreamer_data::__optimization__",
-      "sourcetype": "cisco_estreamer_data",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:16:12.311Z",
-      "path": "shared-goldens/cisco_estreamer_data____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "cisco_estreamer_data::cim::__mapping__",
       "sourcetype": "cisco_estreamer_data",
       "dest_format": "cim::__mapping__",
@@ -1607,21 +1097,6 @@
       }
     },
     {
-      "key": "cisco_estreamer_data_dns::__optimization__",
-      "sourcetype": "cisco_estreamer_data_dns",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:07:33.782Z",
-      "path": "shared-goldens/cisco_estreamer_data_dns____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "cisco_estreamer_data_firewall::__extraction__",
       "sourcetype": "cisco_estreamer_data_firewall",
       "dest_format": "__extraction__",
@@ -1633,21 +1108,6 @@
       "path": "shared-goldens/cisco_estreamer_data_firewall____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "cisco_estreamer_data_firewall::__optimization__",
-      "sourcetype": "cisco_estreamer_data_firewall",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:37:35.119Z",
-      "path": "shared-goldens/cisco_estreamer_data_firewall____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -1667,21 +1127,6 @@
       }
     },
     {
-      "key": "cisco_firepower::__optimization__",
-      "sourcetype": "cisco_firepower",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 225,
-      "updated_at": "2026-07-15T17:03:56.923Z",
-      "path": "shared-goldens/cisco_firepower____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "cisco_firepower::commonsecuritylog::__mapping__",
       "sourcetype": "cisco_firepower",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -1697,21 +1142,6 @@
       }
     },
     {
-      "key": "cisco_ios::__optimization__",
-      "sourcetype": "cisco_ios",
-      "dest_format": "__optimization__",
-      "score": 99,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:47:48.986Z",
-      "path": "shared-goldens/cisco_ios____optimization__.json",
-      "report": {
-        "score": 99,
-        "band": "good"
-      }
-    },
-    {
       "key": "cisco_ironport_wsa::__extraction__",
       "sourcetype": "cisco_ironport_wsa",
       "dest_format": "__extraction__",
@@ -1723,21 +1153,6 @@
       "path": "shared-goldens/cisco_ironport_wsa____extraction__.json",
       "report": {
         "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "cisco_ironport_wsa::__optimization__",
-      "sourcetype": "cisco_ironport_wsa",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:12:32.346Z",
-      "path": "shared-goldens/cisco_ironport_wsa____optimization__.json",
-      "report": {
-        "score": 92,
         "band": "good"
       }
     },
@@ -1787,21 +1202,6 @@
       }
     },
     {
-      "key": "cisco_ise::__optimization__",
-      "sourcetype": "cisco_ise",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:05:25.233Z",
-      "path": "shared-goldens/cisco_ise____optimization__.json",
-      "report": {
-        "score": 97,
-        "band": "good"
-      }
-    },
-    {
       "key": "cisco_ise::commonsecuritylog::__mapping__",
       "sourcetype": "cisco_ise",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -1847,21 +1247,6 @@
       }
     },
     {
-      "key": "cisco_meraki::__optimization__",
-      "sourcetype": "cisco_meraki",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:29:15.143Z",
-      "path": "shared-goldens/cisco_meraki____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "cisco_meraki::ocsf::__mapping__",
       "sourcetype": "cisco_meraki",
       "dest_format": "ocsf::__mapping__",
@@ -1873,21 +1258,6 @@
       "path": "shared-goldens/cisco_meraki__ocsf____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "cisco_prime::__optimization__",
-      "sourcetype": "cisco_prime",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:51:28.659Z",
-      "path": "shared-goldens/cisco_prime____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -1922,21 +1292,6 @@
       }
     },
     {
-      "key": "citrix_netscaler::__optimization__",
-      "sourcetype": "citrix_netscaler",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:33:13.537Z",
-      "path": "shared-goldens/citrix_netscaler____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "citrix_netscaler::ocsf",
       "sourcetype": "citrix_netscaler",
       "dest_format": "ocsf",
@@ -1967,21 +1322,6 @@
       }
     },
     {
-      "key": "citrix_netscaler_appfw::__optimization__",
-      "sourcetype": "citrix_netscaler_appfw",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:13:11.950Z",
-      "path": "shared-goldens/citrix_netscaler_appfw____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "citrix_netscaler_appfw::commonsecuritylog::__mapping__",
       "sourcetype": "citrix_netscaler_appfw",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -2008,21 +1348,6 @@
       "path": "shared-goldens/citrix_netscaler_appfw_cef____extraction__.json",
       "report": {
         "score": 96,
-        "band": "good"
-      }
-    },
-    {
-      "key": "citrix_netscaler_appfw_cef::__optimization__",
-      "sourcetype": "citrix_netscaler_appfw_cef",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:25:07.211Z",
-      "path": "shared-goldens/citrix_netscaler_appfw_cef____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -2072,21 +1397,6 @@
       }
     },
     {
-      "key": "citrix_netscaler_syslog::__optimization__",
-      "sourcetype": "citrix_netscaler_syslog",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:12:25.435Z",
-      "path": "shared-goldens/citrix_netscaler_syslog____optimization__.json",
-      "report": {
-        "score": 98,
-        "band": "good"
-      }
-    },
-    {
       "key": "citrix_netscaler_syslog::cim#network::__mapping__",
       "sourcetype": "citrix_netscaler_syslog",
       "dest_format": "cim#network::__mapping__",
@@ -2111,21 +1421,6 @@
       "build": 0,
       "updated_at": "2026-07-15T18:49:42.486Z",
       "path": "shared-goldens/clamav____extraction__.json",
-      "report": {
-        "score": 93,
-        "band": "good"
-      }
-    },
-    {
-      "key": "clamav::__optimization__",
-      "sourcetype": "clamav",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "pack-mining",
-      "build": 0,
-      "updated_at": "2026-07-15T18:49:57.530Z",
-      "path": "shared-goldens/clamav____optimization__.json",
       "report": {
         "score": 93,
         "band": "good"
@@ -2192,21 +1487,6 @@
       }
     },
     {
-      "key": "clearswift_email_syslog::__optimization__",
-      "sourcetype": "clearswift_email_syslog",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:45:46.519Z",
-      "path": "shared-goldens/clearswift_email_syslog____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "clearswift_email_syslog::cim#network::__mapping__",
       "sourcetype": "clearswift_email_syslog",
       "dest_format": "cim#network::__mapping__",
@@ -2231,21 +1511,6 @@
       "build": 648,
       "updated_at": "2026-08-31T10:18:55.162Z",
       "path": "shared-goldens/cloudflare_gateway_dns____extraction__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "cloudflare_gateway_dns::__optimization__",
-      "sourcetype": "cloudflare_gateway_dns",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T10:21:12.217Z",
-      "path": "shared-goldens/cloudflare_gateway_dns____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -2297,21 +1562,6 @@
       }
     },
     {
-      "key": "corelight_analyzer::__optimization__",
-      "sourcetype": "corelight_analyzer",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:07:24.525Z",
-      "path": "shared-goldens/corelight_analyzer____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_analyzer::cim::__mapping__",
       "sourcetype": "corelight_analyzer",
       "dest_format": "cim::__mapping__",
@@ -2339,21 +1589,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "corelight_conn::__optimization__",
-      "sourcetype": "corelight_conn",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 302,
-      "updated_at": "2026-08-04T06:02:25.189Z",
-      "path": "shared-goldens/corelight_conn____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -2492,21 +1727,6 @@
       }
     },
     {
-      "key": "corelight_dns::__optimization__",
-      "sourcetype": "corelight_dns",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 528,
-      "updated_at": "2026-08-18T06:23:59.935Z",
-      "path": "shared-goldens/corelight_dns____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_dns::cim#dns::__mapping__",
       "sourcetype": "corelight_dns",
       "dest_format": "cim#dns::__mapping__",
@@ -2582,21 +1802,6 @@
       }
     },
     {
-      "key": "corelight_generic_icmp_tunnels::__optimization__",
-      "sourcetype": "corelight_generic_icmp_tunnels",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T13:28:30.624Z",
-      "path": "shared-goldens/corelight_generic_icmp_tunnels____optimization__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_generic_icmp_tunnels::commonsecuritylog::__mapping__",
       "sourcetype": "corelight_generic_icmp_tunnels",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -2623,21 +1828,6 @@
       "path": "shared-goldens/corelight_kerberos____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_kerberos::__optimization__",
-      "sourcetype": "corelight_kerberos",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:03:21.330Z",
-      "path": "shared-goldens/corelight_kerberos____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -2687,21 +1877,6 @@
       }
     },
     {
-      "key": "corelight_known_certs::__optimization__",
-      "sourcetype": "corelight_known_certs",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T08:48:46.407Z",
-      "path": "shared-goldens/corelight_known_certs____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_known_domains::__extraction__",
       "sourcetype": "corelight_known_domains",
       "dest_format": "__extraction__",
@@ -2728,21 +1903,6 @@
       "path": "shared-goldens/corelight_known_hosts____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_known_hosts::__optimization__",
-      "sourcetype": "corelight_known_hosts",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:06:53.398Z",
-      "path": "shared-goldens/corelight_known_hosts____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -2822,21 +1982,6 @@
       }
     },
     {
-      "key": "corelight_known_remotes::__optimization__",
-      "sourcetype": "corelight_known_remotes",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:43:25.775Z",
-      "path": "shared-goldens/corelight_known_remotes____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_known_remotes::cim#network::__mapping__",
       "sourcetype": "corelight_known_remotes",
       "dest_format": "cim#network::__mapping__",
@@ -2893,21 +2038,6 @@
       "path": "shared-goldens/corelight_known_services____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_known_services::__optimization__",
-      "sourcetype": "corelight_known_services",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:49:57.262Z",
-      "path": "shared-goldens/corelight_known_services____optimization__.json",
-      "report": {
-        "score": 92,
         "band": "good"
       }
     },
@@ -2972,21 +2102,6 @@
       }
     },
     {
-      "key": "corelight_ldap::__optimization__",
-      "sourcetype": "corelight_ldap",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:25:39.992Z",
-      "path": "shared-goldens/corelight_ldap____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_ldap::cim#authentication::__mapping__",
       "sourcetype": "corelight_ldap",
       "dest_format": "cim#authentication::__mapping__",
@@ -3047,21 +2162,6 @@
       }
     },
     {
-      "key": "corelight_ldap_search::__optimization__",
-      "sourcetype": "corelight_ldap_search",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:01:36.498Z",
-      "path": "shared-goldens/corelight_ldap_search____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_ldap_search::cim::__mapping__",
       "sourcetype": "corelight_ldap_search",
       "dest_format": "cim::__mapping__",
@@ -3107,21 +2207,6 @@
       }
     },
     {
-      "key": "corelight_notice::__optimization__",
-      "sourcetype": "corelight_notice",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:58:28.573Z",
-      "path": "shared-goldens/corelight_notice____optimization__.json",
-      "report": {
-        "score": 93,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_notice::cim::__mapping__",
       "sourcetype": "corelight_notice",
       "dest_format": "cim::__mapping__",
@@ -3148,21 +2233,6 @@
       "path": "shared-goldens/corelight_ntp____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_ntp::__optimization__",
-      "sourcetype": "corelight_ntp",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:22:10.908Z",
-      "path": "shared-goldens/corelight_ntp____optimization__.json",
-      "report": {
-        "score": 94,
         "band": "good"
       }
     },
@@ -3223,21 +2293,6 @@
       "path": "shared-goldens/corelight_reporter____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_reporter::__optimization__",
-      "sourcetype": "corelight_reporter",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:04:40.491Z",
-      "path": "shared-goldens/corelight_reporter____optimization__.json",
-      "report": {
-        "score": 98,
         "band": "good"
       }
     },
@@ -3347,21 +2402,6 @@
       }
     },
     {
-      "key": "corelight_smtp_links::__optimization__",
-      "sourcetype": "corelight_smtp_links",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:40:31.188Z",
-      "path": "shared-goldens/corelight_smtp_links____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_smtp_links::cim::__mapping__",
       "sourcetype": "corelight_smtp_links",
       "dest_format": "cim::__mapping__",
@@ -3392,21 +2432,6 @@
       }
     },
     {
-      "key": "corelight_snmp::__optimization__",
-      "sourcetype": "corelight_snmp",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:50:24.073Z",
-      "path": "shared-goldens/corelight_snmp____optimization__.json",
-      "report": {
-        "score": 98,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_snmp::commonsecuritylog::__mapping__",
       "sourcetype": "corelight_snmp",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -3433,21 +2458,6 @@
       "path": "shared-goldens/corelight_software____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_software::__optimization__",
-      "sourcetype": "corelight_software",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:25:03.408Z",
-      "path": "shared-goldens/corelight_software____optimization__.json",
-      "report": {
-        "score": 93,
         "band": "good"
       }
     },
@@ -3506,21 +2516,6 @@
       "build": 528,
       "updated_at": "2026-08-18T06:19:49.824Z",
       "path": "shared-goldens/corelight_ssl____extraction__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_ssl::__optimization__",
-      "sourcetype": "corelight_ssl",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T10:09:43.785Z",
-      "path": "shared-goldens/corelight_ssl____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -3602,21 +2597,6 @@
       }
     },
     {
-      "key": "corelight_suricata_enriched::__optimization__",
-      "sourcetype": "corelight_suricata_enriched",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:10:45.325Z",
-      "path": "shared-goldens/corelight_suricata_enriched____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_suricata_enriched::cim#network::__mapping__",
       "sourcetype": "corelight_suricata_enriched",
       "dest_format": "cim#network::__mapping__",
@@ -3673,21 +2653,6 @@
       "path": "shared-goldens/corelight_suricata_eve____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_suricata_eve::__optimization__",
-      "sourcetype": "corelight_suricata_eve",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:11:35.199Z",
-      "path": "shared-goldens/corelight_suricata_eve____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -3752,21 +2717,6 @@
       }
     },
     {
-      "key": "corelight_tunnel::__optimization__",
-      "sourcetype": "corelight_tunnel",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:25:51.202Z",
-      "path": "shared-goldens/corelight_tunnel____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_tunnel::cim::__mapping__",
       "sourcetype": "corelight_tunnel",
       "dest_format": "cim::__mapping__",
@@ -3793,21 +2743,6 @@
       "path": "shared-goldens/corelight_vpn____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "corelight_vpn::__optimization__",
-      "sourcetype": "corelight_vpn",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:10:28.860Z",
-      "path": "shared-goldens/corelight_vpn____optimization__.json",
-      "report": {
-        "score": 92,
         "band": "good"
       }
     },
@@ -3902,21 +2837,6 @@
       }
     },
     {
-      "key": "cron::__optimization__",
-      "sourcetype": "cron",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:42:42.705Z",
-      "path": "shared-goldens/cron____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "cron_2::__extraction__",
       "sourcetype": "cron_2",
       "dest_format": "__extraction__",
@@ -3932,21 +2852,6 @@
       }
     },
     {
-      "key": "cron_2::__optimization__",
-      "sourcetype": "cron_2",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:34:56.103Z",
-      "path": "shared-goldens/cron_2____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "cron_8::__extraction__",
       "sourcetype": "cron_8",
       "dest_format": "__extraction__",
@@ -3958,21 +2863,6 @@
       "path": "shared-goldens/cron_8____extraction__.json",
       "report": {
         "score": 91,
-        "band": "good"
-      }
-    },
-    {
-      "key": "cron_8::__optimization__",
-      "sourcetype": "cron_8",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:02:00.245Z",
-      "path": "shared-goldens/cron_8____optimization__.json",
-      "report": {
-        "score": 86,
         "band": "good"
       }
     },
@@ -4007,21 +2897,6 @@
       }
     },
     {
-      "key": "cron_too_small::__optimization__",
-      "sourcetype": "cron_too_small",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:40:39.653Z",
-      "path": "shared-goldens/cron_too_small____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "crowdstrike_falcon::__extraction__",
       "sourcetype": "crowdstrike_falcon",
       "dest_format": "__extraction__",
@@ -4034,21 +2909,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "crowdstrike_falcon::__optimization__",
-      "sourcetype": "crowdstrike_falcon",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:19:23.750Z",
-      "path": "shared-goldens/crowdstrike_falcon____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -4112,21 +2972,6 @@
       }
     },
     {
-      "key": "cyberark_pas::__optimization__",
-      "sourcetype": "cyberark_pas",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:39:31.681Z",
-      "path": "shared-goldens/cyberark_pas____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "darktrace_alerts::xsiam",
       "sourcetype": "darktrace_alerts",
       "dest_format": "xsiam",
@@ -4172,21 +3017,6 @@
       }
     },
     {
-      "key": "delinea_app::__optimization__",
-      "sourcetype": "delinea_app",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:05:46.736Z",
-      "path": "shared-goldens/delinea_app____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "delinea_app::commonsecuritylog::__mapping__",
       "sourcetype": "delinea_app",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -4213,51 +3043,6 @@
       "path": "shared-goldens/delinea_reports____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "delinea_reports::__optimization__",
-      "sourcetype": "delinea_reports",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T08:32:36.939Z",
-      "path": "shared-goldens/delinea_reports____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "dnf.librepo.log::__optimization__",
-      "sourcetype": "dnf.librepo.log",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:55:47.297Z",
-      "path": "shared-goldens/dnf.librepo.log____optimization__.json",
-      "report": {
-        "score": 97,
-        "band": "good"
-      }
-    },
-    {
-      "key": "dnf.librepo::__optimization__",
-      "sourcetype": "dnf.librepo",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:29:59.168Z",
-      "path": "shared-goldens/dnf.librepo____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -4292,51 +3077,6 @@
       }
     },
     {
-      "key": "dnf.log::__optimization__",
-      "sourcetype": "dnf.log",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:11:50.018Z",
-      "path": "shared-goldens/dnf.log____optimization__.json",
-      "report": {
-        "score": 86,
-        "band": "good"
-      }
-    },
-    {
-      "key": "dnf.log_2::__optimization__",
-      "sourcetype": "dnf.log_2",
-      "dest_format": "__optimization__",
-      "score": 82,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:19:32.928Z",
-      "path": "shared-goldens/dnf.log_2____optimization__.json",
-      "report": {
-        "score": 82,
-        "band": "warn"
-      }
-    },
-    {
-      "key": "dnf::__optimization__",
-      "sourcetype": "dnf",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:22:46.410Z",
-      "path": "shared-goldens/dnf____optimization__.json",
-      "report": {
-        "score": 86,
-        "band": "good"
-      }
-    },
-    {
       "key": "dnf_3::__extraction__",
       "sourcetype": "dnf_3",
       "dest_format": "__extraction__",
@@ -4348,21 +3088,6 @@
       "path": "shared-goldens/dnf_3____extraction__.json",
       "report": {
         "score": 97,
-        "band": "good"
-      }
-    },
-    {
-      "key": "dnf_3::__optimization__",
-      "sourcetype": "dnf_3",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:38:37.604Z",
-      "path": "shared-goldens/dnf_3____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -4379,21 +3104,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "duo_security::__optimization__",
-      "sourcetype": "duo_security",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:37:35.121Z",
-      "path": "shared-goldens/duo_security____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -4427,21 +3137,6 @@
       }
     },
     {
-      "key": "email_fpc_metadata::__optimization__",
-      "sourcetype": "email_fpc_metadata",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:48:24.661Z",
-      "path": "shared-goldens/email_fpc_metadata____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "email_fpc_metadata::cim#network::__mapping__",
       "sourcetype": "email_fpc_metadata",
       "dest_format": "cim#network::__mapping__",
@@ -4469,21 +3164,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "f5_bigip::__optimization__",
-      "sourcetype": "f5_bigip",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-07T04:19:50.426Z",
-      "path": "shared-goldens/f5_bigip____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -4607,21 +3287,6 @@
       }
     },
     {
-      "key": "f5_bigip_apm::__optimization__",
-      "sourcetype": "f5_bigip_apm",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 454,
-      "updated_at": "2026-08-13T10:26:41.595Z",
-      "path": "shared-goldens/f5_bigip_apm____optimization__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
       "key": "f5_bigip_apm::cim::__mapping__",
       "sourcetype": "f5_bigip_apm",
       "dest_format": "cim::__mapping__",
@@ -4682,21 +3347,6 @@
       }
     },
     {
-      "key": "f5_bigip_ltm_ssl_error::__optimization__",
-      "sourcetype": "f5_bigip_ltm_ssl_error",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:25:55.751Z",
-      "path": "shared-goldens/f5_bigip_ltm_ssl_error____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "f5_bigip_ltm_ssl_error::cim::__mapping__",
       "sourcetype": "f5_bigip_ltm_ssl_error",
       "dest_format": "cim::__mapping__",
@@ -4742,21 +3392,6 @@
       }
     },
     {
-      "key": "f5_bigip_ltm_tcl_error::__optimization__",
-      "sourcetype": "f5_bigip_ltm_tcl_error",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:32:19.371Z",
-      "path": "shared-goldens/f5_bigip_ltm_tcl_error____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "f5_bigip_syslog::__extraction__",
       "sourcetype": "f5_bigip_syslog",
       "dest_format": "__extraction__",
@@ -4768,21 +3403,6 @@
       "path": "shared-goldens/f5_bigip_syslog____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "f5_bigip_syslog::__optimization__",
-      "sourcetype": "f5_bigip_syslog",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:30:19.635Z",
-      "path": "shared-goldens/f5_bigip_syslog____optimization__.json",
-      "report": {
-        "score": 98,
         "band": "good"
       }
     },
@@ -4802,21 +3422,6 @@
       }
     },
     {
-      "key": "fidelis_syslog::__optimization__",
-      "sourcetype": "fidelis_syslog",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T09:07:08.308Z",
-      "path": "shared-goldens/fidelis_syslog____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "fml_event::__extraction__",
       "sourcetype": "fml_event",
       "dest_format": "__extraction__",
@@ -4832,21 +3437,6 @@
       }
     },
     {
-      "key": "fml_event::__optimization__",
-      "sourcetype": "fml_event",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:02:11.520Z",
-      "path": "shared-goldens/fml_event____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "fml_spam::__extraction__",
       "sourcetype": "fml_spam",
       "dest_format": "__extraction__",
@@ -4856,21 +3446,6 @@
       "build": 379,
       "updated_at": "2026-08-07T15:58:51.799Z",
       "path": "shared-goldens/fml_spam____extraction__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "fml_spam::__optimization__",
-      "sourcetype": "fml_spam",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T10:51:31.592Z",
-      "path": "shared-goldens/fml_spam____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -4937,21 +3512,6 @@
       }
     },
     {
-      "key": "fortigate_adc::__optimization__",
-      "sourcetype": "fortigate_adc",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:21:13.544Z",
-      "path": "shared-goldens/fortigate_adc____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "fortigate_adc::cim::__mapping__",
       "sourcetype": "fortigate_adc",
       "dest_format": "cim::__mapping__",
@@ -4979,21 +3539,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "fortinet_fortigate::__optimization__",
-      "sourcetype": "fortinet_fortigate",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "wlinde@cribl.io",
-      "build": 296,
-      "updated_at": "2026-08-03T11:37:54.757Z",
-      "path": "shared-goldens/fortinet_fortigate____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -5132,21 +3677,6 @@
       }
     },
     {
-      "key": "gcp_audit::__optimization__",
-      "sourcetype": "gcp_audit",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:22:41.887Z",
-      "path": "shared-goldens/gcp_audit____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "gcp_audit::cim::__mapping__",
       "sourcetype": "gcp_audit",
       "dest_format": "cim::__mapping__",
@@ -5222,21 +3752,6 @@
       }
     },
     {
-      "key": "google_workspace::__optimization__",
-      "sourcetype": "google_workspace",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:37:46.427Z",
-      "path": "shared-goldens/google_workspace____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "google_workspace::cim::__mapping__",
       "sourcetype": "google_workspace",
       "dest_format": "cim::__mapping__",
@@ -5282,21 +3797,6 @@
       }
     },
     {
-      "key": "http_fpc_metadata::__optimization__",
-      "sourcetype": "http_fpc_metadata",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:09:38.767Z",
-      "path": "shared-goldens/http_fpc_metadata____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "http_fpc_metadata::cim#web_proxy::__mapping__",
       "sourcetype": "http_fpc_metadata",
       "dest_format": "cim#web_proxy::__mapping__",
@@ -5327,21 +3827,6 @@
       }
     },
     {
-      "key": "https_access::__optimization__",
-      "sourcetype": "https_access",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:28:51.624Z",
-      "path": "shared-goldens/https_access____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "https_access::cim::__mapping__",
       "sourcetype": "https_access",
       "dest_format": "cim::__mapping__",
@@ -5353,36 +3838,6 @@
       "path": "shared-goldens/https_access__cim____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "https_error::__optimization__",
-      "sourcetype": "https_error",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:20:36.457Z",
-      "path": "shared-goldens/https_error____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "https_request::__optimization__",
-      "sourcetype": "https_request",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:31:24.115Z",
-      "path": "shared-goldens/https_request____optimization__.json",
-      "report": {
-        "score": 97,
         "band": "good"
       }
     },
@@ -5413,21 +3868,6 @@
       "path": "shared-goldens/hypori____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "hypori::__optimization__",
-      "sourcetype": "hypori",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:14:10.973Z",
-      "path": "shared-goldens/hypori____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -5477,21 +3917,6 @@
       }
     },
     {
-      "key": "infoblox_dhcp::__optimization__",
-      "sourcetype": "infoblox_dhcp",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:36:46.043Z",
-      "path": "shared-goldens/infoblox_dhcp____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "infoblox_dhcp::cim::__mapping__",
       "sourcetype": "infoblox_dhcp",
       "dest_format": "cim::__mapping__",
@@ -5534,21 +3959,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "infoblox_dns::__optimization__",
-      "sourcetype": "infoblox_dns",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 302,
-      "updated_at": "2026-08-04T06:03:10.737Z",
-      "path": "shared-goldens/infoblox_dns____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -5642,21 +4052,6 @@
       }
     },
     {
-      "key": "infoblox_port::__optimization__",
-      "sourcetype": "infoblox_port",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:38:23.453Z",
-      "path": "shared-goldens/infoblox_port____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "iostat::__extraction__",
       "sourcetype": "iostat",
       "dest_format": "__extraction__",
@@ -5687,36 +4082,6 @@
       }
     },
     {
-      "key": "iostat_metric::__optimization__",
-      "sourcetype": "iostat_metric",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:46:48.323Z",
-      "path": "shared-goldens/iostat_metric____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "isva_syslog::__optimization__",
-      "sourcetype": "isva_syslog",
-      "dest_format": "__optimization__",
-      "score": 83,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:50:14.008Z",
-      "path": "shared-goldens/isva_syslog____optimization__.json",
-      "report": {
-        "score": 83,
-        "band": "warn"
-      }
-    },
-    {
       "key": "isva_syslog::cim::__mapping__",
       "sourcetype": "isva_syslog",
       "dest_format": "cim::__mapping__",
@@ -5743,21 +4108,6 @@
       "path": "shared-goldens/ivanti_audit_log____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_audit_log::__optimization__",
-      "sourcetype": "ivanti_audit_log",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:25:24.002Z",
-      "path": "shared-goldens/ivanti_audit_log____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -5792,21 +4142,6 @@
       }
     },
     {
-      "key": "ivanti_certactivity::__optimization__",
-      "sourcetype": "ivanti_certactivity",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:09:46.108Z",
-      "path": "shared-goldens/ivanti_certactivity____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_certactivity::commonsecuritylog::__mapping__",
       "sourcetype": "ivanti_certactivity",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -5837,21 +4172,6 @@
       }
     },
     {
-      "key": "ivanti_core_mics::__optimization__",
-      "sourcetype": "ivanti_core_mics",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:28:54.210Z",
-      "path": "shared-goldens/ivanti_core_mics____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_core_mifs::__extraction__",
       "sourcetype": "ivanti_core_mifs",
       "dest_format": "__extraction__",
@@ -5863,21 +4183,6 @@
       "path": "shared-goldens/ivanti_core_mifs____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_core_mifs::__optimization__",
-      "sourcetype": "ivanti_core_mifs",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:38:47.060Z",
-      "path": "shared-goldens/ivanti_core_mifs____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -5923,21 +4228,6 @@
       "path": "shared-goldens/ivanti_cpu____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_cpu::__optimization__",
-      "sourcetype": "ivanti_cpu",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:42:02.580Z",
-      "path": "shared-goldens/ivanti_cpu____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -6002,21 +4292,6 @@
       }
     },
     {
-      "key": "ivanti_es_devices::__optimization__",
-      "sourcetype": "ivanti_es_devices",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:24:25.789Z",
-      "path": "shared-goldens/ivanti_es_devices____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_es_devices::commonsecuritylog::__mapping__",
       "sourcetype": "ivanti_es_devices",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -6043,21 +4318,6 @@
       "path": "shared-goldens/ivanti_hastatus____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_hastatus::__optimization__",
-      "sourcetype": "ivanti_hastatus",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:10:01.994Z",
-      "path": "shared-goldens/ivanti_hastatus____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -6107,21 +4367,6 @@
       }
     },
     {
-      "key": "ivanti_https_access::__optimization__",
-      "sourcetype": "ivanti_https_access",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:53:01.784Z",
-      "path": "shared-goldens/ivanti_https_access____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_https_access::cim#network::__mapping__",
       "sourcetype": "ivanti_https_access",
       "dest_format": "cim#network::__mapping__",
@@ -6152,21 +4397,6 @@
       }
     },
     {
-      "key": "ivanti_https_error::__optimization__",
-      "sourcetype": "ivanti_https_error",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:02:01.826Z",
-      "path": "shared-goldens/ivanti_https_error____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_https_request::__extraction__",
       "sourcetype": "ivanti_https_request",
       "dest_format": "__extraction__",
@@ -6178,21 +4408,6 @@
       "path": "shared-goldens/ivanti_https_request____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_https_request::__optimization__",
-      "sourcetype": "ivanti_https_request",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:04:13.782Z",
-      "path": "shared-goldens/ivanti_https_request____optimization__.json",
-      "report": {
-        "score": 92,
         "band": "good"
       }
     },
@@ -6242,21 +4457,6 @@
       }
     },
     {
-      "key": "ivanti_iostat::__optimization__",
-      "sourcetype": "ivanti_iostat",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:14:48.367Z",
-      "path": "shared-goldens/ivanti_iostat____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_iostat::cim::__mapping__",
       "sourcetype": "ivanti_iostat",
       "dest_format": "cim::__mapping__",
@@ -6302,21 +4502,6 @@
       }
     },
     {
-      "key": "ivanti_ldap::__optimization__",
-      "sourcetype": "ivanti_ldap",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:50:38.933Z",
-      "path": "shared-goldens/ivanti_ldap____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_ldap::commonsecuritylog::__mapping__",
       "sourcetype": "ivanti_ldap",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -6347,21 +4532,6 @@
       }
     },
     {
-      "key": "ivanti_linux_audit::__optimization__",
-      "sourcetype": "ivanti_linux_audit",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:37:53.835Z",
-      "path": "shared-goldens/ivanti_linux_audit____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_linux_secure::__extraction__",
       "sourcetype": "ivanti_linux_secure",
       "dest_format": "__extraction__",
@@ -6377,21 +4547,6 @@
       }
     },
     {
-      "key": "ivanti_linux_secure::__optimization__",
-      "sourcetype": "ivanti_linux_secure",
-      "dest_format": "__optimization__",
-      "score": 85,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:20:04.930Z",
-      "path": "shared-goldens/ivanti_linux_secure____optimization__.json",
-      "report": {
-        "score": 85,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_mdstat::__extraction__",
       "sourcetype": "ivanti_mdstat",
       "dest_format": "__extraction__",
@@ -6403,21 +4558,6 @@
       "path": "shared-goldens/ivanti_mdstat____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_mdstat::__optimization__",
-      "sourcetype": "ivanti_mdstat",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:38:29.249Z",
-      "path": "shared-goldens/ivanti_mdstat____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -6448,21 +4588,6 @@
       "path": "shared-goldens/ivanti_messages____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_messages::__optimization__",
-      "sourcetype": "ivanti_messages",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:13:27.564Z",
-      "path": "shared-goldens/ivanti_messages____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -6542,21 +4667,6 @@
       }
     },
     {
-      "key": "ivanti_miclient_access::__optimization__",
-      "sourcetype": "ivanti_miclient_access",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:12:17.554Z",
-      "path": "shared-goldens/ivanti_miclient_access____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_miclient_access::cim::__mapping__",
       "sourcetype": "ivanti_miclient_access",
       "dest_format": "cim::__mapping__",
@@ -6602,21 +4712,6 @@
       }
     },
     {
-      "key": "ivanti_portal_access::__optimization__",
-      "sourcetype": "ivanti_portal_access",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:10:49.237Z",
-      "path": "shared-goldens/ivanti_portal_access____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_portal_request::__extraction__",
       "sourcetype": "ivanti_portal_request",
       "dest_format": "__extraction__",
@@ -6628,21 +4723,6 @@
       "path": "shared-goldens/ivanti_portal_request____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_portal_request::__optimization__",
-      "sourcetype": "ivanti_portal_request",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:11:48.400Z",
-      "path": "shared-goldens/ivanti_portal_request____optimization__.json",
-      "report": {
-        "score": 93,
         "band": "good"
       }
     },
@@ -6677,21 +4757,6 @@
       }
     },
     {
-      "key": "ivanti_protocol::__optimization__",
-      "sourcetype": "ivanti_protocol",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:15:15.647Z",
-      "path": "shared-goldens/ivanti_protocol____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_protocol::cim#network::__mapping__",
       "sourcetype": "ivanti_protocol",
       "dest_format": "cim#network::__mapping__",
@@ -6722,21 +4787,6 @@
       }
     },
     {
-      "key": "ivanti_ps::__optimization__",
-      "sourcetype": "ivanti_ps",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:29:19.917Z",
-      "path": "shared-goldens/ivanti_ps____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_secure::__extraction__",
       "sourcetype": "ivanti_secure",
       "dest_format": "__extraction__",
@@ -6748,21 +4798,6 @@
       "path": "shared-goldens/ivanti_secure____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_secure::__optimization__",
-      "sourcetype": "ivanti_secure",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:47:00.947Z",
-      "path": "shared-goldens/ivanti_secure____optimization__.json",
-      "report": {
-        "score": 86,
         "band": "good"
       }
     },
@@ -6812,21 +4847,6 @@
       }
     },
     {
-      "key": "ivanti_sentry_sentry::__optimization__",
-      "sourcetype": "ivanti_sentry_sentry",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:37:47.788Z",
-      "path": "shared-goldens/ivanti_sentry_sentry____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_sentry_sentry::cim#network::__mapping__",
       "sourcetype": "ivanti_sentry_sentry",
       "dest_format": "cim#network::__mapping__",
@@ -6868,21 +4888,6 @@
       "path": "shared-goldens/ivanti_servicestatus____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_servicestatus::__optimization__",
-      "sourcetype": "ivanti_servicestatus",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:28:23.213Z",
-      "path": "shared-goldens/ivanti_servicestatus____optimization__.json",
-      "report": {
-        "score": 87,
         "band": "good"
       }
     },
@@ -6947,21 +4952,6 @@
       }
     },
     {
-      "key": "ivanti_splunk_metrics_log::__optimization__",
-      "sourcetype": "ivanti_splunk_metrics_log",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:32:19.156Z",
-      "path": "shared-goldens/ivanti_splunk_metrics_log____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_splunkd::__extraction__",
       "sourcetype": "ivanti_splunkd",
       "dest_format": "__extraction__",
@@ -6973,21 +4963,6 @@
       "path": "shared-goldens/ivanti_splunkd____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_splunkd::__optimization__",
-      "sourcetype": "ivanti_splunkd",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:30:59.018Z",
-      "path": "shared-goldens/ivanti_splunkd____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -7007,21 +4982,6 @@
       }
     },
     {
-      "key": "ivanti_sun_jvm::__optimization__",
-      "sourcetype": "ivanti_sun_jvm",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:00:10.648Z",
-      "path": "shared-goldens/ivanti_sun_jvm____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_top::__extraction__",
       "sourcetype": "ivanti_top",
       "dest_format": "__extraction__",
@@ -7033,21 +4993,6 @@
       "path": "shared-goldens/ivanti_top____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_top::__optimization__",
-      "sourcetype": "ivanti_top",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:29:44.892Z",
-      "path": "shared-goldens/ivanti_top____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -7097,21 +5042,6 @@
       }
     },
     {
-      "key": "ivanti_unix_listeningports::__optimization__",
-      "sourcetype": "ivanti_unix_listeningports",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:55:49.758Z",
-      "path": "shared-goldens/ivanti_unix_listeningports____optimization__.json",
-      "report": {
-        "score": 93,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_unix_listeningports::commonsecuritylog::__mapping__",
       "sourcetype": "ivanti_unix_listeningports",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -7138,21 +5068,6 @@
       "path": "shared-goldens/ivanti_vmstat____extraction__.json",
       "report": {
         "score": 94,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_vmstat::__optimization__",
-      "sourcetype": "ivanti_vmstat",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:15:18.604Z",
-      "path": "shared-goldens/ivanti_vmstat____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -7187,21 +5102,6 @@
       }
     },
     {
-      "key": "ivanti_vpp::__optimization__",
-      "sourcetype": "ivanti_vpp",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:20:40.349Z",
-      "path": "shared-goldens/ivanti_vpp____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "ivanti_vpp::commonsecuritylog::__mapping__",
       "sourcetype": "ivanti_vpp",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -7228,21 +5128,6 @@
       "path": "shared-goldens/jira_security____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "jira_security::__optimization__",
-      "sourcetype": "jira_security",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:34:15.179Z",
-      "path": "shared-goldens/jira_security____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -7292,21 +5177,6 @@
       }
     },
     {
-      "key": "json::__optimization__",
-      "sourcetype": "json",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T07:46:58.746Z",
-      "path": "shared-goldens/json____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "json::cim#network::__mapping__",
       "sourcetype": "json",
       "dest_format": "cim#network::__mapping__",
@@ -7352,21 +5222,6 @@
       }
     },
     {
-      "key": "json_3::__optimization__",
-      "sourcetype": "json_3",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:47:27.502Z",
-      "path": "shared-goldens/json_3____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "json_3::cim::__mapping__",
       "sourcetype": "json_3",
       "dest_format": "cim::__mapping__",
@@ -7397,21 +5252,6 @@
       }
     },
     {
-      "key": "juniper::__optimization__",
-      "sourcetype": "juniper",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:40:52.143Z",
-      "path": "shared-goldens/juniper____optimization__.json",
-      "report": {
-        "score": 86,
-        "band": "good"
-      }
-    },
-    {
       "key": "juniper_junos_firewall::__extraction__",
       "sourcetype": "juniper_junos_firewall",
       "dest_format": "__extraction__",
@@ -7423,21 +5263,6 @@
       "path": "shared-goldens/juniper_junos_firewall____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "juniper_junos_firewall::__optimization__",
-      "sourcetype": "juniper_junos_firewall",
-      "dest_format": "__optimization__",
-      "score": 99,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:26:35.517Z",
-      "path": "shared-goldens/juniper_junos_firewall____optimization__.json",
-      "report": {
-        "score": 99,
         "band": "good"
       }
     },
@@ -7454,21 +5279,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "juniper_srx::__optimization__",
-      "sourcetype": "juniper_srx",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:27:12.779Z",
-      "path": "shared-goldens/juniper_srx____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -7499,21 +5309,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "kubernetes_audit::__optimization__",
-      "sourcetype": "kubernetes_audit",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 375,
-      "updated_at": "2026-08-07T09:53:55.472Z",
-      "path": "shared-goldens/kubernetes_audit____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -7562,21 +5357,6 @@
       }
     },
     {
-      "key": "ldap_access_log::__optimization__",
-      "sourcetype": "ldap_access_log",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:13:28.669Z",
-      "path": "shared-goldens/ldap_access_log____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "linux_audit::__extraction__",
       "sourcetype": "linux_audit",
       "dest_format": "__extraction__",
@@ -7589,21 +5369,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "linux_audit::__optimization__",
-      "sourcetype": "linux_audit",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 302,
-      "updated_at": "2026-08-04T06:00:42.031Z",
-      "path": "shared-goldens/linux_audit____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -7667,21 +5432,6 @@
       }
     },
     {
-      "key": "linux_secure::__optimization__",
-      "sourcetype": "linux_secure",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:44:21.034Z",
-      "path": "shared-goldens/linux_secure____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "linux_secure::cim#authentication::__mapping__",
       "sourcetype": "linux_secure",
       "dest_format": "cim#authentication::__mapping__",
@@ -7709,21 +5459,6 @@
       "report": {
         "score": 92,
         "band": "good"
-      }
-    },
-    {
-      "key": "linux_syslog::__optimization__",
-      "sourcetype": "linux_syslog",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:19:39.160Z",
-      "path": "shared-goldens/linux_syslog____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -7787,21 +5522,6 @@
       }
     },
     {
-      "key": "mcafee_epo_dlpevents::__optimization__",
-      "sourcetype": "mcafee_epo_dlpevents",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:16:04.192Z",
-      "path": "shared-goldens/mcafee_epo_dlpevents____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "mcafee_epo_dlpevents::commonsecuritylog::__mapping__",
       "sourcetype": "mcafee_epo_dlpevents",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -7832,21 +5552,6 @@
       }
     },
     {
-      "key": "mcafee_epo_solidcoreevents::__optimization__",
-      "sourcetype": "mcafee_epo_solidcoreevents",
-      "dest_format": "__optimization__",
-      "score": 95,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:19:46.135Z",
-      "path": "shared-goldens/mcafee_epo_solidcoreevents____optimization__.json",
-      "report": {
-        "score": 95,
-        "band": "good"
-      }
-    },
-    {
       "key": "mcafee_epo_solidcoreevents::commonsecuritylog::__mapping__",
       "sourcetype": "mcafee_epo_solidcoreevents",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -7873,21 +5578,6 @@
       "path": "shared-goldens/mcafee_epo_threatevents_ens____extraction__.json",
       "report": {
         "score": 98,
-        "band": "good"
-      }
-    },
-    {
-      "key": "mcafee_epo_threatevents_ens::__optimization__",
-      "sourcetype": "mcafee_epo_threatevents_ens",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:07:31.303Z",
-      "path": "shared-goldens/mcafee_epo_threatevents_ens____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -7937,21 +5627,6 @@
       }
     },
     {
-      "key": "mcafee_epo_threatevents_ens_ids::__optimization__",
-      "sourcetype": "mcafee_epo_threatevents_ens_ids",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:04:10.813Z",
-      "path": "shared-goldens/mcafee_epo_threatevents_ens_ids____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "mcafee_epo_threatevents_ens_ids::commonsecuritylog::__mapping__",
       "sourcetype": "mcafee_epo_threatevents_ens_ids",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -7978,21 +5653,6 @@
       "path": "shared-goldens/mcafee_epo_threatevents_uncategorized____extraction__.json",
       "report": {
         "score": 97,
-        "band": "good"
-      }
-    },
-    {
-      "key": "mcafee_epo_threatevents_uncategorized::__optimization__",
-      "sourcetype": "mcafee_epo_threatevents_uncategorized",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T08:12:58.604Z",
-      "path": "shared-goldens/mcafee_epo_threatevents_uncategorized____optimization__.json",
-      "report": {
-        "score": 94,
         "band": "good"
       }
     },
@@ -8042,36 +5702,6 @@
       }
     },
     {
-      "key": "messages_log::__optimization__",
-      "sourcetype": "messages_log",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:14:26.536Z",
-      "path": "shared-goldens/messages_log____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
-      "key": "messages_too_small::__optimization__",
-      "sourcetype": "messages_too_small",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:03:33.882Z",
-      "path": "shared-goldens/messages_too_small____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "messages_too_small::cim::__mapping__",
       "sourcetype": "messages_too_small",
       "dest_format": "cim::__mapping__",
@@ -8102,21 +5732,6 @@
       }
     },
     {
-      "key": "mi::__optimization__",
-      "sourcetype": "mi",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:11:08.804Z",
-      "path": "shared-goldens/mi____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "microsoft_defender::__extraction__",
       "sourcetype": "microsoft_defender",
       "dest_format": "__extraction__",
@@ -8129,21 +5744,6 @@
       "report": {
         "score": 94,
         "band": "good"
-      }
-    },
-    {
-      "key": "microsoft_defender::__optimization__",
-      "sourcetype": "microsoft_defender",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:33:25.334Z",
-      "path": "shared-goldens/microsoft_defender____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -8174,21 +5774,6 @@
       "report": {
         "score": 92,
         "band": "good"
-      }
-    },
-    {
-      "key": "microsoft_dns::__optimization__",
-      "sourcetype": "microsoft_dns",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:42:59.234Z",
-      "path": "shared-goldens/microsoft_dns____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -8237,21 +5822,6 @@
       }
     },
     {
-      "key": "mimecast_email::__optimization__",
-      "sourcetype": "mimecast_email",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:59:30.921Z",
-      "path": "shared-goldens/mimecast_email____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "modular_alerts_notable::__extraction__",
       "sourcetype": "modular_alerts_notable",
       "dest_format": "__extraction__",
@@ -8297,21 +5867,6 @@
       }
     },
     {
-      "key": "modular_alerts_risk::__optimization__",
-      "sourcetype": "modular_alerts_risk",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:35:00.542Z",
-      "path": "shared-goldens/modular_alerts_risk____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "modular_alerts_risk::cim::__mapping__",
       "sourcetype": "modular_alerts_risk",
       "dest_format": "cim::__mapping__",
@@ -8338,21 +5893,6 @@
       "path": "shared-goldens/ms_iis_auto____extraction__.json",
       "report": {
         "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ms_iis_auto::__optimization__",
-      "sourcetype": "ms_iis_auto",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:42:21.447Z",
-      "path": "shared-goldens/ms_iis_auto____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -8402,36 +5942,6 @@
       }
     },
     {
-      "key": "nci_splk_nci_splk_nr_apps_data::__optimization__",
-      "sourcetype": "nci_splk_nci_splk_nr_apps_data",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:06:40.387Z",
-      "path": "shared-goldens/nci_splk_nci_splk_nr_apps_data____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
-      "key": "nci_splk_nci_splk_nr_linux_data::__optimization__",
-      "sourcetype": "nci_splk_nci_splk_nr_linux_data",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:19:05.935Z",
-      "path": "shared-goldens/nci_splk_nci_splk_nr_linux_data____optimization__.json",
-      "report": {
-        "score": 97,
-        "band": "good"
-      }
-    },
-    {
       "key": "nci_splk_nci_splk_nr_network_data::__extraction__",
       "sourcetype": "nci_splk_nci_splk_nr_network_data",
       "dest_format": "__extraction__",
@@ -8447,21 +5957,6 @@
       }
     },
     {
-      "key": "nci_splk_nci_splk_nr_network_data::__optimization__",
-      "sourcetype": "nci_splk_nci_splk_nr_network_data",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:55:08.601Z",
-      "path": "shared-goldens/nci_splk_nci_splk_nr_network_data____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "nci_splk_nci_splk_nu_network_data::__extraction__",
       "sourcetype": "nci_splk_nci_splk_nu_network_data",
       "dest_format": "__extraction__",
@@ -8473,21 +5968,6 @@
       "path": "shared-goldens/nci_splk_nci_splk_nu_network_data____extraction__.json",
       "report": {
         "score": 99,
-        "band": "good"
-      }
-    },
-    {
-      "key": "nci_splk_nci_splk_nu_network_data::__optimization__",
-      "sourcetype": "nci_splk_nci_splk_nu_network_data",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:38:17.492Z",
-      "path": "shared-goldens/nci_splk_nci_splk_nu_network_data____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -8522,21 +6002,6 @@
       }
     },
     {
-      "key": "nci_splk_nr_firewall_data::__optimization__",
-      "sourcetype": "nci_splk_nr_firewall_data",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:38:33.782Z",
-      "path": "shared-goldens/nci_splk_nr_firewall_data____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_akamai_web::__extraction__",
       "sourcetype": "ncsc_akamai_web",
       "dest_format": "__extraction__",
@@ -8552,21 +6017,6 @@
       }
     },
     {
-      "key": "ncsc_akamai_web::__optimization__",
-      "sourcetype": "ncsc_akamai_web",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:40:17.243Z",
-      "path": "shared-goldens/ncsc_akamai_web____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_cloudflare_device_posture::__extraction__",
       "sourcetype": "ncsc_cloudflare_device_posture",
       "dest_format": "__extraction__",
@@ -8578,21 +6028,6 @@
       "path": "shared-goldens/ncsc_cloudflare_device_posture____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_cloudflare_device_posture::__optimization__",
-      "sourcetype": "ncsc_cloudflare_device_posture",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:23:09.682Z",
-      "path": "shared-goldens/ncsc_cloudflare_device_posture____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -8627,21 +6062,6 @@
       }
     },
     {
-      "key": "ncsc_cloudflare_dns::__optimization__",
-      "sourcetype": "ncsc_cloudflare_dns",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:25:05.958Z",
-      "path": "shared-goldens/ncsc_cloudflare_dns____optimization__.json",
-      "report": {
-        "score": 93,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_cloudflare_email_area1::__extraction__",
       "sourcetype": "ncsc_cloudflare_email_area1",
       "dest_format": "__extraction__",
@@ -8668,21 +6088,6 @@
       "path": "shared-goldens/ncsc_cloudflare_firewall____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_cloudflare_firewall::__optimization__",
-      "sourcetype": "ncsc_cloudflare_firewall",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T14:59:43.465Z",
-      "path": "shared-goldens/ncsc_cloudflare_firewall____optimization__.json",
-      "report": {
-        "score": 93,
         "band": "good"
       }
     },
@@ -8726,21 +6131,6 @@
       "build": 528,
       "updated_at": "2026-08-18T06:26:24.333Z",
       "path": "shared-goldens/ncsc_cloudflare_gateway_http____extraction__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_cloudflare_gateway_http::__optimization__",
-      "sourcetype": "ncsc_cloudflare_gateway_http",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T10:27:09.596Z",
-      "path": "shared-goldens/ncsc_cloudflare_gateway_http____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -8792,21 +6182,6 @@
       }
     },
     {
-      "key": "ncsc_cloudflare_gateway_network::__optimization__",
-      "sourcetype": "ncsc_cloudflare_gateway_network",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:18:12.637Z",
-      "path": "shared-goldens/ncsc_cloudflare_gateway_network____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_cloudflare_gateway_network::cim::__mapping__",
       "sourcetype": "ncsc_cloudflare_gateway_network",
       "dest_format": "cim::__mapping__",
@@ -8848,21 +6223,6 @@
       "path": "shared-goldens/ncsc_cloudflare_ztna____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_cloudflare_ztna::__optimization__",
-      "sourcetype": "ncsc_cloudflare_ztna",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:19:15.043Z",
-      "path": "shared-goldens/ncsc_cloudflare_ztna____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -8912,21 +6272,6 @@
       }
     },
     {
-      "key": "ncsc_fidelis_assets::__optimization__",
-      "sourcetype": "ncsc_fidelis_assets",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:34:38.676Z",
-      "path": "shared-goldens/ncsc_fidelis_assets____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_fidelis_assets::cim::__mapping__",
       "sourcetype": "ncsc_fidelis_assets",
       "dest_format": "cim::__mapping__",
@@ -8972,21 +6317,6 @@
       }
     },
     {
-      "key": "ncsc_fidelis_endpoint::__optimization__",
-      "sourcetype": "ncsc_fidelis_endpoint",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:28:29.684Z",
-      "path": "shared-goldens/ncsc_fidelis_endpoint____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_fidelis_endpoint::cim::__mapping__",
       "sourcetype": "ncsc_fidelis_endpoint",
       "dest_format": "cim::__mapping__",
@@ -9017,21 +6347,6 @@
       }
     },
     {
-      "key": "ncsc_fidelis_endpoint_audit::__optimization__",
-      "sourcetype": "ncsc_fidelis_endpoint_audit",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:38:24.885Z",
-      "path": "shared-goldens/ncsc_fidelis_endpoint_audit____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_healthchecks::__extraction__",
       "sourcetype": "ncsc_healthchecks",
       "dest_format": "__extraction__",
@@ -9043,21 +6358,6 @@
       "path": "shared-goldens/ncsc_healthchecks____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_healthchecks::__optimization__",
-      "sourcetype": "ncsc_healthchecks",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:40:32.327Z",
-      "path": "shared-goldens/ncsc_healthchecks____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -9092,21 +6392,6 @@
       }
     },
     {
-      "key": "ncsc_microsoft_sharepoint::__optimization__",
-      "sourcetype": "ncsc_microsoft_sharepoint",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:38:08.844Z",
-      "path": "shared-goldens/ncsc_microsoft_sharepoint____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_misp_web::__extraction__",
       "sourcetype": "ncsc_misp_web",
       "dest_format": "__extraction__",
@@ -9118,21 +6403,6 @@
       "path": "shared-goldens/ncsc_misp_web____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_misp_web::__optimization__",
-      "sourcetype": "ncsc_misp_web",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:59:26.121Z",
-      "path": "shared-goldens/ncsc_misp_web____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -9152,36 +6422,6 @@
       }
     },
     {
-      "key": "ncsc_ova_agents_hc::__optimization__",
-      "sourcetype": "ncsc_ova_agents_hc",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:22:19.998Z",
-      "path": "shared-goldens/ncsc_ova_agents_hc____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_replicator_full::__optimization__",
-      "sourcetype": "ncsc_replicator_full",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:35:32.366Z",
-      "path": "shared-goldens/ncsc_replicator_full____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_replicator_full::cim::__mapping__",
       "sourcetype": "ncsc_replicator_full",
       "dest_format": "cim::__mapping__",
@@ -9197,21 +6437,6 @@
       }
     },
     {
-      "key": "ncsc_rsa_metadata::__optimization__",
-      "sourcetype": "ncsc_rsa_metadata",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:08:52.085Z",
-      "path": "shared-goldens/ncsc_rsa_metadata____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "ncsc_rsa_netwitness::__extraction__",
       "sourcetype": "ncsc_rsa_netwitness",
       "dest_format": "__extraction__",
@@ -9223,21 +6448,6 @@
       "path": "shared-goldens/ncsc_rsa_netwitness____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_rsa_netwitness::__optimization__",
-      "sourcetype": "ncsc_rsa_netwitness",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:37:34.071Z",
-      "path": "shared-goldens/ncsc_rsa_netwitness____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -9317,21 +6527,6 @@
       }
     },
     {
-      "key": "nginx_access::__optimization__",
-      "sourcetype": "nginx_access",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 260,
-      "updated_at": "2026-07-20T09:37:04.875Z",
-      "path": "shared-goldens/nginx_access____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "nginx_access::cim::__mapping__",
       "sourcetype": "nginx_access",
       "dest_format": "cim::__mapping__",
@@ -9373,21 +6568,6 @@
       "path": "shared-goldens/nginx_plus_access____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "nginx_plus_access::__optimization__",
-      "sourcetype": "nginx_plus_access",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:50:02.875Z",
-      "path": "shared-goldens/nginx_plus_access____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -9437,21 +6617,6 @@
       }
     },
     {
-      "key": "o365_management_activity::__optimization__",
-      "sourcetype": "o365_management_activity",
-      "dest_format": "__optimization__",
-      "score": 82,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 488,
-      "updated_at": "2026-08-17T12:51:06.852Z",
-      "path": "shared-goldens/o365_management_activity____optimization__.json",
-      "report": {
-        "score": 82,
-        "band": "warn"
-      }
-    },
-    {
       "key": "okta_system::__extraction__",
       "sourcetype": "okta_system",
       "dest_format": "__extraction__",
@@ -9464,21 +6629,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "okta_system::__optimization__",
-      "sourcetype": "okta_system",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:22:56.032Z",
-      "path": "shared-goldens/okta_system____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -9527,21 +6677,6 @@
       }
     },
     {
-      "key": "osquery_results::__optimization__",
-      "sourcetype": "osquery_results",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:52:54.250Z",
-      "path": "shared-goldens/osquery_results____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "osquery_results::cim::__mapping__",
       "sourcetype": "osquery_results",
       "dest_format": "cim::__mapping__",
@@ -9584,21 +6719,6 @@
       "report": {
         "score": 98,
         "band": "good"
-      }
-    },
-    {
-      "key": "palo_alto_threat::__optimization__",
-      "sourcetype": "palo_alto_threat",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 261,
-      "updated_at": "2026-07-16T13:55:10.158Z",
-      "path": "shared-goldens/palo_alto_threat____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -9722,21 +6842,6 @@
       }
     },
     {
-      "key": "palo_alto_traffic::__optimization__",
-      "sourcetype": "palo_alto_traffic",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 246,
-      "updated_at": "2026-07-16T06:34:46.745Z",
-      "path": "shared-goldens/palo_alto_traffic____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "palo_alto_traffic::cim",
       "sourcetype": "palo_alto_traffic",
       "dest_format": "cim",
@@ -9842,21 +6947,6 @@
       }
     },
     {
-      "key": "pan_globalprotect::__optimization__",
-      "sourcetype": "pan_globalprotect",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:38:33.109Z",
-      "path": "shared-goldens/pan_globalprotect____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "pan_globalprotect::cim::__mapping__",
       "sourcetype": "pan_globalprotect",
       "dest_format": "cim::__mapping__",
@@ -9883,21 +6973,6 @@
       "path": "shared-goldens/pan_globalprotect_csv____extraction__.json",
       "report": {
         "score": 91,
-        "band": "good"
-      }
-    },
-    {
-      "key": "pan_globalprotect_csv::__optimization__",
-      "sourcetype": "pan_globalprotect_csv",
-      "dest_format": "__optimization__",
-      "score": 95,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T13:26:47.140Z",
-      "path": "shared-goldens/pan_globalprotect_csv____optimization__.json",
-      "report": {
-        "score": 95,
         "band": "good"
       }
     },
@@ -9962,21 +7037,6 @@
       }
     },
     {
-      "key": "pan_system::__optimization__",
-      "sourcetype": "pan_system",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:40:21.932Z",
-      "path": "shared-goldens/pan_system____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "pan_system::cim::__mapping__",
       "sourcetype": "pan_system",
       "dest_format": "cim::__mapping__",
@@ -10003,21 +7063,6 @@
       "path": "shared-goldens/pan_system_csv____extraction__.json",
       "report": {
         "score": 95,
-        "band": "good"
-      }
-    },
-    {
-      "key": "pan_system_csv::__optimization__",
-      "sourcetype": "pan_system_csv",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T11:27:55.738Z",
-      "path": "shared-goldens/pan_system_csv____optimization__.json",
-      "report": {
-        "score": 97,
         "band": "good"
       }
     },
@@ -10067,21 +7112,6 @@
       }
     },
     {
-      "key": "postfix_syslog::__optimization__",
-      "sourcetype": "postfix_syslog",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:15:06.229Z",
-      "path": "shared-goldens/postfix_syslog____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "proofpoint_tap::__extraction__",
       "sourcetype": "proofpoint_tap",
       "dest_format": "__extraction__",
@@ -10094,21 +7124,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "proofpoint_tap::__optimization__",
-      "sourcetype": "proofpoint_tap",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 375,
-      "updated_at": "2026-08-07T09:52:13.596Z",
-      "path": "shared-goldens/proofpoint_tap____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10142,21 +7157,6 @@
       }
     },
     {
-      "key": "ps::__optimization__",
-      "sourcetype": "ps",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:56:31.371Z",
-      "path": "shared-goldens/ps____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "rsa_securid_syslog::__extraction__",
       "sourcetype": "rsa_securid_syslog",
       "dest_format": "__extraction__",
@@ -10184,21 +7184,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "sap_audit::__optimization__",
-      "sourcetype": "sap_audit",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 270,
-      "updated_at": "2026-07-16T17:23:33.662Z",
-      "path": "shared-goldens/sap_audit____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10292,21 +7277,6 @@
       }
     },
     {
-      "key": "sap_audit_log::__optimization__",
-      "sourcetype": "sap_audit_log",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 363,
-      "updated_at": "2026-08-06T19:21:51.849Z",
-      "path": "shared-goldens/sap_audit_log____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "sap_hana::__extraction__",
       "sourcetype": "sap_hana",
       "dest_format": "__extraction__",
@@ -10322,21 +7292,6 @@
       }
     },
     {
-      "key": "sap_hana::__optimization__",
-      "sourcetype": "sap_hana",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 427,
-      "updated_at": "2026-08-11T15:43:33.395Z",
-      "path": "shared-goldens/sap_hana____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "security_log::__extraction__",
       "sourcetype": "security_log",
       "dest_format": "__extraction__",
@@ -10348,21 +7303,6 @@
       "path": "shared-goldens/security_log____extraction__.json",
       "report": {
         "score": 96,
-        "band": "good"
-      }
-    },
-    {
-      "key": "security_log::__optimization__",
-      "sourcetype": "security_log",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:07:05.580Z",
-      "path": "shared-goldens/security_log____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -10382,21 +7322,6 @@
       }
     },
     {
-      "key": "security_wineventlog::__optimization__",
-      "sourcetype": "security_wineventlog",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:02:57.961Z",
-      "path": "shared-goldens/security_wineventlog____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "sentinelone_edr::__extraction__",
       "sourcetype": "sentinelone_edr",
       "dest_format": "__extraction__",
@@ -10412,21 +7337,6 @@
       }
     },
     {
-      "key": "sentinelone_edr::__optimization__",
-      "sourcetype": "sentinelone_edr",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:54:50.528Z",
-      "path": "shared-goldens/sentinelone_edr____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "servicestatus::__extraction__",
       "sourcetype": "servicestatus",
       "dest_format": "__extraction__",
@@ -10439,36 +7349,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "servicestatus::__optimization__",
-      "sourcetype": "servicestatus",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:04:19.422Z",
-      "path": "shared-goldens/servicestatus____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "snort_ids::__optimization__",
-      "sourcetype": "snort_ids",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:48:30.044Z",
-      "path": "shared-goldens/snort_ids____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10502,21 +7382,6 @@
       }
     },
     {
-      "key": "sonicwall_firewall::__optimization__",
-      "sourcetype": "sonicwall_firewall",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:31:34.715Z",
-      "path": "shared-goldens/sonicwall_firewall____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "sophos_xg::__extraction__",
       "sourcetype": "sophos_xg",
       "dest_format": "__extraction__",
@@ -10529,21 +7394,6 @@
       "report": {
         "score": 99,
         "band": "good"
-      }
-    },
-    {
-      "key": "sophos_xg::__optimization__",
-      "sourcetype": "sophos_xg",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:32:17.045Z",
-      "path": "shared-goldens/sophos_xg____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10577,36 +7427,6 @@
       }
     },
     {
-      "key": "splunk_app_soar_daemon::__optimization__",
-      "sourcetype": "splunk_app_soar_daemon",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:09:15.978Z",
-      "path": "shared-goldens/splunk_app_soar_daemon____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
-      "key": "splunk_app_soar_misc_logs::__optimization__",
-      "sourcetype": "splunk_app_soar_misc_logs",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:32:40.850Z",
-      "path": "shared-goldens/splunk_app_soar_misc_logs____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "squid_proxy::__extraction__",
       "sourcetype": "squid_proxy",
       "dest_format": "__extraction__",
@@ -10619,21 +7439,6 @@
       "report": {
         "score": 98,
         "band": "good"
-      }
-    },
-    {
-      "key": "squid_proxy::__optimization__",
-      "sourcetype": "squid_proxy",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:38:25.398Z",
-      "path": "shared-goldens/squid_proxy____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10652,21 +7457,6 @@
       }
     },
     {
-      "key": "ssl_error_log::__optimization__",
-      "sourcetype": "ssl_error_log",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:19:38.413Z",
-      "path": "shared-goldens/ssl_error_log____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "ssl_error_log::cim::__mapping__",
       "sourcetype": "ssl_error_log",
       "dest_format": "cim::__mapping__",
@@ -10678,51 +7468,6 @@
       "path": "shared-goldens/ssl_error_log__cim____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ssl_request_log::__optimization__",
-      "sourcetype": "ssl_request_log",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:20:11.149Z",
-      "path": "shared-goldens/ssl_request_log____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ssl_request_log_2::__optimization__",
-      "sourcetype": "ssl_request_log_2",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:58:47.984Z",
-      "path": "shared-goldens/ssl_request_log_2____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
-      "key": "stash::__optimization__",
-      "sourcetype": "stash",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:43:01.196Z",
-      "path": "shared-goldens/stash____optimization__.json",
-      "report": {
-        "score": 94,
         "band": "good"
       }
     },
@@ -10772,21 +7517,6 @@
       }
     },
     {
-      "key": "stream_dns::__optimization__",
-      "sourcetype": "stream_dns",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:46:11.225Z",
-      "path": "shared-goldens/stream_dns____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "stream_dns::cim#network::__mapping__",
       "sourcetype": "stream_dns",
       "dest_format": "cim#network::__mapping__",
@@ -10832,21 +7562,6 @@
       }
     },
     {
-      "key": "sun_jvm::__optimization__",
-      "sourcetype": "sun_jvm",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:44:42.866Z",
-      "path": "shared-goldens/sun_jvm____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "suricata_ids::__extraction__",
       "sourcetype": "suricata_ids",
       "dest_format": "__extraction__",
@@ -10859,21 +7574,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "suricata_ids::__optimization__",
-      "sourcetype": "suricata_ids",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:47:56.890Z",
-      "path": "shared-goldens/suricata_ids____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10922,21 +7622,6 @@
       }
     },
     {
-      "key": "symantec_email_cloud_atp::__optimization__",
-      "sourcetype": "symantec_email_cloud_atp",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T12:49:03.969Z",
-      "path": "shared-goldens/symantec_email_cloud_atp____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "symantec_email_cloud_atp::commonsecuritylog::__mapping__",
       "sourcetype": "symantec_email_cloud_atp",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -10949,21 +7634,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "syslog::__optimization__",
-      "sourcetype": "syslog",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:05:53.578Z",
-      "path": "shared-goldens/syslog____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -10997,36 +7667,6 @@
       }
     },
     {
-      "key": "syslog_ng_2::__optimization__",
-      "sourcetype": "syslog_ng_2",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:56:09.128Z",
-      "path": "shared-goldens/syslog_ng_2____optimization__.json",
-      "report": {
-        "score": 97,
-        "band": "good"
-      }
-    },
-    {
-      "key": "syslog_ng_too_small::__optimization__",
-      "sourcetype": "syslog_ng_too_small",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:04:17.173Z",
-      "path": "shared-goldens/syslog_ng_too_small____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "sysmon_deploy_log::__extraction__",
       "sourcetype": "sysmon_deploy_log",
       "dest_format": "__extraction__",
@@ -11038,21 +7678,6 @@
       "path": "shared-goldens/sysmon_deploy_log____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "sysmon_deploy_log::__optimization__",
-      "sourcetype": "sysmon_deploy_log",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:47:39.459Z",
-      "path": "shared-goldens/sysmon_deploy_log____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -11087,21 +7712,6 @@
       }
     },
     {
-      "key": "tanium::__optimization__",
-      "sourcetype": "tanium",
-      "dest_format": "__optimization__",
-      "score": 96,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:54:51.656Z",
-      "path": "shared-goldens/tanium____optimization__.json",
-      "report": {
-        "score": 96,
-        "band": "good"
-      }
-    },
-    {
       "key": "tanium::cim::__mapping__",
       "sourcetype": "tanium",
       "dest_format": "cim::__mapping__",
@@ -11132,21 +7742,6 @@
       }
     },
     {
-      "key": "tenable_ad_alerts::__optimization__",
-      "sourcetype": "tenable_ad_alerts",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:29:41.912Z",
-      "path": "shared-goldens/tenable_ad_alerts____optimization__.json",
-      "report": {
-        "score": 92,
-        "band": "good"
-      }
-    },
-    {
       "key": "tenable_sc_admin::__extraction__",
       "sourcetype": "tenable_sc_admin",
       "dest_format": "__extraction__",
@@ -11158,21 +7753,6 @@
       "path": "shared-goldens/tenable_sc_admin____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "tenable_sc_admin::__optimization__",
-      "sourcetype": "tenable_sc_admin",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:13:40.527Z",
-      "path": "shared-goldens/tenable_sc_admin____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -11252,21 +7832,6 @@
       }
     },
     {
-      "key": "tenable_sc_vuln::__optimization__",
-      "sourcetype": "tenable_sc_vuln",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:58:30.966Z",
-      "path": "shared-goldens/tenable_sc_vuln____optimization__.json",
-      "report": {
-        "score": 91,
-        "band": "good"
-      }
-    },
-    {
       "key": "tenable_sc_vuln::commonsecuritylog::__mapping__",
       "sourcetype": "tenable_sc_vuln",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -11297,21 +7862,6 @@
       }
     },
     {
-      "key": "tenable_sc_web::__optimization__",
-      "sourcetype": "tenable_sc_web",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:32:38.236Z",
-      "path": "shared-goldens/tenable_sc_web____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "tenable_syslog::__extraction__",
       "sourcetype": "tenable_syslog",
       "dest_format": "__extraction__",
@@ -11321,21 +7871,6 @@
       "build": 0,
       "updated_at": "2026-08-18T10:22:07.011Z",
       "path": "shared-goldens/tenable_syslog____extraction__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "tenable_syslog::__optimization__",
-      "sourcetype": "tenable_syslog",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T12:33:25.837Z",
-      "path": "shared-goldens/tenable_syslog____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -11357,21 +7892,6 @@
       }
     },
     {
-      "key": "tomcat_access_log::__optimization__",
-      "sourcetype": "tomcat_access_log",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:05:49.691Z",
-      "path": "shared-goldens/tomcat_access_log____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "tomcat_access_log::cim::__mapping__",
       "sourcetype": "tomcat_access_log",
       "dest_format": "cim::__mapping__",
@@ -11387,21 +7907,6 @@
       }
     },
     {
-      "key": "top::__optimization__",
-      "sourcetype": "top",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:58:01.737Z",
-      "path": "shared-goldens/top____optimization__.json",
-      "report": {
-        "score": 93,
-        "band": "good"
-      }
-    },
-    {
       "key": "trellixtie_syslog::__extraction__",
       "sourcetype": "trellixtie_syslog",
       "dest_format": "__extraction__",
@@ -11413,21 +7918,6 @@
       "path": "shared-goldens/trellixtie_syslog____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "trellixtie_syslog::__optimization__",
-      "sourcetype": "trellixtie_syslog",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:45:57.982Z",
-      "path": "shared-goldens/trellixtie_syslog____optimization__.json",
-      "report": {
-        "score": 88,
         "band": "good"
       }
     },
@@ -11456,21 +7946,6 @@
       "build": 378,
       "updated_at": "2026-08-07T13:35:18.960Z",
       "path": "shared-goldens/trendmicro_interscan____extraction__.json",
-      "report": {
-        "score": 98,
-        "band": "good"
-      }
-    },
-    {
-      "key": "trendmicro_interscan::__optimization__",
-      "sourcetype": "trendmicro_interscan",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:36:08.633Z",
-      "path": "shared-goldens/trendmicro_interscan____optimization__.json",
       "report": {
         "score": 98,
         "band": "good"
@@ -11522,21 +7997,6 @@
       }
     },
     {
-      "key": "vcenter_syslog::__optimization__",
-      "sourcetype": "vcenter_syslog",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:18:37.267Z",
-      "path": "shared-goldens/vcenter_syslog____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmstat::__extraction__",
       "sourcetype": "vmstat",
       "dest_format": "__extraction__",
@@ -11578,21 +8038,6 @@
       "path": "shared-goldens/vmw_syslog____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmw_syslog::__optimization__",
-      "sourcetype": "vmw_syslog",
-      "dest_format": "__optimization__",
-      "score": 92,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:13:51.295Z",
-      "path": "shared-goldens/vmw_syslog____optimization__.json",
-      "report": {
-        "score": 92,
         "band": "good"
       }
     },
@@ -11642,21 +8087,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_apiforwarder::__optimization__",
-      "sourcetype": "vmware_esxlog_apiforwarder",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T08:14:15.523Z",
-      "path": "shared-goldens/vmware_esxlog_apiforwarder____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_apiforwarder::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_apiforwarder",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -11683,21 +8113,6 @@
       "path": "shared-goldens/vmware_esxlog_backup_check____extraction__.json",
       "report": {
         "score": 92,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_backup_check::__optimization__",
-      "sourcetype": "vmware_esxlog_backup_check",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:13:41.040Z",
-      "path": "shared-goldens/vmware_esxlog_backup_check____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -11747,21 +8162,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_clomd::__optimization__",
-      "sourcetype": "vmware_esxlog_clomd",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:17:34.891Z",
-      "path": "shared-goldens/vmware_esxlog_clomd____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_clomd::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_clomd",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -11788,21 +8188,6 @@
       "path": "shared-goldens/vmware_esxlog_clusteragent____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_clusteragent::__optimization__",
-      "sourcetype": "vmware_esxlog_clusteragent",
-      "dest_format": "__optimization__",
-      "score": 91,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:42:53.904Z",
-      "path": "shared-goldens/vmware_esxlog_clusteragent____optimization__.json",
-      "report": {
-        "score": 91,
         "band": "good"
       }
     },
@@ -11852,21 +8237,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_cmmdstimemachine::__optimization__",
-      "sourcetype": "vmware_esxlog_cmmdstimemachine",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:07:30.623Z",
-      "path": "shared-goldens/vmware_esxlog_cmmdstimemachine____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_cmmdstimemachine::cim#network::__mapping__",
       "sourcetype": "vmware_esxlog_cmmdstimemachine",
       "dest_format": "cim#network::__mapping__",
@@ -11893,21 +8263,6 @@
       "path": "shared-goldens/vmware_esxlog_cmmdstimemachinedump____extraction__.json",
       "report": {
         "score": 96,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_cmmdstimemachinedump::__optimization__",
-      "sourcetype": "vmware_esxlog_cmmdstimemachinedump",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:37:50.799Z",
-      "path": "shared-goldens/vmware_esxlog_cmmdstimemachinedump____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -11957,21 +8312,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_crond::__optimization__",
-      "sourcetype": "vmware_esxlog_crond",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:35:03.120Z",
-      "path": "shared-goldens/vmware_esxlog_crond____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_crond::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_crond",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -11998,21 +8338,6 @@
       "path": "shared-goldens/vmware_esxlog_crx_cli____extraction__.json",
       "report": {
         "score": 91,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_crx_cli::__optimization__",
-      "sourcetype": "vmware_esxlog_crx_cli",
-      "dest_format": "__optimization__",
-      "score": 96,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T08:26:01.859Z",
-      "path": "shared-goldens/vmware_esxlog_crx_cli____optimization__.json",
-      "report": {
-        "score": 96,
         "band": "good"
       }
     },
@@ -12062,21 +8387,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_envoy::__optimization__",
-      "sourcetype": "vmware_esxlog_envoy",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:08:23.641Z",
-      "path": "shared-goldens/vmware_esxlog_envoy____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_envoy::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_envoy",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -12107,21 +8417,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_envoy_access::__optimization__",
-      "sourcetype": "vmware_esxlog_envoy_access",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:27:18.714Z",
-      "path": "shared-goldens/vmware_esxlog_envoy_access____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_esxcli::__extraction__",
       "sourcetype": "vmware_esxlog_esxcli",
       "dest_format": "__extraction__",
@@ -12133,21 +8428,6 @@
       "path": "shared-goldens/vmware_esxlog_esxcli____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_esxcli::__optimization__",
-      "sourcetype": "vmware_esxlog_esxcli",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:22:39.540Z",
-      "path": "shared-goldens/vmware_esxlog_esxcli____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -12182,21 +8462,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_esxtokend::__optimization__",
-      "sourcetype": "vmware_esxlog_esxtokend",
-      "dest_format": "__optimization__",
-      "score": 93,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:14:52.438Z",
-      "path": "shared-goldens/vmware_esxlog_esxtokend____optimization__.json",
-      "report": {
-        "score": 93,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_esxtokend::cim::__mapping__",
       "sourcetype": "vmware_esxlog_esxtokend",
       "dest_format": "cim::__mapping__",
@@ -12223,21 +8488,6 @@
       "path": "shared-goldens/vmware_esxlog_esxtokend__commonsecuritylog____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_etcd::__optimization__",
-      "sourcetype": "vmware_esxlog_etcd",
-      "dest_format": "__optimization__",
-      "score": 95,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:01:00.436Z",
-      "path": "shared-goldens/vmware_esxlog_etcd____optimization__.json",
-      "report": {
-        "score": 95,
         "band": "good"
       }
     },
@@ -12272,21 +8522,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_fdm::__optimization__",
-      "sourcetype": "vmware_esxlog_fdm",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:17:55.546Z",
-      "path": "shared-goldens/vmware_esxlog_fdm____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_fdm::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_fdm",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -12302,21 +8537,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_healthd::__optimization__",
-      "sourcetype": "vmware_esxlog_healthd",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:11:49.393Z",
-      "path": "shared-goldens/vmware_esxlog_healthd____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_healthdplugins::__extraction__",
       "sourcetype": "vmware_esxlog_healthdplugins",
       "dest_format": "__extraction__",
@@ -12326,21 +8546,6 @@
       "build": 529,
       "updated_at": "2026-08-18T07:20:32.247Z",
       "path": "shared-goldens/vmware_esxlog_healthdplugins____extraction__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_healthdplugins::__optimization__",
-      "sourcetype": "vmware_esxlog_healthdplugins",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:38:14.446Z",
-      "path": "shared-goldens/vmware_esxlog_healthdplugins____optimization__.json",
       "report": {
         "score": 90,
         "band": "good"
@@ -12362,36 +8567,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_hostd::__optimization__",
-      "sourcetype": "vmware_esxlog_hostd",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:35:47.440Z",
-      "path": "shared-goldens/vmware_esxlog_hostd____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_hostd_probe::__optimization__",
-      "sourcetype": "vmware_esxlog_hostd_probe",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:25:32.307Z",
-      "path": "shared-goldens/vmware_esxlog_hostd_probe____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_hostdcgiserver::__extraction__",
       "sourcetype": "vmware_esxlog_hostdcgiserver",
       "dest_format": "__extraction__",
@@ -12403,21 +8578,6 @@
       "path": "shared-goldens/vmware_esxlog_hostdcgiserver____extraction__.json",
       "report": {
         "score": 95,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_hostdcgiserver::__optimization__",
-      "sourcetype": "vmware_esxlog_hostdcgiserver",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:03:58.755Z",
-      "path": "shared-goldens/vmware_esxlog_hostdcgiserver____optimization__.json",
-      "report": {
-        "score": 87,
         "band": "good"
       }
     },
@@ -12437,21 +8597,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_iofiltervpd::__optimization__",
-      "sourcetype": "vmware_esxlog_iofiltervpd",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T14:07:27.026Z",
-      "path": "shared-goldens/vmware_esxlog_iofiltervpd____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_kmxa::__extraction__",
       "sourcetype": "vmware_esxlog_kmxa",
       "dest_format": "__extraction__",
@@ -12467,21 +8612,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_kmxa::__optimization__",
-      "sourcetype": "vmware_esxlog_kmxa",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:29:40.888Z",
-      "path": "shared-goldens/vmware_esxlog_kmxa____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_localcli::__extraction__",
       "sourcetype": "vmware_esxlog_localcli",
       "dest_format": "__extraction__",
@@ -12493,21 +8623,6 @@
       "path": "shared-goldens/vmware_esxlog_localcli____extraction__.json",
       "report": {
         "score": 95,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_localcli::__optimization__",
-      "sourcetype": "vmware_esxlog_localcli",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:55:24.847Z",
-      "path": "shared-goldens/vmware_esxlog_localcli____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -12542,21 +8657,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_nfcd::__optimization__",
-      "sourcetype": "vmware_esxlog_nfcd",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:12:43.500Z",
-      "path": "shared-goldens/vmware_esxlog_nfcd____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_nfcd::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_nfcd",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -12583,21 +8683,6 @@
       "path": "shared-goldens/vmware_esxlog_osfsd____extraction__.json",
       "report": {
         "score": 94,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_osfsd::__optimization__",
-      "sourcetype": "vmware_esxlog_osfsd",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:19:50.976Z",
-      "path": "shared-goldens/vmware_esxlog_osfsd____optimization__.json",
-      "report": {
-        "score": 90,
         "band": "good"
       }
     },
@@ -12632,21 +8717,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_sandboxd::__optimization__",
-      "sourcetype": "vmware_esxlog_sandboxd",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:22:56.736Z",
-      "path": "shared-goldens/vmware_esxlog_sandboxd____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_sandboxd::cim#network::__mapping__",
       "sourcetype": "vmware_esxlog_sandboxd",
       "dest_format": "cim#network::__mapping__",
@@ -12674,21 +8744,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_settingsd::__optimization__",
-      "sourcetype": "vmware_esxlog_settingsd",
-      "dest_format": "__optimization__",
-      "score": 83,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:38:17.304Z",
-      "path": "shared-goldens/vmware_esxlog_settingsd____optimization__.json",
-      "report": {
-        "score": 83,
-        "band": "warn"
       }
     },
     {
@@ -12752,21 +8807,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_smartd::__optimization__",
-      "sourcetype": "vmware_esxlog_smartd",
-      "dest_format": "__optimization__",
-      "score": 86,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 529,
-      "updated_at": "2026-08-18T08:45:31.669Z",
-      "path": "shared-goldens/vmware_esxlog_smartd____optimization__.json",
-      "report": {
-        "score": 86,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_snmpd::__extraction__",
       "sourcetype": "vmware_esxlog_snmpd",
       "dest_format": "__extraction__",
@@ -12778,21 +8818,6 @@
       "path": "shared-goldens/vmware_esxlog_snmpd____extraction__.json",
       "report": {
         "score": 95,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_snmpd::__optimization__",
-      "sourcetype": "vmware_esxlog_snmpd",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:52:47.326Z",
-      "path": "shared-goldens/vmware_esxlog_snmpd____optimization__.json",
-      "report": {
-        "score": 87,
         "band": "good"
       }
     },
@@ -12827,21 +8852,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_sut::__optimization__",
-      "sourcetype": "vmware_esxlog_sut",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 648,
-      "updated_at": "2026-08-31T12:39:29.614Z",
-      "path": "shared-goldens/vmware_esxlog_sut____optimization__.json",
-      "report": {
-        "score": 98,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_vmauthd::__extraction__",
       "sourcetype": "vmware_esxlog_vmauthd",
       "dest_format": "__extraction__",
@@ -12853,21 +8863,6 @@
       "path": "shared-goldens/vmware_esxlog_vmauthd____extraction__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_vmauthd::__optimization__",
-      "sourcetype": "vmware_esxlog_vmauthd",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:22:33.699Z",
-      "path": "shared-goldens/vmware_esxlog_vmauthd____optimization__.json",
-      "report": {
-        "score": 87,
         "band": "good"
       }
     },
@@ -12887,81 +8882,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_vmkernel::__optimization__",
-      "sourcetype": "vmware_esxlog_vmkernel",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:50:17.431Z",
-      "path": "shared-goldens/vmware_esxlog_vmkernel____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_vmkmemstats::__optimization__",
-      "sourcetype": "vmware_esxlog_vmkmemstats",
-      "dest_format": "__optimization__",
-      "score": 88,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:22:15.596Z",
-      "path": "shared-goldens/vmware_esxlog_vmkmemstats____optimization__.json",
-      "report": {
-        "score": 88,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_vmkwarning::__optimization__",
-      "sourcetype": "vmware_esxlog_vmkwarning",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:37:21.789Z",
-      "path": "shared-goldens/vmware_esxlog_vmkwarning____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_vpxa::__optimization__",
-      "sourcetype": "vmware_esxlog_vpxa",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:52:58.830Z",
-      "path": "shared-goldens/vmware_esxlog_vpxa____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_vsand::__optimization__",
-      "sourcetype": "vmware_esxlog_vsand",
-      "dest_format": "__optimization__",
-      "score": 90,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:44:52.229Z",
-      "path": "shared-goldens/vmware_esxlog_vsand____optimization__.json",
-      "report": {
-        "score": 90,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_vsanobserver::__extraction__",
       "sourcetype": "vmware_esxlog_vsanobserver",
       "dest_format": "__extraction__",
@@ -12977,21 +8897,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_vsanobserver::__optimization__",
-      "sourcetype": "vmware_esxlog_vsanobserver",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:37:04.794Z",
-      "path": "shared-goldens/vmware_esxlog_vsanobserver____optimization__.json",
-      "report": {
-        "score": 89,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_vsansystem::__extraction__",
       "sourcetype": "vmware_esxlog_vsansystem",
       "dest_format": "__extraction__",
@@ -13003,21 +8908,6 @@
       "path": "shared-goldens/vmware_esxlog_vsansystem____extraction__.json",
       "report": {
         "score": 94,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vmware_esxlog_vsansystem::__optimization__",
-      "sourcetype": "vmware_esxlog_vsansystem",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:54:03.428Z",
-      "path": "shared-goldens/vmware_esxlog_vsansystem____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -13067,21 +8957,6 @@
       }
     },
     {
-      "key": "vmware_esxlog_vsantraceurgent::__optimization__",
-      "sourcetype": "vmware_esxlog_vsantraceurgent",
-      "dest_format": "__optimization__",
-      "score": 97,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:35:33.303Z",
-      "path": "shared-goldens/vmware_esxlog_vsantraceurgent____optimization__.json",
-      "report": {
-        "score": 97,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_vsantraceurgent::commonsecuritylog::__mapping__",
       "sourcetype": "vmware_esxlog_vsantraceurgent",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -13109,21 +8984,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "vmware_nsx::__optimization__",
-      "sourcetype": "vmware_nsx",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:14:10.357Z",
-      "path": "shared-goldens/vmware_nsx____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -13172,21 +9032,6 @@
       }
     },
     {
-      "key": "vmware_vcenter::__optimization__",
-      "sourcetype": "vmware_vcenter",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:58:46.198Z",
-      "path": "shared-goldens/vmware_vcenter____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "vsftpd::__extraction__",
       "sourcetype": "vsftpd",
       "dest_format": "__extraction__",
@@ -13198,36 +9043,6 @@
       "path": "shared-goldens/vsftpd____extraction__.json",
       "report": {
         "score": 93,
-        "band": "good"
-      }
-    },
-    {
-      "key": "vsftpd::__optimization__",
-      "sourcetype": "vsftpd",
-      "dest_format": "__optimization__",
-      "score": 87,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T16:07:15.070Z",
-      "path": "shared-goldens/vsftpd____optimization__.json",
-      "report": {
-        "score": 87,
-        "band": "good"
-      }
-    },
-    {
-      "key": "web1_mod_jk_log::__optimization__",
-      "sourcetype": "web1_mod_jk_log",
-      "dest_format": "__optimization__",
-      "score": 89,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:23:10.331Z",
-      "path": "shared-goldens/web1_mod_jk_log____optimization__.json",
-      "report": {
-        "score": 89,
         "band": "good"
       }
     },
@@ -13256,21 +9071,6 @@
       "build": 0,
       "updated_at": "2026-07-15T17:24:22.770Z",
       "path": "shared-goldens/windows_powershell____extraction__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
-      "key": "windows_powershell::__optimization__",
-      "sourcetype": "windows_powershell",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 265,
-      "updated_at": "2026-07-16T14:31:16.611Z",
-      "path": "shared-goldens/windows_powershell____optimization__.json",
       "report": {
         "score": 80,
         "band": "warn"
@@ -13352,21 +9152,6 @@
       }
     },
     {
-      "key": "windows_security::__optimization__",
-      "sourcetype": "windows_security",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "wlinde@cribl.io",
-      "build": 296,
-      "updated_at": "2026-08-03T11:37:57.251Z",
-      "path": "shared-goldens/windows_security____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "windows_security::cim::__mapping__",
       "sourcetype": "windows_security",
       "dest_format": "cim::__mapping__",
@@ -13427,21 +9212,6 @@
       }
     },
     {
-      "key": "windows_sysmon::__optimization__",
-      "sourcetype": "windows_sysmon",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 375,
-      "updated_at": "2026-08-07T09:23:29.197Z",
-      "path": "shared-goldens/windows_sysmon____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
-      }
-    },
-    {
       "key": "windows_sysmon::cim::__mapping__",
       "sourcetype": "windows_sysmon",
       "dest_format": "cim::__mapping__",
@@ -13453,21 +9223,6 @@
       "path": "shared-goldens/windows_sysmon__cim____mapping__.json",
       "report": {
         "score": 92,
-        "band": "good"
-      }
-    },
-    {
-      "key": "wineventlog::__optimization__",
-      "sourcetype": "wineventlog",
-      "dest_format": "__optimization__",
-      "score": 98,
-      "part": "optimization",
-      "author": "push",
-      "build": 0,
-      "updated_at": "2026-08-10T06:37:41.317Z",
-      "path": "shared-goldens/wineventlog____optimization__.json",
-      "report": {
-        "score": 98,
         "band": "good"
       }
     },
@@ -13487,21 +9242,6 @@
       }
     },
     {
-      "key": "winhostmon::__optimization__",
-      "sourcetype": "winhostmon",
-      "dest_format": "__optimization__",
-      "score": 94,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 379,
-      "updated_at": "2026-08-07T15:46:22.188Z",
-      "path": "shared-goldens/winhostmon____optimization__.json",
-      "report": {
-        "score": 94,
-        "band": "good"
-      }
-    },
-    {
       "key": "winhostmon::cim::__mapping__",
       "sourcetype": "winhostmon",
       "dest_format": "cim::__mapping__",
@@ -13513,21 +9253,6 @@
       "path": "shared-goldens/winhostmon__cim____mapping__.json",
       "report": {
         "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "xmlwineventlog::__optimization__",
-      "sourcetype": "xmlwineventlog",
-      "dest_format": "__optimization__",
-      "score": 99,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 378,
-      "updated_at": "2026-08-07T13:04:42.141Z",
-      "path": "shared-goldens/xmlwineventlog____optimization__.json",
-      "report": {
-        "score": 99,
         "band": "good"
       }
     },
@@ -13544,21 +9269,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "zeek_conn::__optimization__",
-      "sourcetype": "zeek_conn",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 369,
-      "updated_at": "2026-08-07T06:47:20.099Z",
-      "path": "shared-goldens/zeek_conn____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -13604,21 +9314,6 @@
       "report": {
         "score": 100,
         "band": "good"
-      }
-    },
-    {
-      "key": "zscaler_web::__optimization__",
-      "sourcetype": "zscaler_web",
-      "dest_format": "__optimization__",
-      "score": 80,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 245,
-      "updated_at": "2026-07-16T06:18:30.072Z",
-      "path": "shared-goldens/zscaler_web____optimization__.json",
-      "report": {
-        "score": 80,
-        "band": "warn"
       }
     },
     {
@@ -14702,21 +10397,6 @@
       }
     },
     {
-      "key": "corelight_http::__optimization__",
-      "sourcetype": "corelight_http",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 650,
-      "updated_at": "2026-09-01T10:04:54.516Z",
-      "path": "shared-goldens/corelight_http____optimization__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
       "key": "corelight_http::commonsecuritylog::__mapping__",
       "sourcetype": "corelight_http",
       "dest_format": "commonsecuritylog::__mapping__",
@@ -14741,21 +10421,6 @@
       "build": 650,
       "updated_at": "2026-09-01T10:05:25.499Z",
       "path": "shared-goldens/ncsc_cloudflare_http__cim#network____mapping__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ncsc_cloudflare_http::__optimization__",
-      "sourcetype": "ncsc_cloudflare_http",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 650,
-      "updated_at": "2026-09-01T10:05:39.091Z",
-      "path": "shared-goldens/ncsc_cloudflare_http____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -14891,21 +10556,6 @@
       "build": 650,
       "updated_at": "2026-09-01T11:35:08.282Z",
       "path": "shared-goldens/ivanti_mi__cim#network____mapping__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
-      "key": "ivanti_mi::__optimization__",
-      "sourcetype": "ivanti_mi",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 650,
-      "updated_at": "2026-09-01T11:35:39.139Z",
-      "path": "shared-goldens/ivanti_mi____optimization__.json",
       "report": {
         "score": 100,
         "band": "good"
@@ -17717,21 +13367,6 @@
       }
     },
     {
-      "key": "corelight_yara_error_corelight::__optimization__",
-      "sourcetype": "corelight_yara_error_corelight",
-      "dest_format": "__optimization__",
-      "score": 100,
-      "part": "optimization",
-      "author": "unknown",
-      "build": 691,
-      "updated_at": "2026-09-15T14:41:15.429Z",
-      "path": "shared-goldens/corelight_yara_error_corelight____optimization__.json",
-      "report": {
-        "score": 100,
-        "band": "good"
-      }
-    },
-    {
       "key": "vmware_esxlog_fdm::cim#network::__mapping__",
       "sourcetype": "vmware_esxlog_fdm",
       "dest_format": "cim#network::__mapping__",
@@ -17786,6 +13421,22 @@
       "build": 698,
       "updated_at": "2026-09-16T11:25:11.128Z",
       "path": "shared-goldens/vmware_esxlog_sandboxd__commonsecuritylog____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
+    },
+    {
+      "key": "cisco_estreamer_data_firewall@kvp::__extraction__",
+      "sourcetype": "cisco_estreamer_data_firewall@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:10:19.094Z",
+      "path": "shared-goldens/cisco_estreamer_data_firewall@kvp____extraction__.json",
       "report": {
         "score": 100,
         "band": "good"
