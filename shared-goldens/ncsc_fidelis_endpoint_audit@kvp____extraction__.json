@@ -1,0 +1,118 @@
+{
+  "key": "ncsc_fidelis_endpoint_audit@kvp::__extraction__",
+  "sourcetype": "ncsc_fidelis_endpoint_audit@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:38:47.729Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract syslog header (timestamp, collector host, process/pid) and isolate the KVP body for further parsing",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d{1,2}\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<collector_host>\\S+)\\s+FidelisEndpoint\\[(?<pid>\\d+)\\]:\\s+(?<__kvp_body>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract key=value pairs (quoted values supported) from the Fidelis endpoint message body",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__kvp_body",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity, action, and protocol values, derive traffic direction, and clean up empty quoted fields left by KVP parsing",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity ? severity.toLowerCase() : severity"
+          },
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action === 'allow' ? 'allow' : (action === 'block' || action === 'deny') ? 'deny' : action === 'quarantine' ? 'quarantine' : action === 'alert' ? 'alert' : action"
+          },
+          {
+            "name": "protocol",
+            "value": "protocol && protocol !== '' ? protocol.toUpperCase() : null"
+          },
+          {
+            "name": "direction",
+            "value": "src_ip && src_ip.match(/^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.|fe80:)/) ? 'outbound' : 'inbound'"
+          },
+          {
+            "name": "dst_ip",
+            "value": "dst_ip === '' ? null : dst_ip"
+          },
+          {
+            "name": "protocol_num",
+            "value": "null"
+          }
+        ],
+        "remove": [
+          "__kvp_body"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Document field mapping stage - final cleanup of pid and collector metadata not needed downstream",
+      "conf": {
+        "add": [],
+        "remove": [
+          "pid"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "dst_ip",
+        "dst_port",
+        "event_type",
+        "file",
+        "hash",
+        "host",
+        "message",
+        "outcome",
+        "policy",
+        "process",
+        "protocol",
+        "severity",
+        "src_ip",
+        "src_port",
+        "user"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
