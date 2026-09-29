@@ -1,0 +1,131 @@
+{
+  "key": "ivanti_certactivity@kvp::__extraction__",
+  "sourcetype": "ivanti_certactivity@kvp",
+  "dest_format": "__extraction__",
+  "score": 91,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:48:42.275Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract syslog header fields (timestamp, host, pid, severity) and remaining message text",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d{1,2}\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<dst_host>\\S+)\\s+certactivity\\[(?<pid>\\d+)\\]:\\s+(?<severity>\\w+)\\s+-\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf(\"for user\") !== -1",
+      "disabled": false,
+      "description": "Extract username when message references a specific user",
+      "conf": {
+        "source": "message",
+        "regex": "/for user '(?<user>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract certificate serial number (cert_serial or serial key)",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:cert_serial|serial)=(?<cert_serial>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract source IP address (IPv4 or IPv6) from message",
+      "conf": {
+        "source": "message",
+        "regex": "/src_ip=(?<src_ip>[0-9a-fA-F.:]+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract optional realm plus session_id and result from message",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:realm='(?<realm>[^']+)'\\s+)?session_id=(?<session_id>\\S+)\\s+result=(?<result>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity levels, derive action from result, and build epoch _time from syslog timestamp",
+      "conf": {
+        "add": [
+          {
+            "name": "severity_norm",
+            "value": "severity === 'CRIT' ? 'critical' : severity === 'ERROR' ? 'error' : severity === 'WARN' ? 'warning' : severity === 'NOTICE' ? 'notice' : severity === 'INFO' ? 'info' : severity"
+          },
+          {
+            "name": "action",
+            "value": "result === 'SUCCESS' ? 'allowed' : result === 'FAILURE' ? 'blocked' : result === 'SUSPICIOUS' ? 'flagged' : 'unknown'"
+          },
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp + ' ' + new Date().getFullYear() + ' UTC') / 1000"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "actual_size",
+        "ca_subject",
+        "cert_serial",
+        "crl_url",
+        "dst_port",
+        "expected_cn",
+        "expected_fingerprint",
+        "export_format",
+        "issuer",
+        "latency_ms",
+        "max_chain_size",
+        "new_serial",
+        "not_after",
+        "old_serial",
+        "pinned_fingerprint",
+        "presented_cn",
+        "protocol",
+        "reader",
+        "realm",
+        "responder_url",
+        "result",
+        "serial",
+        "session_id",
+        "size_bytes",
+        "src_ip",
+        "status",
+        "subject",
+        "timeout_ms"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
