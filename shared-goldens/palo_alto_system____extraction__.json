@@ -1,0 +1,70 @@
+{
+  "key": "palo_alto_system::__extraction__",
+  "sourcetype": "palo_alto_system",
+  "dest_format": "__extraction__",
+  "score": 97,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:26:01.683Z",
+  "functions": [
+    {
+      "id": "serde",
+      "description": "Parse PAN-OS CSV system log with named columns",
+      "conf": {
+        "mode": "extract",
+        "type": "csv",
+        "srcField": "_raw",
+        "fields": [
+          "future_use1",
+          "receive_time",
+          "serial_number",
+          "type",
+          "subtype",
+          "future_use2",
+          "generated_time",
+          "virtual_system",
+          "event_id",
+          "object",
+          "future_use3",
+          "future_use4",
+          "module",
+          "severity",
+          "description",
+          "sequence_number",
+          "action_flags",
+          "dg_hier_level_1",
+          "dg_hier_level_2",
+          "dg_hier_level_3",
+          "dg_hier_level_4",
+          "virtual_system_name",
+          "device_name"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Alias PAN-OS SYSTEM columns onto the canonical names the golden specs read",
+      "conf": {
+        "add": [
+          {
+            "name": "host",
+            "value": "device_name"
+          },
+          {
+            "name": "message",
+            "value": "description"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "csv"
+}
