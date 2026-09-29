@@ -14449,6 +14449,22 @@
         "score": 93,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_ldap@text::__extraction__",
+      "sourcetype": "ivanti_ldap@text",
+      "dest_format": "__extraction__",
+      "score": 97,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:05:18.788Z",
+      "path": "shared-goldens/ivanti_ldap@text____extraction__.json",
+      "report": {
+        "score": 97,
+        "band": "good"
+      }
     }
   ]
 }
