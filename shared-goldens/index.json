@@ -13809,6 +13809,22 @@
         "score": 90,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_iofiltervpd@text::cim#network::__mapping__",
+      "sourcetype": "vmware_esxlog_iofiltervpd@text",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:47:39.003Z",
+      "path": "shared-goldens/vmware_esxlog_iofiltervpd@text__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
