@@ -14177,6 +14177,22 @@
         "score": 92,
         "band": "good"
       }
+    },
+    {
+      "key": "ncsc_fidelis_endpoint@kvp::__extraction__",
+      "sourcetype": "ncsc_fidelis_endpoint@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:27:56.417Z",
+      "path": "shared-goldens/ncsc_fidelis_endpoint@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
