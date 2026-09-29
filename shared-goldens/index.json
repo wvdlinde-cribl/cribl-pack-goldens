@@ -13633,6 +13633,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "stream_dns@json::__extraction__",
+      "sourcetype": "stream_dns@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:28:24.334Z",
+      "path": "shared-goldens/stream_dns@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
