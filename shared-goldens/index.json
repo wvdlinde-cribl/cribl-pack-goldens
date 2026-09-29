@@ -14305,6 +14305,22 @@
         "score": 93,
         "band": "good"
       }
+    },
+    {
+      "key": "pan_globalprotect@csv::__extraction__",
+      "sourcetype": "pan_globalprotect@csv",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "csv",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:43:02.424Z",
+      "path": "shared-goldens/pan_globalprotect@csv____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
