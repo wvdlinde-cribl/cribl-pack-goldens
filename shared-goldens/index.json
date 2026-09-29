@@ -14321,6 +14321,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "pan_globalprotect@csv::cim#authentication::__mapping__",
+      "sourcetype": "pan_globalprotect@csv",
+      "dest_format": "cim#authentication::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "csv",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:44:42.673Z",
+      "path": "shared-goldens/pan_globalprotect@csv__cim#authentication____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
