@@ -13441,6 +13441,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "cisco_estreamer_data_dns@kvp::__extraction__",
+      "sourcetype": "cisco_estreamer_data_dns@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:11:34.777Z",
+      "path": "shared-goldens/cisco_estreamer_data_dns@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
