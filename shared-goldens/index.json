@@ -13953,6 +13953,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_sut@text::__extraction__",
+      "sourcetype": "vmware_esxlog_sut@text",
+      "dest_format": "__extraction__",
+      "score": 94,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:03:04.839Z",
+      "path": "shared-goldens/vmware_esxlog_sut@text____extraction__.json",
+      "report": {
+        "score": 94,
+        "band": "good"
+      }
     }
   ]
 }
