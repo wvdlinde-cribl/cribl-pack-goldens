@@ -1,0 +1,39 @@
+{
+  "key": "ncsc_cloudflare_dns@json::__extraction__",
+  "sourcetype": "ncsc_cloudflare_dns@json",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:18:39.398Z",
+  "functions": [
+    {
+      "id": "serde",
+      "description": "Try JSON parse",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "json",
+      "keys": [
+        "colocode",
+        "ednssubnet",
+        "ednssubnetlength",
+        "queryname",
+        "querytype",
+        "responsecached",
+        "responsecode",
+        "sourceip",
+        "timestamp"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "json"
+}
