@@ -1,0 +1,110 @@
+{
+  "key": "syslog_ng_2@text::__extraction__",
+  "sourcetype": "syslog_ng_2@text",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T17:14:24.605Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract syslog header (timestamp, host, process, pid) and message body",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d+\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<host>\\S+)\\s+(?<process>[^\\[]+)\\[(?<pid>\\d+)\\]:\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf(\"server='AF_INET\") !== -1",
+      "disabled": false,
+      "description": "Extract remote (dst) IP/port from server='AF_INET(...)' field",
+      "conf": {
+        "source": "message",
+        "regex": "/server='AF_INET\\((?<dst_ip>[^:]+):(?<dst_port>\\d+)\\)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf(\"local='AF_INET\") !== -1",
+      "disabled": false,
+      "description": "Extract local (src) IP/port from local='AF_INET(...)' field",
+      "conf": {
+        "source": "message",
+        "regex": "/local='AF_INET\\((?<src_ip>[^:]+):(?<src_port>\\d+)\\)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf('error=') !== -1",
+      "disabled": false,
+      "description": "Extract error message text for connection errors",
+      "conf": {
+        "source": "message",
+        "regex": "/error='(?<error_message>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf('queue_len=') !== -1",
+      "disabled": false,
+      "description": "Extract queue length and memory fifo size for queue full events",
+      "conf": {
+        "source": "message",
+        "regex": "/queue_len='(?<queue_len>\\d+)',\\s*mem_fifo_size='(?<mem_fifo_size>\\d+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify action, protocol, and severity based on syslog-ng message content",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "message.match(/Syslog connection established/) ? 'connection_established' : message.match(/Error connecting to remote host/) ? 'connection_error' : message.match(/queue full/) ? 'queue_full' : message.match(/starting up/) ? 'startup' : message.match(/Configuration reload/) ? 'config_reload' : 'other'"
+          },
+          {
+            "name": "protocol",
+            "value": "message.match(/AF_INET/) ? 'tcp' : null"
+          },
+          {
+            "name": "severity",
+            "value": "action == 'connection_error' ? 'error' : action == 'queue_full' ? 'warning' : 'info'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "error",
+        "fd",
+        "local",
+        "mem_fifo_size",
+        "queue_len",
+        "server",
+        "version"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
