@@ -1,0 +1,102 @@
+{
+  "key": "f5_bigip_ltm_ssl_error@text::__extraction__",
+  "sourcetype": "f5_bigip_ltm_ssl_error@text",
+  "dest_format": "__extraction__",
+  "score": 95,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:23:46.215Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse syslog header (priority, timestamp, host, severity, process/pid, error code) and isolate the message body",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^<(?<pri>\\d+)>(?<timestamp>\\w{3}\\s+\\d{1,2}\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<host>\\S+)\\s+(?<severity>\\S+)\\s+(?<process>\\S+)\\[(?<pid>\\d+)\\]:\\s+(?<error_code>\\d+:\\d+):\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && (message.includes('for TCP') || message.includes('peer'))",
+      "disabled": false,
+      "description": "Extract src/dst IP:port and reason for handshake failures, successes, connection errors, and SSL alerts (peer -> peer format, IPv4/IPv6 aware)",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:for TCP|peer) (?<src_ip>.+):(?<src_port>\\d+) -> (?<dst_ip>.+):(?<dst_port>\\d+)(?:[:\\s]+(?<reason>.*))?$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('tunnel remote address')",
+      "disabled": false,
+      "description": "Extract peer and tunnel remote address for SSL_write connection errors",
+      "conf": {
+        "source": "message",
+        "regex": "/peer (?<src_ip>.+):(?<src_port>\\d+) tunnel remote address (?<dst_ip>.+):(?<dst_port>\\d+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('renegotiation attack')",
+      "disabled": false,
+      "description": "Extract source address and target virtual server for SSL renegotiation attack detections",
+      "conf": {
+        "source": "message",
+        "regex": "/detected from (?<src_ip>.+):(?<src_port>\\d+) to virtual server (?<virtual_server>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('certificate not provided')",
+      "disabled": false,
+      "description": "Extract source address and target pool for missing client certificate events",
+      "conf": {
+        "source": "message",
+        "regex": "/connection from (?<src_ip>.+):(?<src_port>\\d+) to pool (?<pool>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize protocol, action, and classify SSL event type based on message content",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "'tcp'"
+          },
+          {
+            "name": "action",
+            "value": "message.includes('succeeded') ? 'allowed' : (message.includes('failed') || message.includes('error') || message.includes('attack') || message.includes('not provided')) ? 'blocked' : 'unknown'"
+          },
+          {
+            "name": "event_type",
+            "value": "message.includes('Handshake failed') ? 'handshake_failure' : message.includes('Handshake succeeded') ? 'handshake_success' : message.includes('renegotiation attack') ? 'renegotiation_attack' : message.includes('certificate not provided') ? 'client_cert_missing' : message.includes('SSL alert received') ? 'ssl_alert' : message.includes('Connection error') ? 'connection_error' : 'other'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
