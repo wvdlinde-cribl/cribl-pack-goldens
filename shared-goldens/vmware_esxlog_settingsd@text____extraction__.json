@@ -1,0 +1,100 @@
+{
+  "key": "vmware_esxlog_settingsd@text::__extraction__",
+  "sourcetype": "vmware_esxlog_settingsd@text",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:39:53.637Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse base ESXi settingsd log line into timestamp, host, pid, severity, component and message",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<host>\\S+)\\s+settingsd\\[(?<pid>\\d+)\\]:\\s+(?:(?<severity>\\w+):\\s+)?\\[(?<component>[^\\]]+)\\]\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Default severity to info when not explicitly present in log line",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity ? severity.toLowerCase() : 'info'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf('authenticated successfully') !== -1",
+      "disabled": false,
+      "description": "Extract user and source IP for successful authentication events",
+      "conf": {
+        "source": "message",
+        "regex": "/User '(?<user>[^']+)' authenticated successfully from (?<src_ip>[0-9A-Fa-f:.]+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf('Authentication failed') !== -1",
+      "disabled": false,
+      "description": "Extract user and source IP for failed authentication events",
+      "conf": {
+        "source": "message",
+        "regex": "/Authentication failed for user '(?<user>[^']+)' from (?<src_ip>[0-9A-Fa-f:.]+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf(\"by user '\") !== -1",
+      "disabled": false,
+      "description": "Extract user attribute for setting change events performed by a user",
+      "conf": {
+        "source": "message",
+        "regex": "/by user '(?<user>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify action based on message content and severity",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "message && message.indexOf('authenticated successfully') !== -1 ? 'login_success' : message && message.indexOf('Authentication failed') !== -1 ? 'login_failure' : message && message.indexOf('brute force') !== -1 ? 'security_alert' : severity === 'error' ? 'error' : severity === 'critical' ? 'critical' : severity === 'warning' ? 'warning' : 'config_change'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
