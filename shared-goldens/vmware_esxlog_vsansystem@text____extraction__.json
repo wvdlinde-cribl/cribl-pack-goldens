@@ -1,0 +1,82 @@
+{
+  "key": "vmware_esxlog_vsansystem@text::__extraction__",
+  "sourcetype": "vmware_esxlog_vsansystem@text",
+  "dest_format": "__extraction__",
+  "score": 94,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:34:43.273Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse Vsansystem log line into timestamp, host, pid, severity, component, and message fields",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<esx_host>\\S+)\\s+Vsansystem\\[(?<pid>\\d+)\\]:\\s+(?<severity>\\w+):\\s+(?<component>[^:]+):\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}/)",
+      "disabled": false,
+      "description": "Extract IPv4 address referenced in the message body as src_ip",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<src_ip>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})(?::(?<src_port>\\d+))?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "!src_ip && message && message.match(/(?:[a-fA-F0-9]{1,4}:){2,7}[a-fA-F0-9]{1,4}/)",
+      "disabled": false,
+      "description": "Extract IPv6 address referenced in the message body as src_ip when no IPv4 was found",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<src_ip>(?:[a-fA-F0-9]{1,4}:){2,7}[a-fA-F0-9]{1,4})/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity casing, derive coarse action classification from message text, and set event time from parsed timestamp",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity ? severity.toLowerCase() : severity"
+          },
+          {
+            "name": "action",
+            "value": "message.match(/joined/) ? 'join' : message.match(/removed/) ? 'remove' : message.match(/failed|failure|rejected|degraded/) ? 'failure' : message.match(/completed|passed|successfully/) ? 'success' : message.match(/detected|unreachable/) ? 'alert' : message.match(/exceeded|approaching/) ? 'threshold' : 'unknown'"
+          },
+          {
+            "name": "_time",
+            "value": "new Date(timestamp).getTime()/1000"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
