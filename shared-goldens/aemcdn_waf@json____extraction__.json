@@ -1,0 +1,44 @@
+{
+  "key": "aemcdn_waf@json::__extraction__",
+  "sourcetype": "aemcdn_waf@json",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:26:26.754Z",
+  "functions": [
+    {
+      "id": "serde",
+      "description": "Try JSON parse",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "json",
+      "keys": [
+        "anomaly_score",
+        "client_ip",
+        "host",
+        "payload_size",
+        "request_method",
+        "request_url",
+        "response_status",
+        "rule_id",
+        "rule_message",
+        "service_id",
+        "severity",
+        "timestamp",
+        "user_agent",
+        "waf_action"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "json"
+}
