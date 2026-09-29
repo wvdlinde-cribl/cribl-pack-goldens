@@ -1,0 +1,115 @@
+{
+  "key": "fml_spam@kvp::__extraction__",
+  "sourcetype": "fml_spam@kvp",
+  "dest_format": "__extraction__",
+  "score": 99,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T17:23:48.312Z",
+  "functions": [
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract key=value pairs from FortiMail spam log into fields",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "_raw",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Build canonical _time from date+time fields and clean up raw date/time",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(date + 'T' + time + 'Z')/1000"
+          },
+          {
+            "name": "timestamp",
+            "value": "date + ' ' + time"
+          }
+        ],
+        "remove": [
+          "date",
+          "time"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity, protocol, and action fields for downstream mapping",
+      "conf": {
+        "add": [
+          {
+            "name": "severity",
+            "value": "pri"
+          },
+          {
+            "name": "protocol",
+            "value": "dst_port=='25' ? 'smtp' : 'unknown'"
+          },
+          {
+            "name": "action",
+            "value": "disposition=='reject' ? 'blocked' : disposition=='quarantine' ? 'quarantined' : disposition=='tag' ? 'tagged' : disposition=='pass' ? 'allowed' : disposition=='error' ? 'error' : 'unknown'"
+          }
+        ],
+        "remove": [
+          "pri"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize direction values to lowercase standard terms",
+      "conf": {
+        "add": [
+          {
+            "name": "direction",
+            "value": "direction=='incoming' ? 'inbound' : direction=='outgoing' ? 'outbound' : direction=='internal' ? 'internal' : direction"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "client_name",
+        "date",
+        "device_id",
+        "direction",
+        "disposition",
+        "dispositionmsg",
+        "dst",
+        "dst_port",
+        "from",
+        "from_ip",
+        "log_id",
+        "msg",
+        "policy_id",
+        "pri",
+        "session_id",
+        "src",
+        "src_port",
+        "subtype",
+        "time",
+        "to",
+        "type"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
