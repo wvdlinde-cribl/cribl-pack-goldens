@@ -1,0 +1,45 @@
+{
+  "key": "stream_dns@json::__extraction__",
+  "sourcetype": "stream_dns@json",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:28:24.334Z",
+  "functions": [
+    {
+      "id": "serde",
+      "description": "Try JSON parse",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "json",
+      "keys": [
+        "answers",
+        "bytes",
+        "client_ip",
+        "duration_ms",
+        "event_type",
+        "port",
+        "protocol",
+        "query",
+        "query_type",
+        "response_code",
+        "server_ip",
+        "severity",
+        "threat_indicator",
+        "timestamp",
+        "ttl"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "json"
+}
