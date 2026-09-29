@@ -1,0 +1,51 @@
+{
+  "key": "cisco_estreamer_data_dns@kvp::__extraction__",
+  "sourcetype": "cisco_estreamer_data_dns@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:11:34.777Z",
+  "functions": [
+    {
+      "id": "comment",
+      "conf": {
+        "comment": "Parser derived from Cribl Search datatype \"cisco_estreamer\" (kvp)."
+      }
+    },
+    {
+      "id": "serde",
+      "description": "Parse KVP",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "_raw"
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "answer",
+        "dst_ip",
+        "dst_port",
+        "event_type",
+        "outcome",
+        "protocol",
+        "query",
+        "record_type",
+        "response_code",
+        "sensor_id",
+        "severity",
+        "src_ip",
+        "src_port",
+        "timestamp",
+        "ttl"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
