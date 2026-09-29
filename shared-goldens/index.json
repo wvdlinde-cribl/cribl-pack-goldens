@@ -13729,6 +13729,22 @@
         "score": 92,
         "band": "good"
       }
+    },
+    {
+      "key": "tenable_sc_vuln@json::__extraction__",
+      "sourcetype": "tenable_sc_vuln@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:38:32.991Z",
+      "path": "shared-goldens/tenable_sc_vuln@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
