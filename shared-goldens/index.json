@@ -14145,6 +14145,22 @@
         "score": 95,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_audit_log@kvp::cim#network::__mapping__",
+      "sourcetype": "ivanti_audit_log@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 93,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:24:00.764Z",
+      "path": "shared-goldens/ivanti_audit_log@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 93,
+        "band": "good"
+      }
     }
   ]
 }
