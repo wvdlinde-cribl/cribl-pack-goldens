@@ -1,0 +1,97 @@
+{
+  "key": "ncsc_fidelis_endpoint@kvp::__extraction__",
+  "sourcetype": "ncsc_fidelis_endpoint@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:27:56.417Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract timestamp, sensor, and all key=value security fields from Fidelis Endpoint log line",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d{1,2}\\s+\\d{4}\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<sensor>\\S+)\\s+Fidelis\\[Endpoint\\]:\\s+severity=(?<severity>\\S+)\\s+event_type=(?<event_type>\\S+)\\s+action=(?<action>\\S+)\\s+src_ip=(?<src_ip>\\S*)\\s+src_port=(?<src_port>\\d+)\\s+dst_ip=(?<dst_ip>\\S*)\\s+dst_port=(?<dst_port>\\d+)\\s+protocol=(?<protocol>\\S*)\\s+user=(?<user>\\S*)\\s+policy=\"(?<policy>[^\"]*)\"\\s+alert_id=(?<alert_id>\\S+)\\s+direction=(?<direction>\\S*)\\s+outcome=(?<outcome>\\S+)\\s+details=\"(?<message>[^\"]*)\"/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Convert extracted timestamp string to epoch _time",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize protocol casing and derive direction when the field is blank based on private-IP ranges",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "protocol && protocol.length>0 ? protocol.toUpperCase() : protocol"
+          },
+          {
+            "name": "direction",
+            "value": "direction && direction.length>0 ? direction : (src_ip && src_ip.match(/^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.)/) ? 'Internal' : 'Unknown')"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify event severity tier and flag blocked/failed outcomes for downstream alerting",
+      "conf": {
+        "add": [
+          {
+            "name": "is_blocked",
+            "value": "outcome=='Blocked' || outcome=='Failure' || outcome=='Isolated' ? true : false"
+          },
+          {
+            "name": "severity_tier",
+            "value": "severity=='Critical' ? 1 : severity=='High' ? 2 : severity=='Medium' ? 3 : 4"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "alert_id",
+        "details",
+        "direction",
+        "dst_ip",
+        "dst_port",
+        "event_type",
+        "outcome",
+        "policy",
+        "protocol",
+        "severity",
+        "src_ip",
+        "src_port",
+        "user"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
