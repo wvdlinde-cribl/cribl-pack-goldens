@@ -1,0 +1,90 @@
+{
+  "key": "vmware_esxlog_snmpd@text::__extraction__",
+  "sourcetype": "vmware_esxlog_snmpd@text",
+  "dest_format": "__extraction__",
+  "score": 93,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T17:05:10.173Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract base syslog fields: timestamp, host, pid, severity, and message body",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+) (?<dst_host>\\S+) snmpd\\[(?<pid>\\d+)\\]: \\[(?<severity>\\w+)\\] (?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('from ')",
+      "disabled": false,
+      "description": "Extract source IP address from messages containing 'from <ip>'",
+      "conf": {
+        "source": "message",
+        "regex": "/from \\[?(?<src_ip>[0-9a-fA-F:.]+)\\]?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('sent to')",
+      "disabled": false,
+      "description": "Extract destination IP and port for SNMP trap messages",
+      "conf": {
+        "source": "message",
+        "regex": "/sent to \\[?(?<dst_ip>[0-9a-fA-F:.]+)\\]?:(?<dst_port>\\d+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes(\"user '\")",
+      "disabled": false,
+      "description": "Extract username for authentication/walk related messages",
+      "conf": {
+        "source": "message",
+        "regex": "/user '(?<user>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize protocol, action outcome, and IP version classification",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "'snmp'"
+          },
+          {
+            "name": "action",
+            "value": "message.match(/succeeded|completed successfully|served|completed __e['in']|reloaded|started|sent/) ? 'success' : message.match(/failed|denied|Failed|unauthorized|Malformed|mismatch|scan detected|restarted unexpectedly|already __e['in'] use/) ? 'failure' : 'info'"
+          },
+          {
+            "name": "ip_version",
+            "value": "src_ip && src_ip.includes(':') ? 'ipv6' : dst_ip && dst_ip.includes(':') ? 'ipv6' : 'ipv4'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
