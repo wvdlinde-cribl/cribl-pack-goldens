@@ -1,0 +1,139 @@
+{
+  "key": "cisco_estreamer_data@json::__extraction__",
+  "sourcetype": "cisco_estreamer_data@json",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:54:35.849Z",
+  "functions": [
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse JSON-formatted Cisco eStreamer event into fields",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive event timestamp from ISO8601 timestamp field",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity across event types (priority, disposition, result)",
+      "conf": {
+        "add": [
+          {
+            "name": "severity",
+            "value": "priority ? priority : (disposition==='Malware' ? 'critical' : (disposition==='Unknown' ? 'low' : (result==='failure' ? 'medium' : (result==='success' ? 'info' : 'info'))))"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action values to lowercase standard set",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? action.toLowerCase() : (result==='success' ? 'allowed' : (result==='failure' ? 'denied' : 'unknown'))"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive traffic direction from zone_in/zone_out fields when present",
+      "conf": {
+        "add": [
+          {
+            "name": "direction",
+            "value": "zone_in && zone_out ? (zone_in==='Inside' ? 'outbound' : 'inbound') : 'n/a'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Clean up scratch/raw fields, keep only normalized structured set",
+      "conf": {
+        "remove": [
+          "__raw_json"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "json",
+      "keys": [
+        "action",
+        "application",
+        "auth_type",
+        "bytes_in",
+        "bytes_out",
+        "classification",
+        "cpu_usage",
+        "description",
+        "detection_name",
+        "device_ip",
+        "disposition",
+        "dst_ip",
+        "dst_port",
+        "error",
+        "event_type",
+        "file_name",
+        "file_sha256",
+        "file_size",
+        "impact_flag",
+        "memory_usage",
+        "module",
+        "priority",
+        "protocol",
+        "reason",
+        "result",
+        "sensor_id",
+        "session_id",
+        "signature",
+        "signature_id",
+        "src_ip",
+        "src_port",
+        "status",
+        "timestamp",
+        "user",
+        "zone_in",
+        "zone_out"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "json"
+}
