@@ -13601,6 +13601,22 @@
         "score": 90,
         "band": "good"
       }
+    },
+    {
+      "key": "palo_alto_system::__extraction__",
+      "sourcetype": "palo_alto_system",
+      "dest_format": "__extraction__",
+      "score": 97,
+      "part": "extraction",
+      "wireFormat": "csv",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:26:01.683Z",
+      "path": "shared-goldens/palo_alto_system____extraction__.json",
+      "report": {
+        "score": 97,
+        "band": "good"
+      }
     }
   ]
 }
