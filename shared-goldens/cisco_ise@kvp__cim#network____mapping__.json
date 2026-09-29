@@ -1,0 +1,341 @@
+{
+  "key": "cisco_ise@kvp::cim#network::__mapping__",
+  "sourcetype": "cisco_ise@kvp",
+  "dest_format": "cim#network::__mapping__",
+  "score": 93,
+  "part": "mapping",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:46:34.103Z",
+  "functions": [
+    {
+      "id": "eval",
+      "description": "Alias Copilot/schematizer OCSF-style fields to canonical names",
+      "conf": {
+        "add": [
+          {
+            "name": "src_ip",
+            "value": "src_ip || source__ip || client__ip || srcaddr || srcip"
+          },
+          {
+            "name": "dest_ip",
+            "value": "dest_ip || dst_ip || destination__ip || server__ip || dstaddr || dstip"
+          },
+          {
+            "name": "src_port",
+            "value": "src_port || source__port || spt || srcport || sport"
+          },
+          {
+            "name": "dest_port",
+            "value": "dest_port || dst_port || destination__port || dpt || dstport || dport"
+          },
+          {
+            "name": "protocol",
+            "value": "protocol || transport || network__transport || proto"
+          },
+          {
+            "name": "transport",
+            "value": "transport || protocol || network__transport || proto"
+          },
+          {
+            "name": "action",
+            "value": "action || event__outcome || act"
+          },
+          {
+            "name": "application",
+            "value": "application || app || network__application || service"
+          },
+          {
+            "name": "bytes_in",
+            "value": "bytes_in || destination__bytes || rcvd_bytes || rcvdbyte || bytes_received || received_bytes || rcvd_octets"
+          },
+          {
+            "name": "bytes_out",
+            "value": "bytes_out || source__bytes || sent_bytes || sentbyte || bytes_sent || sent_octets"
+          },
+          {
+            "name": "duration",
+            "value": "duration || event__duration"
+          },
+          {
+            "name": "rule_name",
+            "value": "rule_name || rule__name || policy_name || policyname"
+          },
+          {
+            "name": "src_zone",
+            "value": "src_zone || observer__ingress__zone"
+          },
+          {
+            "name": "dest_zone",
+            "value": "dest_zone || dst_zone || observer__egress__zone || observer__egress_zone"
+          },
+          {
+            "name": "host",
+            "value": "host || observer__hostname || hostname || device_hostname || device_name || dvchost || devname"
+          },
+          {
+            "name": "log_time",
+            "value": "log_time || generated_time || receive_time || start_time || event__created || timestamp || event__start || time || event_time || datetime || logtime"
+          },
+          {
+            "name": "request_method",
+            "value": "request_method || method || http_method || httpmethod || requestmethod || cs_method || verb || http_verb"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Set _time from the parsed timestamp (log_time), if one was captured",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "(typeof log_time != 'undefined' && log_time) ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) / 1000 : _time"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Map fields to destination schema",
+      "conf": {
+        "add": [
+          {
+            "name": "event_type",
+            "value": "'Network_Traffic'"
+          },
+          {
+            "name": "src_ip",
+            "value": "(/^(\\d{1,3}(\\.\\d{1,3}){3}|[0-9A-Fa-f:]*:[0-9A-Fa-f:.]+)$/.test(String((NAS_IP_Address || Address || Remote_Address || ''))) ? (NAS_IP_Address || Address || Remote_Address || '') : undefined)"
+          },
+          {
+            "name": "src",
+            "value": "NAS_IP_Address || Address || Remote_Address || ''"
+          },
+          {
+            "name": "dest_ip",
+            "value": "(/^(\\d{1,3}(\\.\\d{1,3}){3}|[0-9A-Fa-f:]*:[0-9A-Fa-f:.]+)$/.test(String((DestinationIPAddress || ''))) ? (DestinationIPAddress || '') : undefined)"
+          },
+          {
+            "name": "dest",
+            "value": "DestinationIPAddress || ''"
+          },
+          {
+            "name": "dest_port",
+            "value": "Number(DestinationPort || 0)"
+          },
+          {
+            "name": "src_port",
+            "value": "String(Port || NAS_Port || '')"
+          },
+          {
+            "name": "protocol",
+            "value": "Protocol || ''"
+          },
+          {
+            "name": "transport",
+            "value": "Protocol || ''"
+          },
+          {
+            "name": "user",
+            "value": "UserName || User_Name || User || ''"
+          },
+          {
+            "name": "action",
+            "value": "AuthenticationResult || AuthenticationStatus || action || ''"
+          },
+          {
+            "name": "vendor_action",
+            "value": "type || message_type || ''"
+          },
+          {
+            "name": "dvc",
+            "value": "NetworkDeviceName || host || ''"
+          },
+          {
+            "name": "dvc_ip",
+            "value": "NAS_IP_Address || Address || ''"
+          },
+          {
+            "name": "src_mac",
+            "value": "Calling_Station_ID || EndPointMACAddress || ''"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Map fields (continued 16-22)",
+      "conf": {
+        "add": [
+          {
+            "name": "session_id",
+            "value": "AcsSessionID || CPMSessionID || sessionId || ''"
+          },
+          {
+            "name": "response_time",
+            "value": "Number(RequestLatency || 0)"
+          },
+          {
+            "name": "app",
+            "value": "Service || ''"
+          },
+          {
+            "name": "rule",
+            "value": "AuthorizationPolicyMatchedRule || IdentityPolicyMatchedRule || ''"
+          },
+          {
+            "name": "vlan",
+            "value": "String(Airespace_Wlan_Id || '')"
+          },
+          {
+            "name": "vendor_account",
+            "value": "AdminName || ''"
+          },
+          {
+            "name": "vendor_product",
+            "value": "'Cisco ISE'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Set source-native sourcetype",
+      "conf": {
+        "add": [
+          {
+            "name": "sourcetype",
+            "value": "'cisco:ise'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "acssessionid",
+        "activesessioncount",
+        "adapterinstancename",
+        "adapterinstanceuuid",
+        "address",
+        "admininterface",
+        "adminipaddress",
+        "adminname",
+        "adminsession",
+        "alloweasywiredsession",
+        "allowedprotocolmatchedrule",
+        "authenticationidentitystore",
+        "authenticationmethod",
+        "authenticationstatus",
+        "authorizationpolicymatchedrule",
+        "averageradiusrequestlatency",
+        "averagetacacsrequestlatency",
+        "avpair",
+        "cause",
+        "class",
+        "clientlatency",
+        "cmdav",
+        "cmdset",
+        "code",
+        "configversionid",
+        "cpmsessionid",
+        "currentidstorename",
+        "deltaradiusrequestcount",
+        "deltatacacsrequestcount",
+        "destinationipaddress",
+        "destinationport",
+        "details",
+        "devicename",
+        "deviceregistrationstatus",
+        "dtlssupport",
+        "eaptunnel",
+        "endpointmacaddress",
+        "endpointpolicy",
+        "endpointprofiler",
+        "epidentitygroup",
+        "epmacaddress",
+        "failurereason",
+        "guestusername",
+        "identitygroup",
+        "identitypolicymatchedrule",
+        "identityselectionmatchedrule",
+        "ipaddress",
+        "ipsec",
+        "isepolicysetname",
+        "isthirdpartydeviceflow",
+        "licensetypes",
+        "location",
+        "loggername",
+        "message",
+        "message",
+        "message",
+        "misconfiguredclientfixreason",
+        "name",
+        "networkdevicegroups",
+        "networkdevicename",
+        "networkdeviceprofileid",
+        "networkdeviceprofilename",
+        "opensslerrormessage",
+        "opensslerrorstack",
+        "operationid",
+        "operationmessagetext",
+        "operationstatus",
+        "operationtype",
+        "originalusername",
+        "policytype",
+        "port",
+        "portalname",
+        "postureassessmentstatus",
+        "profile",
+        "protocol",
+        "psnhostname",
+        "queryresult",
+        "radiusflowtype",
+        "radiuspackettype",
+        "requestlatency",
+        "requestreceivedtime",
+        "response",
+        "responsetime",
+        "selectedaccessservice",
+        "selectedauthenticationidentitystores",
+        "selectedauthorizationprofiles",
+        "service",
+        "source",
+        "staticassignment",
+        "status",
+        "step",
+        "stepdata",
+        "steplatency",
+        "sysstatscpucount",
+        "sysstatsprocessmemorymb",
+        "sysstatsutilizationcpu",
+        "sysstatsutilizationdiskio",
+        "sysstatsutilizationdiskspace",
+        "sysstatsutilizationloadavg",
+        "sysstatsutilizationmemory",
+        "sysstatsutilizationnetwork",
+        "tlscipher",
+        "tlsversion",
+        "totalauthenlatency",
+        "type",
+        "type",
+        "usecase",
+        "user",
+        "username",
+        "usertype",
+        "version",
+        "workflowcurrentidstoreindex",
+        "workflowifauthenticationfailed",
+        "workflowifprocesserror",
+        "workflowifusernotfound",
+        "workflowsequencetype"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
