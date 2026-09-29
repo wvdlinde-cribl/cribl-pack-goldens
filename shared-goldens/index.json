@@ -14225,6 +14225,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "https_request@kvp::__extraction__",
+      "sourcetype": "https_request@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:31:25.527Z",
+      "path": "shared-goldens/https_request@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
