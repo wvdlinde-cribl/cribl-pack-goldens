@@ -13665,6 +13665,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_https_request@kvp::__extraction__",
+      "sourcetype": "ivanti_https_request@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:33:16.281Z",
+      "path": "shared-goldens/ivanti_https_request@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
