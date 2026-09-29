@@ -1,0 +1,103 @@
+{
+  "key": "ivanti_ldap@text::__extraction__",
+  "sourcetype": "ivanti_ldap@text",
+  "dest_format": "__extraction__",
+  "score": 97,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T17:05:18.788Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract base syslog structure: timestamp, host, pid, event_id, severity, and message body",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<host>\\S+)\\s+auth\\[(?<pid>\\d+)\\]:\\s+LDAPAuth\\[(?<event_id>\\S+)\\]\\s+(?<severity>\\w+)\\s+-\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf(\"service account\") === -1 && message.indexOf(\"user '\") > -1",
+      "disabled": false,
+      "description": "Extract user field for standard user-based events",
+      "conf": {
+        "source": "message",
+        "regex": "/user '(?<user>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.indexOf(\"service account\") > -1",
+      "disabled": false,
+      "description": "Extract user field for service account bind events",
+      "conf": {
+        "source": "message",
+        "regex": "/service account '(?<user>[^']+)'/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract source IP address (handles both IPv4 and bracketed IPv6)",
+      "conf": {
+        "source": "message",
+        "regex": "/from \\[?(?<src_ip>[0-9a-fA-F:.]+)\\]?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract LDAP/LDAPS protocol, destination host and port from server URI",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<protocol>ldaps|ldap):\\/\\/(?<dst_host>[^:'\\s]+):(?<dst_port>\\d+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify action, normalize severity, and derive _time from timestamp",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "message.match(/authentication succeeded/) ? 'success' : message.match(/authentication failed/) ? 'failure' : message.match(/bind failed/) ? 'failure' : message.match(/Account locked/) ? 'account_locked' : message.match(/group membership lookup succeeded/) ? 'success' : message.match(/TLS handshake failed/) ? 'failure' : message.match(/server unreachable/) ? 'error' : message.match(/search completed/) ? 'success' : message.match(/search timeout/) ? 'error' : message.match(/Multiple failed LDAP bind attempts/) ? 'brute_force_detected' : message.match(/Anonymous LDAP bind attempt/) ? 'anonymous_bind_attempt' : 'unknown'"
+          },
+          {
+            "name": "severity_norm",
+            "value": "severity === 'INFO' ? 'info' : severity === 'WARN' ? 'warning' : severity === 'ERR' ? 'error' : severity === 'CRIT' ? 'critical' : 'unknown'"
+          },
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          }
+        ],
+        "remove": []
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
