@@ -13921,6 +13921,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_esxcli@kvp::__extraction__",
+      "sourcetype": "vmware_esxlog_esxcli@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:00:24.775Z",
+      "path": "shared-goldens/vmware_esxlog_esxcli@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
