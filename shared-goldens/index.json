@@ -13905,6 +13905,22 @@
         "score": 93,
         "band": "good"
       }
+    },
+    {
+      "key": "ncsc_ova_agents_hc@json::__extraction__",
+      "sourcetype": "ncsc_ova_agents_hc@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:00:19.162Z",
+      "path": "shared-goldens/ncsc_ova_agents_hc@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
