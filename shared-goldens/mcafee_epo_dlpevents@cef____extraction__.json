@@ -1,0 +1,91 @@
+{
+  "key": "mcafee_epo_dlpevents@cef::__extraction__",
+  "sourcetype": "mcafee_epo_dlpevents@cef",
+  "dest_format": "__extraction__",
+  "score": 95,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:13:02.361Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse CEF header fields (vendor, product, version, signature, name, severity) and capture the extension string for further parsing",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^CEF:0\\|(?<vendor>[^|]*)\\|(?<product>[^|]*)\\|(?<product_version>[^|]*)\\|(?<signature_id>[^|]*)\\|(?<name>[^|]*)\\|(?<severity>[^|]*)\\|(?<__extension>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse CEF extension key-value pairs (rt, src, shost, suser, duser, act, cat, dst, dhost, fname, fsize, cs1/cs1Label, cs2/cs2Label, outcome, reason)",
+      "conf": {
+        "source": "__extension",
+        "regex": "/^rt=(?<timestamp>.*?) src=(?<src_ip>\\S+)(?: shost=(?<src_host>\\S+))?(?: suser=(?<user>\\S+))?(?: duser=(?<dst_user>\\S+))?(?: act=(?<action>\\S+))?(?: cat=(?<category>.*?))?(?: dst=(?<dst_ip>\\S+))?(?: dhost=(?<dst_host>\\S+))?(?: fname=(?<filename>.*?))?(?: fsize=(?<file_size>\\d+))?(?: cs1=(?<cs1>.*?))?(?: cs1Label=(?<cs1_label>\\S+))?(?: cs2=(?<cs2>.*?))?(?: cs2Label=(?<cs2_label>\\S+))?(?: outcome=(?<outcome>\\S+))?(?: reason=(?<reason>.*))?$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive normalized _time from CEF rt timestamp, add severity label, lowercase action, and clean up scratch extension field",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Math.floor(new Date(timestamp).getTime()/1000)"
+          },
+          {
+            "name": "severity_label",
+            "value": "(severity=='9'||severity=='8')?'critical':(severity=='7'||severity=='6')?'high':(severity=='5'||severity=='4')?'medium':'low'"
+          },
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? action.toLowerCase() : action"
+          }
+        ],
+        "remove": [
+          "__extension"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "cef",
+      "keys": [
+        "act",
+        "cat",
+        "cs1",
+        "cs1label",
+        "cs2",
+        "cs2label",
+        "dhost",
+        "dst",
+        "duser",
+        "fname",
+        "fsize",
+        "outcome",
+        "reason",
+        "rt",
+        "shost",
+        "src",
+        "suser"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "cef"
+}
