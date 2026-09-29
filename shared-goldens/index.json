@@ -14369,6 +14369,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "iostat_metric@kvp::__extraction__",
+      "sourcetype": "iostat_metric@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:53:01.561Z",
+      "path": "shared-goldens/iostat_metric@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
