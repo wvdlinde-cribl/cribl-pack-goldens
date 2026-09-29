@@ -1,0 +1,129 @@
+{
+  "key": "mcafee_epo_threatevents_ens_ids@cef::__extraction__",
+  "sourcetype": "mcafee_epo_threatevents_ens_ids@cef",
+  "dest_format": "__extraction__",
+  "score": 92,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:35:27.437Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse CEF header fields (vendor, product, version, signature id, name, severity)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^CEF:\\d+\\|(?<vendor>[^|]*)\\|(?<product>[^|]*)\\|(?<product_version>[^|]*)\\|(?<signature_id>[^|]*)\\|(?<name>[^|]*)\\|(?<severity>[^|]*)\\|/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract core CEF extension fields: event time, src/dst IPs and ports, protocol, category, action, and threat name (cs1)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/rt=(?<event_time>.*?) src=(?<src_ip>\\S+) dst=(?<dst_ip>\\S+) spt=(?<src_port>\\S+) dpt=(?<dst_port>\\S+) proto=(?<protocol>\\S+) cat=(?<category>\\S+) act=(?<action>\\S+) cs1=(?<threat_name>.*?) cs1Label=ThreatName/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract device host (dvchost) from CEF extension",
+      "conf": {
+        "source": "_raw",
+        "regex": "/dvchost=(?<dvc_host>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract user (duser) from CEF extension, may be empty",
+      "conf": {
+        "source": "_raw",
+        "regex": "/duser=(?<user>\\S*)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract outcome status from CEF extension",
+      "conf": {
+        "source": "_raw",
+        "regex": "/outcome=(?<outcome>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive event timestamp, normalize action/protocol casing, and clean up empty user field",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(event_time)/1000"
+          },
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? action.toLowerCase() : action"
+          },
+          {
+            "name": "protocol",
+            "value": "protocol ? protocol.toUpperCase() : protocol"
+          },
+          {
+            "name": "user",
+            "value": "user && user.length > 0 ? user : null"
+          }
+        ],
+        "remove": [
+          "event_time"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "cef",
+      "keys": [
+        "act",
+        "cat",
+        "cs1",
+        "cs1label",
+        "cs2",
+        "dpt",
+        "dst",
+        "duser",
+        "dvc",
+        "dvchost",
+        "outcome",
+        "proto",
+        "rt",
+        "spt",
+        "src"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "cef"
+}
