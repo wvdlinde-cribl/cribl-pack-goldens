@@ -14577,6 +14577,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "fml_event@kvp::__extraction__",
+      "sourcetype": "fml_event@kvp",
+      "dest_format": "__extraction__",
+      "score": 90,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:30:28.663Z",
+      "path": "shared-goldens/fml_event@kvp____extraction__.json",
+      "report": {
+        "score": 90,
+        "band": "good"
+      }
     }
   ]
 }
