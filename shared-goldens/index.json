@@ -14209,6 +14209,22 @@
         "score": 92,
         "band": "good"
       }
+    },
+    {
+      "key": "ncsc_fidelis_endpoint@kvp::cim#network::__mapping__",
+      "sourcetype": "ncsc_fidelis_endpoint@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:29:04.181Z",
+      "path": "shared-goldens/ncsc_fidelis_endpoint@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
