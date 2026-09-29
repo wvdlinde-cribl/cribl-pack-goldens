@@ -13857,6 +13857,22 @@
         "score": 92,
         "band": "good"
       }
+    },
+    {
+      "key": "cisco_estreamer_data@json::__extraction__",
+      "sourcetype": "cisco_estreamer_data@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:54:35.849Z",
+      "path": "shared-goldens/cisco_estreamer_data@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
