@@ -1,0 +1,125 @@
+{
+  "key": "fml_event@kvp::__extraction__",
+  "sourcetype": "fml_event@kvp",
+  "dest_format": "__extraction__",
+  "score": 90,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T17:30:28.663Z",
+  "functions": [
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract FortiMail key=value pairs (with quoted values) from _raw",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "_raw",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive event timestamp from date and time fields, then drop the raw components",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(date + 'T' + time) / 1000"
+          }
+        ],
+        "remove": [
+          "date",
+          "time"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize FortiMail 'pri' field into standard severity naming",
+      "conf": {
+        "add": [
+          {
+            "name": "severity",
+            "value": "pri"
+          }
+        ],
+        "remove": [
+          "pri"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action, protocol, and direction across mail, system, quarantine, and alert event subtypes",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? action : status"
+          },
+          {
+            "name": "protocol",
+            "value": "dst_port == '25' ? 'smtp' : dst_port == '587' ? 'smtp' : dst_port == '465' ? 'smtps' : dst_port ? 'tcp' : undefined"
+          },
+          {
+            "name": "direction",
+            "value": "direction ? direction : (subtype == 'system' ? 'internal' : subtype == 'alert' ? 'internal' : subtype == 'quarantine' ? 'internal' : undefined)"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "admin",
+        "attempt",
+        "date",
+        "device_id",
+        "direction",
+        "disposition",
+        "dst",
+        "dst_port",
+        "from",
+        "log_id",
+        "msg",
+        "object",
+        "pri",
+        "quarantine_type",
+        "reason",
+        "rule",
+        "score",
+        "session_id",
+        "size",
+        "src",
+        "src_port",
+        "status",
+        "subject",
+        "subtype",
+        "time",
+        "to",
+        "type",
+        "user",
+        "value",
+        "virus_name"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
