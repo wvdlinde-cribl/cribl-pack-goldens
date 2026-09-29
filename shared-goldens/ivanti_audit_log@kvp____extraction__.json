@@ -1,0 +1,156 @@
+{
+  "key": "ivanti_audit_log@kvp::__extraction__",
+  "sourcetype": "ivanti_audit_log@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:23:32.935Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract syslog header (timestamp, host) and remaining key=value payload for KVP parsing",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<syslog_timestamp>\\S+)\\s+(?<src_host>\\S+)\\s+ive:\\s+(?<__kvp>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse the Ivanti ICS key=value payload (supports quoted values) into individual fields",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__kvp",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize network fields, timestamp, user identity, protocol, and derive severity/action classifications",
+      "conf": {
+        "add": [
+          {
+            "name": "timestamp",
+            "value": "new Date(time).getTime()"
+          },
+          {
+            "name": "src_ip",
+            "value": "src"
+          },
+          {
+            "name": "dst_ip",
+            "value": "dst"
+          },
+          {
+            "name": "dst_port",
+            "value": "dstport"
+          },
+          {
+            "name": "protocol",
+            "value": "proto"
+          },
+          {
+            "name": "user",
+            "value": "user ? user : admin"
+          },
+          {
+            "name": "severity",
+            "value": "pri=='0'?'emergency':pri=='1'?'alert':pri=='2'?'critical':pri=='3'?'error':pri=='4'?'warning':pri=='5'?'notice':pri=='6'?'info':pri=='7'?'debug':'unknown'"
+          },
+          {
+            "name": "action",
+            "value": "result=='SUCCESS'?'allowed':result=='FAILURE'?'denied':result=='BLOCKED'?'blocked':result=='WARNING'?'warning':result=='CRITICAL'?'critical':'unknown'"
+          }
+        ],
+        "remove": [
+          "src",
+          "dst",
+          "dstport",
+          "proto",
+          "admin",
+          "__kvp"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "op && (op.startsWith('login') || op.startsWith('session'))",
+      "disabled": false,
+      "description": "Tag VPN authentication and session events for downstream mapping",
+      "conf": {
+        "add": [
+          {
+            "name": "event_category",
+            "value": "'vpn_auth_session'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "op && (op.startsWith('config') || op.startsWith('policy') || op.startsWith('admin'))",
+      "disabled": false,
+      "description": "Tag administrative configuration and policy change events",
+      "conf": {
+        "add": [
+          {
+            "name": "event_category",
+            "value": "'admin_config'"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "op && (op.startsWith('cert') || op.startsWith('disk') || op.startsWith('connection'))",
+      "disabled": false,
+      "description": "Tag system and network security events",
+      "conf": {
+        "add": [
+          {
+            "name": "event_category",
+            "value": "op.startsWith('connection') ? 'network_security' : 'system_health'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "admin",
+        "dst",
+        "dstport",
+        "duration",
+        "host",
+        "id",
+        "iface",
+        "msg",
+        "op",
+        "pri",
+        "proto",
+        "realm",
+        "result",
+        "roles",
+        "src",
+        "target",
+        "time",
+        "user",
+        "vpn"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
