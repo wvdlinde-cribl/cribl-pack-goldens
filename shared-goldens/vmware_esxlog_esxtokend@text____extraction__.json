@@ -1,0 +1,71 @@
+{
+  "key": "vmware_esxlog_esxtokend@text::__extraction__",
+  "sourcetype": "vmware_esxlog_esxtokend@text",
+  "dest_format": "__extraction__",
+  "score": 92,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:09:28.288Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract timestamp, host, pid, severity, and message body from esxtokend log line",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<dst_host>\\S+)\\s+esxtokend\\[(?<pid>\\d+)\\]:\\s+\\[(?<severity>\\w+)\\]\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message",
+      "disabled": false,
+      "description": "Extract user identity from message, handling both quoted and key=value styles",
+      "conf": {
+        "source": "message",
+        "regex": "/user[ =]'?(?<user>[a-zA-Z0-9@._\\-]*)'?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message",
+      "disabled": false,
+      "description": "Extract source IP (IPv4 or bracketed IPv6) from message across from/source=/src=/client=/host= patterns",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:from|source=|src=|client=|host=)\\s*\\[?(?<src_ip>[0-9a-fA-F:.]+)\\]?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive epoch _time from ISO8601 timestamp field",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "new Date(timestamp).getTime()/1000"
+          }
+        ],
+        "remove": []
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
