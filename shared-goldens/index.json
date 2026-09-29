@@ -14385,6 +14385,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "iostat_metric@kvp::cim#network::__mapping__",
+      "sourcetype": "iostat_metric@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:55:53.460Z",
+      "path": "shared-goldens/iostat_metric@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
