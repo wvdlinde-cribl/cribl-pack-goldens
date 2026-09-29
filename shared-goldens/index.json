@@ -14097,6 +14097,22 @@
         "score": 95,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_linux_secure@text::__extraction__",
+      "sourcetype": "ivanti_linux_secure@text",
+      "dest_format": "__extraction__",
+      "score": 90,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:16:57.487Z",
+      "path": "shared-goldens/ivanti_linux_secure@text____extraction__.json",
+      "report": {
+        "score": 90,
+        "band": "good"
+      }
     }
   ]
 }
