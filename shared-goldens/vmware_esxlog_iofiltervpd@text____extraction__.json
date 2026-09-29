@@ -1,0 +1,86 @@
+{
+  "key": "vmware_esxlog_iofiltervpd@text::__extraction__",
+  "sourcetype": "vmware_esxlog_iofiltervpd@text",
+  "dest_format": "__extraction__",
+  "score": 90,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:46:37.474Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract timestamp, host, pid, severity, and message from base ESXi Iofiltervpd log line",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<dst_host>\\S+)\\s+Iofiltervpd\\[(?<pid>\\d+)\\]:\\s+(?<severity>\\w+)\\s+IOFilterVPD:\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/user=/)",
+      "disabled": false,
+      "description": "Extract user and source IP from messages containing user= parameter (e.g. attach requests)",
+      "conf": {
+        "source": "message",
+        "regex": "/user=(?<user>\\S+?)@(?<src_ip>\\d{1,3}(?:\\.\\d{1,3}){3})/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/from\\s+(user\\s+\\S+@)?\\d{1,3}(\\.\\d{1,3}){3}/)",
+      "disabled": false,
+      "description": "Extract source IP and optional user from connection/authentication messages using 'from <ip>' pattern",
+      "conf": {
+        "source": "message",
+        "regex": "/from\\s+(?:user\\s+(?<user>\\S+?)@)?(?<src_ip>\\d{1,3}(?:\\.\\d{1,3}){3})/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/vCenter\\s+\\d{1,3}(\\.\\d{1,3}){3}/)",
+      "disabled": false,
+      "description": "Extract source IP for vCenter policy update messages",
+      "conf": {
+        "source": "message",
+        "regex": "/vCenter\\s+(?<src_ip>\\d{1,3}(?:\\.\\d{1,3}){3})/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action and protocol fields based on message content and severity",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "message.match(/rejected|blocking|blocked|Failed|failed/i) ? 'blocked' : message.match(/approved|Successfully|success|accepted/i) ? 'allowed' : 'info'"
+          },
+          {
+            "name": "protocol",
+            "value": "'iofiltervpd'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
