@@ -14017,6 +14017,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_esxtokend@text::__extraction__",
+      "sourcetype": "vmware_esxlog_esxtokend@text",
+      "dest_format": "__extraction__",
+      "score": 92,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:09:28.288Z",
+      "path": "shared-goldens/vmware_esxlog_esxtokend@text____extraction__.json",
+      "report": {
+        "score": 92,
+        "band": "good"
+      }
     }
   ]
 }
