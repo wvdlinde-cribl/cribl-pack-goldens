@@ -13825,6 +13825,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_certactivity@kvp::__extraction__",
+      "sourcetype": "ivanti_certactivity@kvp",
+      "dest_format": "__extraction__",
+      "score": 91,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:48:42.275Z",
+      "path": "shared-goldens/ivanti_certactivity@kvp____extraction__.json",
+      "report": {
+        "score": 91,
+        "band": "good"
+      }
     }
   ]
 }
