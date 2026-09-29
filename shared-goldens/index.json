@@ -14273,6 +14273,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_settingsd@text::__extraction__",
+      "sourcetype": "vmware_esxlog_settingsd@text",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:39:53.637Z",
+      "path": "shared-goldens/vmware_esxlog_settingsd@text____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
