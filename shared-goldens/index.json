@@ -13585,6 +13585,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_vsantraceurgent@text::__extraction__",
+      "sourcetype": "vmware_esxlog_vsantraceurgent@text",
+      "dest_format": "__extraction__",
+      "score": 90,
+      "part": "extraction",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:23:49.686Z",
+      "path": "shared-goldens/vmware_esxlog_vsantraceurgent@text____extraction__.json",
+      "report": {
+        "score": 90,
+        "band": "good"
+      }
     }
   ]
 }
