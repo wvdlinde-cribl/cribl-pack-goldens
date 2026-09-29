@@ -14561,6 +14561,22 @@
         "score": 99,
         "band": "good"
       }
+    },
+    {
+      "key": "fml_spam@kvp::cim#network::__mapping__",
+      "sourcetype": "fml_spam@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T17:26:37.785Z",
+      "path": "shared-goldens/fml_spam@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
