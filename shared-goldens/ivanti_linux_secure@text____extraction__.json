@@ -1,0 +1,107 @@
+{
+  "key": "ivanti_linux_secure@text::__extraction__",
+  "sourcetype": "ivanti_linux_secure@text",
+  "dest_format": "__extraction__",
+  "score": 90,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:16:57.487Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse base syslog structure: timestamp, host, process, pid, message",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d+\\s\\d{2}:\\d{2}:\\d{2})\\s+(?<dst_host>\\S+)\\s+(?<process>[^\\[:]+?)(?:\\[(?<pid>\\d+)\\])?:\\s*(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "process && process.indexOf('sshd') > -1",
+      "disabled": false,
+      "description": "Extract SSH auth details (accepted/failed/invalid user) with source IP and port",
+      "conf": {
+        "source": "message",
+        "regex": "/^(?<action>Accepted|Failed|Invalid user)\\s+(?:(?<auth_method>publickey|password)\\s+)?for\\s+(?:invalid user\\s+)?(?<user>\\S+)\\s+from\\s+(?<src_ip>\\S+)\\s+port\\s+(?<src_port>\\d+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "process && process.indexOf('sudo') > -1",
+      "disabled": false,
+      "description": "Extract sudo command execution details: user, tty, pwd, run-as user, command",
+      "conf": {
+        "source": "message",
+        "regex": "/^\\s*(?<user>\\S+)\\s*:\\s*TTY=(?<tty>\\S+)\\s*;\\s*PWD=(?<pwd>\\S+)\\s*;\\s*USER=(?<run_as_user>\\S+)\\s*;\\s*COMMAND=(?<command>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "process && (process.indexOf('dsAdminServer') > -1 || process.indexOf('dsVpnServer') > -1)",
+      "disabled": false,
+      "description": "Extract Ivanti admin/VPN authentication events: user, realm, source IP, method/reason",
+      "conf": {
+        "source": "message",
+        "regex": "/^(?:Admin login|User authentication)\\s+(?<action>success|failure):\\s*user=(?<user>\\S+)\\s+realm=(?<realm>.*?)\\s+src=(?<src_ip>\\S+)(?:\\s+(?:method|auth_method)=(?<auth_method>\\S+))?(?:\\s+reason=(?<reason>\\S+))?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "process && process.indexOf('pam_unix') > -1",
+      "disabled": false,
+      "description": "Extract PAM authentication failure details: remote host and user",
+      "conf": {
+        "source": "message",
+        "regex": "/rhost=(?<src_ip>\\S+)\\s+user=(?<user>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action/severity/protocol fields for downstream mapping",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "'ssh'"
+          },
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? (action.match(/Accepted|success/i) ? 'success' : 'failure') : (message && message.match(/session opened|New session/i) ? 'success' : undefined)"
+          },
+          {
+            "name": "severity",
+            "value": "action === 'failure' ? 'medium' : 'low'"
+          }
+        ],
+        "remove": []
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
