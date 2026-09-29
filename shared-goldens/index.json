@@ -13937,6 +13937,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "vmware_esxlog_esxcli@kvp::cim#network::__mapping__",
+      "sourcetype": "vmware_esxlog_esxcli@kvp",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:01:08.319Z",
+      "path": "shared-goldens/vmware_esxlog_esxcli@kvp__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
