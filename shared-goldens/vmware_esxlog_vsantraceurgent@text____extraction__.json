@@ -1,0 +1,107 @@
+{
+  "key": "vmware_esxlog_vsantraceurgent@text::__extraction__",
+  "sourcetype": "vmware_esxlog_vsantraceurgent@text",
+  "dest_format": "__extraction__",
+  "score": 90,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:23:49.686Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse RFC5424 syslog header, vSAN module, and message body from _raw",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^<(?<priority>\\d+)>1 (?<timestamp>\\S+) (?<dst_host>\\S+) Vsantraceurgent - - - vsantrace: (?<module>[^:]+): (?<message>.+)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive syslog severity text from priority value (severity = priority mod 8)",
+      "conf": {
+        "add": [
+          {
+            "name": "__sev_num",
+            "value": "typeof priority !== 'undefined' ? priority % 8 : null"
+          },
+          {
+            "name": "severity",
+            "value": "__sev_num === 0 ? 'emergency' : __sev_num === 1 ? 'alert' : __sev_num === 2 ? 'critical' : __sev_num === 3 ? 'error' : __sev_num === 4 ? 'warning' : __sev_num === 5 ? 'notice' : __sev_num === 6 ? 'informational' : __sev_num === 7 ? 'debug' : 'unknown'"
+          }
+        ],
+        "remove": [
+          "__sev_num"
+        ]
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/\\b\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\b/)",
+      "disabled": false,
+      "description": "Extract IPv4 address referenced in message (peer/node address)",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<src_ip>\\d{1,3}\\.\\d{1,3}\\.\\d{1,3}\\.\\d{1,3})(?::(?<src_port>\\d+))?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/(?:[0-9a-fA-F]{1,4}:){2,}[0-9a-fA-F]{1,4}/)",
+      "disabled": false,
+      "description": "Extract IPv6 address referenced in message when no IPv4 match present",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<src_ip>(?:[0-9a-fA-F]{1,4}:){2,}[0-9a-fA-F]{1,4})/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}/)",
+      "disabled": false,
+      "description": "Extract vSAN object/component UUID referenced in message",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<object_id>[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12})/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Set protocol context for vSAN internal cluster traffic events",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "module && module.trim() === 'RDT' ? 'tcp' : 'vsan'"
+          },
+          {
+            "name": "action",
+            "value": "message && message.match(/rejected|blocking traffic|removed from cluster/) ? 'blocked' : message && message.match(/completed successfully/) ? 'allowed' : 'observed'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
