@@ -14401,6 +14401,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "sysmon_deploy_log@kvp::__extraction__",
+      "sourcetype": "sysmon_deploy_log@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:56:04.527Z",
+      "path": "shared-goldens/sysmon_deploy_log@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
