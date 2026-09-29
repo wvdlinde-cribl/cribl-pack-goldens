@@ -14257,6 +14257,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "ncsc_fidelis_endpoint_audit@kvp::__extraction__",
+      "sourcetype": "ncsc_fidelis_endpoint_audit@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:38:47.729Z",
+      "path": "shared-goldens/ncsc_fidelis_endpoint_audit@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
