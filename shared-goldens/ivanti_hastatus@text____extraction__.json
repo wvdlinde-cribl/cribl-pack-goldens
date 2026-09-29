@@ -1,0 +1,94 @@
+{
+  "key": "ivanti_hastatus@text::__extraction__",
+  "sourcetype": "ivanti_hastatus@text",
+  "dest_format": "__extraction__",
+  "score": 93,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:04:19.834Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse syslog header (timestamp, host, process, pid, severity) and remaining message body from ivanti hastatus log lines",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w+\\s+\\d+\\s+\\d+:\\d+:\\d+)\\s+(?<host>\\S+)\\s+hastatus\\[(?<pid>\\d+)\\]:\\s+(?<severity>\\w+)\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && (message.includes('peer') || message.includes('external IP'))",
+      "disabled": false,
+      "description": "Extract source IP (peer node or external attacking IP) from message, supports IPv4 and IPv6",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:peer[=\\s]+(?:node-\\d+\\s+)?\\(?|external IP\\s+)(?<src_ip>(?:\\d{1,3}\\.){3}\\d{1,3}|[0-9a-fA-F:]+:[0-9a-fA-F:]+)\\)?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('VIP')",
+      "disabled": false,
+      "description": "Extract VIP destination IP and the interface it migrated to during a failover event",
+      "conf": {
+        "source": "message",
+        "regex": "/VIP\\s+(?<dst_ip>(?:\\d{1,3}\\.){3}\\d{1,3})\\s+successfully migrated to\\s+(?<dst_host>\\S+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/port\\s+\\d+/)",
+      "disabled": false,
+      "description": "Extract destination port and protocol (tcp/udp) when present, e.g. HA protocol connection attempts or license peer unreachable messages",
+      "conf": {
+        "source": "message",
+        "regex": "/port\\s+(?<dst_port>\\d+)(?:\\/(?<protocol>tcp|udp))?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.includes('admin user')",
+      "disabled": false,
+      "description": "Extract the admin username for manually triggered failover events",
+      "conf": {
+        "source": "message",
+        "regex": "/admin user\\s+(?<user>\\w+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Classify the HA event into a normalized action based on message content",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "message.includes('failover initiated') ? 'failover_initiated' : message.includes('successfully migrated') ? 'vip_migration' : message.includes('Configuration sync completed') ? 'config_sync_success' : message.includes('Configuration sync failed') ? 'config_sync_failure' : message.includes('Split-brain condition suspected') ? 'split_brain_detected' : message.includes('Split-brain resolved') ? 'split_brain_resolved' : message.includes('License sync completed') ? 'license_sync_success' : message.includes('License sync failed') ? 'license_sync_failure' : message.includes('joined cluster successfully') ? 'cluster_join' : message.includes('malformed heartbeat') ? 'malformed_heartbeat' : message.includes('Unauthorized HA protocol') ? 'unauthorized_access_blocked' : message.includes('Manual failover triggered') ? 'manual_failover' : message.includes('state transition') ? 'state_transition' : message.includes('heartbeat received') ? 'heartbeat_ok' : message.includes('heartbeat delayed') ? 'heartbeat_delayed' : 'unknown'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
