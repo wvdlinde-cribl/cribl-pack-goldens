@@ -1,0 +1,122 @@
+{
+  "key": "nci_splk_nci_splk_nu_network_data@kvp::__extraction__",
+  "sourcetype": "nci_splk_nci_splk_nu_network_data@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:12:54.934Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract timestamp and remaining KVP payload from raw event, tolerating malformed timestamp separators (dots instead of colons)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T[\\d.:]+Z)\\s+(?<__kvp>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse the KVP-formatted remainder of the event into structured fields",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__kvp",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize protocol field name and remove duplicate raw proto field",
+      "conf": {
+        "add": [
+          {
+            "name": "protocol",
+            "value": "proto"
+          }
+        ],
+        "remove": [
+          "proto",
+          "__kvp"
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action values into consistent set",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action === 'allowed' ? 'allow' : action === 'denied' ? 'deny' : action === 'success' ? 'success' : action === 'failed' ? 'failure' : action === 'alert' ? 'alert' : action"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive src_zone, dst_zone and direction from the zone field (trust/untrust/dmz/mgmt notation)",
+      "conf": {
+        "add": [
+          {
+            "name": "src_zone",
+            "value": "zone && zone.indexOf('->') > -1 ? zone.split('->')[0] : zone"
+          },
+          {
+            "name": "dst_zone",
+            "value": "zone && zone.indexOf('->') > -1 ? zone.split('->')[1] : zone"
+          },
+          {
+            "name": "direction",
+            "value": "zone && zone.indexOf('->') > -1 ? (zone.split('->')[0] === zone.split('->')[1] ? 'internal' : (zone.split('->')[0] === 'trust' ? 'outbound' : 'inbound')) : 'internal'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "bytes_in",
+        "bytes_out",
+        "category",
+        "dst_ip",
+        "dst_port",
+        "duration",
+        "host",
+        "note",
+        "proto",
+        "reason",
+        "rule",
+        "severity",
+        "signature",
+        "src_ip",
+        "src_port",
+        "url",
+        "user",
+        "zone"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
