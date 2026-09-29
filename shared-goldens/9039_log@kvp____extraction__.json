@@ -1,0 +1,110 @@
+{
+  "key": "9039_log@kvp::__extraction__",
+  "sourcetype": "9039_log@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:54:50.118Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse core fields from firewall/security event log line (timestamp, host, severity, event_id, src/dst ip:port, protocol, user, action, message)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<host>\\S+)\\s+\\[(?<severity>\\w+)\\]\\s+event_id=(?<event_id>\\d+)\\s+src=(?<src_ip>\\[[0-9a-fA-F:]+\\]|[\\d.]+):(?<src_port>\\d+)\\s+dst=(?<dst_ip>\\[[0-9a-fA-F:]+\\]|[\\d.]+):(?<dst_port>\\d+)\\s+proto=(?<protocol>\\w+)\\s+user=(?<user>\\S*)\\s+action=(?<action>\\w+)\\s+msg=\"(?<message>[^\"]*)\"/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize IPv6 bracketed addresses and blank/placeholder user values",
+      "conf": {
+        "add": [
+          {
+            "name": "src_ip",
+            "value": "src_ip.match(/^\\[.*\\]$/) ? src_ip.replace(/[\\[\\]]/g, '') : src_ip"
+          },
+          {
+            "name": "dst_ip",
+            "value": "dst_ip.match(/^\\[.*\\]$/) ? dst_ip.replace(/[\\[\\]]/g, '') : dst_ip"
+          },
+          {
+            "name": "is_ipv6",
+            "value": "src_ip.indexOf(':') >= 0 ? true : false"
+          },
+          {
+            "name": "user",
+            "value": "(user === '-' || user === '') ? null : user"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action and severity values to lowercase standard categories",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity.toLowerCase()"
+          },
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "(action === 'ALLOW') ? 'allow' : (action === 'DENY' || action === 'DROP' || action === 'BLOCK' || action === 'RESET') ? 'deny' : (action === 'FAIL' || action === 'LOGIN_FAILURE') ? 'fail' : action.toLowerCase()"
+          },
+          {
+            "name": "protocol",
+            "value": "protocol.toUpperCase()"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive traffic direction based on private/internal src_ip ranges",
+      "conf": {
+        "add": [
+          {
+            "name": "direction",
+            "value": "src_ip.match(/^(10\\.|192\\.168\\.|172\\.(1[6-9]|2[0-9]|3[0-1])\\.)/) ? 'outbound' : 'inbound'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "dst",
+        "event_id",
+        "msg",
+        "proto",
+        "src",
+        "user"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
