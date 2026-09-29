@@ -1,0 +1,113 @@
+{
+  "key": "email_fpc_metadata@kvp::__extraction__",
+  "sourcetype": "email_fpc_metadata@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:30:03.726Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract leading ISO8601 timestamp and remaining key=value payload into a scratch field",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<__kvp>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse the space-delimited key=value pairs (with quoted string support) into individual fields",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__kvp",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive standard _time field from extracted timestamp and normalize protocol casing",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          },
+          {
+            "name": "protocol",
+            "value": "protocol ? protocol.toUpperCase() : protocol"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize disposition/action into a consistent action field and remove scratch fields",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? action.toLowerCase() : (disposition ? disposition.toLowerCase() : action)"
+          }
+        ],
+        "remove": [
+          "__kvp"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "attachment_hash",
+        "attachment_name",
+        "direction",
+        "disposition",
+        "dkim",
+        "dmarc",
+        "dst_ip",
+        "dst_port",
+        "event_id",
+        "http_method",
+        "mime_type",
+        "protocol",
+        "reason",
+        "recipient",
+        "sender",
+        "sensor",
+        "session_id",
+        "severity",
+        "size_bytes",
+        "spf",
+        "src_ip",
+        "src_port",
+        "status",
+        "status_code",
+        "subject",
+        "threat_name",
+        "url",
+        "user_agent"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
