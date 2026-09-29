@@ -1,0 +1,92 @@
+{
+  "key": "iostat_metric@kvp::__extraction__",
+  "sourcetype": "iostat_metric@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:53:01.561Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract timestamp, host, ip, device and iostat metrics with severity/outcome/optional user and message from raw log line",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+) host=(?<host>\\S+) ip=(?<src_ip>\\S+) iostat_metric device=(?<device>\\S+) tps=(?<tps>[\\d.]+) kB_read\\/s=(?<kb_read_s>[\\d.]+) kB_wrtn\\/s=(?<kb_wrtn_s>[\\d.]+) util=(?<util>[\\d.]+) await=(?<await>[\\d.]+) svctm=(?<svctm>[\\d.]+) severity=(?<severity>\\w+) outcome=(?<outcome>\\w+)(?: user=(?<user>\\S+))? msg=\"(?<message>[^\"]+)\"/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Cast numeric string fields to numbers for downstream metric processing",
+      "conf": {
+        "add": [
+          {
+            "name": "tps",
+            "value": "Number(tps)"
+          },
+          {
+            "name": "kb_read_s",
+            "value": "Number(kb_read_s)"
+          },
+          {
+            "name": "kb_wrtn_s",
+            "value": "Number(kb_wrtn_s)"
+          },
+          {
+            "name": "util",
+            "value": "Number(util)"
+          },
+          {
+            "name": "await",
+            "value": "Number(await)"
+          },
+          {
+            "name": "svctm",
+            "value": "Number(svctm)"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize outcome into a consistent action field",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "outcome=='success' ? 'allowed' : outcome=='failure' ? 'blocked' : outcome=='degraded' ? 'degraded' : outcome=='anomaly' ? 'flagged' : 'unknown'"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "await",
+        "device",
+        "host",
+        "ip",
+        "msg",
+        "outcome",
+        "severity",
+        "svctm",
+        "tps",
+        "user",
+        "util"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
