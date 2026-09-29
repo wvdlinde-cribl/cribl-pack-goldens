@@ -14337,6 +14337,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "trellixtie_syslog@cef::cim#network::__mapping__",
+      "sourcetype": "trellixtie_syslog@cef",
+      "dest_format": "cim#network::__mapping__",
+      "score": 90,
+      "part": "mapping",
+      "wireFormat": "cef",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:48:49.690Z",
+      "path": "shared-goldens/trellixtie_syslog@cef__cim#network____mapping__.json",
+      "report": {
+        "score": 90,
+        "band": "good"
+      }
     }
   ]
 }
