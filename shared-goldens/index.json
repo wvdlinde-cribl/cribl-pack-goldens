@@ -14113,6 +14113,22 @@
         "score": 90,
         "band": "good"
       }
+    },
+    {
+      "key": "ivanti_audit_log@kvp::__extraction__",
+      "sourcetype": "ivanti_audit_log@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T16:23:32.935Z",
+      "path": "shared-goldens/ivanti_audit_log@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
