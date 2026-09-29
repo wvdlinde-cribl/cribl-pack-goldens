@@ -1,0 +1,111 @@
+{
+  "key": "vmware_esxlog_backup_check@text::__extraction__",
+  "sourcetype": "vmware_esxlog_backup_check@text",
+  "dest_format": "__extraction__",
+  "score": 92,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:09:47.949Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse syslog priority, timestamp, host, process, pid and BackupCheck severity/message",
+      "conf": {
+        "source": "_raw",
+        "iterations": 1,
+        "overwrite": false,
+        "regex": "/^<(?<__pri>\\d+)>(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d+Z)\\s+(?<dst_host>\\S+)\\s+(?<process>[\\w.]+)\\[(?<pid>\\d+)\\]:\\s+\\[(?<component>[^\\]]+)\\]\\s+(?<severity>[A-Z]+)\\s+(?<message>.*)$/"
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message",
+      "disabled": false,
+      "description": "Extract VM name, vmid and backup job details from the message body",
+      "conf": {
+        "source": "message",
+        "iterations": 1,
+        "overwrite": false,
+        "regex": "/VM '(?<vm_name>[^']+)'(?:\\s+\\(vmid=(?<vmid>\\d+)\\))?|job '(?<backup_job>[^']+)'/"
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message",
+      "disabled": false,
+      "description": "Extract user, IPs, size/duration and datastore/disk details",
+      "conf": {
+        "source": "message",
+        "iterations": 1,
+        "overwrite": false,
+        "regex": "/(?:\\buser=(?<user>[^\\s,]+)|User '(?<user2>[^']+)'|by (?<user3>[\\w.\\-]+@[\\w.\\-]+))?(?:.*?(?:source=|from |dest=|, )(?<src_ip>(?:\\d{1,3}\\.){3}\\d{1,3}|[0-9a-fA-F]{1,4}(?::[0-9a-fA-F:]{2,})+))?(?:.*?duration=(?<duration>\\d+)s)?(?:.*?size=(?<size>\\d+GB))?(?:.*?datastore '(?<datastore>[^']+)')?(?:.*?disk '(?<disk>[^']+)')?/"
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize user, IP, severity, action and derived fields",
+      "conf": {
+        "add": [
+          {
+            "name": "ip_version",
+            "value": "src_ip ? (src_ip.indexOf(':') > -1 ? 'ipv6' : 'ipv4') : undefined"
+          },
+          {
+            "name": "syslog_facility",
+            "value": "__pri ? Math.floor(Number(__pri)/8) : undefined"
+          },
+          {
+            "name": "syslog_severity",
+            "value": "__pri ? Number(__pri)%8 : undefined"
+          },
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity ? severity.toLowerCase() : undefined"
+          },
+          {
+            "name": "action",
+            "value": "message.match(/blocked|denied|Unauthorized/i) ? 'blocked' : (message.match(/aborted|failed|Failed|exceeded|locked/i) ? 'failure' : (message.match(/completed|verified|match/i) ? 'success' : 'info'))"
+          },
+          {
+            "name": "event_type",
+            "value": "message.match(/snapshot|Snapshot|CBT/) ? 'snapshot' : (message.match(/Backup job|backup started|Backup completed|verification/i) ? 'backup_job' : (message.match(/latency|transfer/i) ? 'transfer' : 'other'))"
+          },
+          {
+            "name": "vmid",
+            "value": "vmid ? Number(vmid) : undefined"
+          },
+          {
+            "name": "duration",
+            "value": "duration ? Number(duration) : undefined"
+          },
+          {
+            "name": "_time",
+            "value": "timestamp ? Math.round(Date.parse(timestamp)/1000) : _time"
+          }
+        ],
+        "remove": [
+          "__pri",
+          "user2",
+          "user3"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
