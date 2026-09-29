@@ -13457,6 +13457,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "corelight_ssl::cim#network::__mapping__",
+      "sourcetype": "corelight_ssl",
+      "dest_format": "cim#network::__mapping__",
+      "score": 100,
+      "part": "mapping",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:12:24.118Z",
+      "path": "shared-goldens/corelight_ssl__cim#network____mapping__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
