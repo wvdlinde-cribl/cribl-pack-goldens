@@ -13473,6 +13473,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "mscs_azure_eventhub@json::__extraction__",
+      "sourcetype": "mscs_azure_eventhub@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:12:49.816Z",
+      "path": "shared-goldens/mscs_azure_eventhub@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
