@@ -13489,6 +13489,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "ncsc_microsoft_sharepoint@json::__extraction__",
+      "sourcetype": "ncsc_microsoft_sharepoint@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:13:01.694Z",
+      "path": "shared-goldens/ncsc_microsoft_sharepoint@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
