@@ -1,0 +1,115 @@
+{
+  "key": "vmware_esxlog_sut@text::__extraction__",
+  "sourcetype": "vmware_esxlog_sut@text",
+  "dest_format": "__extraction__",
+  "score": 94,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:03:04.839Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse base ESX log line into timestamp, host, process, optional Hostd/Vpxa bracket metadata, and message body",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<dst_host>\\S+)\\s+(?<process>[A-Za-z]+)(\\[(?<pid>\\d+)\\])?:\\s+(\\[(?<thread_id>\\S+)\\s+(?<severity>\\w+)\\s+'(?<component>[^']+)'\\]\\s+)?(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/logged in|logged out/)",
+      "disabled": false,
+      "description": "Extract user/src_ip from Hostd login/logout events",
+      "conf": {
+        "source": "message",
+        "regex": "/User (?<user>\\S+?)(@(?<src_ip>[0-9a-fA-F:.]+))? logged (?<login_action>in|out)( as (?<login_role>\\S+))?/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/Failed password|Accepted/)",
+      "disabled": false,
+      "description": "Extract user/src_ip/src_port from sshd authentication attempts",
+      "conf": {
+        "source": "message",
+        "regex": "/(?<ssh_result>Failed password|Accepted \\S+) for (invalid user )?(?<user>\\S+) from (?<src_ip>[0-9a-fA-F:.]+) port (?<src_port>\\d+)/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/Authentication failed|locked out|disconnected from vCenter|Failed to connect to host/)",
+      "disabled": false,
+      "description": "Extract user/ip/port fields from authentication failures, account lockouts, vCenter disconnects, and host connect failures",
+      "conf": {
+        "source": "message",
+        "regex": "/(Authentication failed for user (?<user>\\S+) from (?<src_ip>[0-9a-fA-F:.]+))|(Account (?<locked_user>\\S+) locked out after \\d+ failed login attempts from (?<locked_src_ip>[0-9a-fA-F:.]+))|(disconnected from vCenter (?<dst_ip>[0-9a-fA-F:.]+))|(Failed to connect to host (?<connect_dst_ip>[0-9a-fA-F:.]+) on port (?<dst_port>\\d+))/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize scratch fields into consistent user/src_ip/dst_ip, derive protocol, severity, action, and epoch _time",
+      "conf": {
+        "add": [
+          {
+            "name": "user",
+            "value": "user || locked_user"
+          },
+          {
+            "name": "src_ip",
+            "value": "src_ip || locked_src_ip"
+          },
+          {
+            "name": "dst_ip",
+            "value": "dst_ip || connect_dst_ip"
+          },
+          {
+            "name": "protocol",
+            "value": "process === 'sshd' ? 'ssh' : (component && component.match(/vpxa/i) ? 'vc' : 'esxi')"
+          },
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity || (message && message.match(/ALERT/) ? 'alert' : (message && message.match(/WARNING/) ? 'warning' : 'info'))"
+          },
+          {
+            "name": "action",
+            "value": "message && message.match(/Failed password|Authentication failed|locked out|Failed to connect|disconnected|access denied|refused/) ? 'failure' : (message && message.match(/Accepted|logged __e['in']|Task Completed|HostSync complete/) ? 'success' : 'info')"
+          },
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          }
+        ],
+        "remove": [
+          "locked_user",
+          "locked_src_ip",
+          "connect_dst_ip"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
