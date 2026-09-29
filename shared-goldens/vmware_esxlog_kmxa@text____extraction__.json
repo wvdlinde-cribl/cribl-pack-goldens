@@ -1,0 +1,113 @@
+{
+  "key": "vmware_esxlog_kmxa@text::__extraction__",
+  "sourcetype": "vmware_esxlog_kmxa@text",
+  "dest_format": "__extraction__",
+  "score": 92,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T16:28:07.992Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse ESXi syslog header: timestamp, host, process, severity tag and message",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\.\\d+Z)\\s+(?<dst_host>\\S+)\\s+(?<process>[\\w-]+):\\s+\\[(?<log_level>\\w+)\\]\\s+(?<message>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message",
+      "disabled": false,
+      "description": "Extract storage identifiers: multipath path, SCSI device NAA id",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:(?<path>vmhba\\d+:C\\d+:T\\d+:L\\d+))|(?:device\\s+(?<device>naa\\.[0-9a-f]+))/",
+        "iterations": 2,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message",
+      "disabled": false,
+      "description": "Extract user (including DN form) and source IPv4/IPv6 address",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:(?:by\\s+(?:user\\s+|admin\\s+)?|for\\s+user\\s+|User\\s+)(?<user>CN=[^,]+(?:,(?:OU|DC|O)=[^,\\s]+)*|[\\w.@\\-]+))|(?:from\\s+(?:initiator\\s+)?(?<src_ip>(?:\\d{1,3}\\.){3}\\d{1,3}|[0-9a-fA-F:]{2,}:[0-9a-fA-F:]+))/",
+        "iterations": 2,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "message && message.match(/state|latency|seconds|transitions|sense/)",
+      "disabled": false,
+      "description": "Extract path state transitions, latency and timing metrics",
+      "conf": {
+        "source": "message",
+        "regex": "/(?:changed state from (?<path_state_prev>\\w+) to (?<path_state>\\w+))|(?:state now (?<path_state_now>\\w+))|(?:latency:\\s+(?<latency_ms>\\d+)ms)|(?:after (?<duration_seconds>\\d+) seconds)|(?:sense data:\\s+(?<sense_data>0x[0-9a-fA-F]+(?:\\s+0x[0-9a-fA-F]+)*))/",
+        "iterations": 3,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize severity, action, event_type, direction and IPv6 flag",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor",
+            "value": "'VMware'"
+          },
+          {
+            "name": "product",
+            "value": "'ESXi'"
+          },
+          {
+            "name": "severity",
+            "value": "log_level=='critical' ? 'critical' : (log_level=='error' ? 'high' : (log_level=='warning' ? 'medium' : (log_level=='audit' ? 'medium' : 'low')))"
+          },
+          {
+            "name": "path_state",
+            "value": "path_state ? path_state : path_state_now"
+          },
+          {
+            "name": "action",
+            "value": "message.match(/failed|Failed|timeout|Unauthorized|invalid credentials/) ? 'failure' : (message.match(/Restored|Rescan completed|cleared|added|updated|modified|discovered/) ? 'success' : 'info')"
+          },
+          {
+            "name": "event_type",
+            "value": "message.match(/All paths down|APD/) ? 'all_paths_down' : (message.match(/PDL|Permanent Device Loss/) ? 'permanent_device_loss' : (message.match(/flapping/) ? 'path_flapping' : (message.match(/latency/) ? 'high_latency' : (message.match(/reservation conflict/) ? 'reservation_conflict' : (message.match(/Login attempt/) ? 'authentication' : (message.match(/changed state|Restored path|activate path|path preference/) ? 'path_state_change' : (message.match(/Claim rule|multipathing policy/) ? 'config_change' : 'storage_event')))))))"
+          },
+          {
+            "name": "is_ipv6",
+            "value": "src_ip && src_ip.indexOf(':')>-1 ? 'true' : 'false'"
+          },
+          {
+            "name": "direction",
+            "value": "src_ip ? 'inbound' : 'internal'"
+          }
+        ],
+        "remove": [
+          "path_state_now"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
