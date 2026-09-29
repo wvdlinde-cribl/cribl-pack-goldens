@@ -13649,6 +13649,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "email_fpc_metadata@kvp::__extraction__",
+      "sourcetype": "email_fpc_metadata@kvp",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 829,
+      "updated_at": "2026-09-29T15:30:03.726Z",
+      "path": "shared-goldens/email_fpc_metadata@kvp____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
