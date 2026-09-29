@@ -1,0 +1,122 @@
+{
+  "key": "servicestatus@kvp::__extraction__",
+  "sourcetype": "servicestatus@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T15:44:19.755Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "/^\\w{3}\\s+\\d+\\s+\\d{2}:\\d{2}:\\d{2}\\s+\\S+\\s+servicestatusd\\[\\d+\\]:/.test(_raw)",
+      "disabled": false,
+      "description": "Parse syslog-style servicestatusd events (timestamp, host, pid, remaining key=value payload)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\w{3}\\s+\\d+\\s+\\d{2}:\\d{2}:\\d{2})\\s+(?<host>\\S+)\\s+servicestatusd\\[(?<pid>\\d+)\\]:\\s+(?<__kvpairs>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "regex_extract",
+      "filter": "!_raw.trim().startsWith('{') && !/^\\w{3}\\s+\\d+\\s+\\d{2}:\\d{2}:\\d{2}\\s+\\S+\\s+servicestatusd\\[/.test(_raw)",
+      "disabled": false,
+      "description": "Parse ISO-timestamp key=value servicestatus events (leading timestamp then key=value payload)",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<__kvpairs>.*)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "__kvpairs !== undefined",
+      "disabled": false,
+      "description": "Extract key=value pairs (host, service, status, severity, etc.) from the captured payload",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__kvpairs",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "_raw.trim().startsWith('{')",
+      "disabled": false,
+      "description": "Extract fields from JSON-formatted servicestatus events",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Remove scratch field used to hold raw key=value payload before extraction",
+      "conf": {
+        "add": [],
+        "remove": [
+          "__kvpairs"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "active_backends",
+        "active_sessions",
+        "cluster_health",
+        "container_restarts",
+        "containers_active",
+        "containers_failed",
+        "cpu",
+        "disk",
+        "duration",
+        "error",
+        "exit_code",
+        "host",
+        "job",
+        "jobs_scheduled",
+        "last_login_ip",
+        "last_login_user",
+        "max_sessions",
+        "mem",
+        "note",
+        "peer",
+        "pid",
+        "pod",
+        "pool",
+        "port",
+        "reason",
+        "requests_2xx",
+        "requests_5xx",
+        "requests_per_sec",
+        "restart_attempt",
+        "retries",
+        "service",
+        "severity",
+        "shards_unassigned",
+        "size",
+        "source",
+        "status",
+        "tls_handshakes_failed",
+        "triggered_by",
+        "tunnels_down",
+        "tunnels_up",
+        "uptime",
+        "user"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
