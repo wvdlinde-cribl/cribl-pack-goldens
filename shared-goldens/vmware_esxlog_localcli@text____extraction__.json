@@ -1,0 +1,72 @@
+{
+  "key": "vmware_esxlog_localcli@text::__extraction__",
+  "sourcetype": "vmware_esxlog_localcli@text",
+  "dest_format": "__extraction__",
+  "score": 95,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 829,
+  "updated_at": "2026-09-29T17:08:55.623Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Parse ESXi localcli log line into structured fields",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+) (?<dst_host>\\S+) localcli\\[(?<pid>\\d+)\\]: \\[User=(?<user>[^\\]]+)\\] (?<command>.+?) -- (?<status>SUCCESS|FAILED)(?::\\s*(?<failure_reason>[^(]+)\\((?<failure_code>[^)]+)\\))?(?:\\s*\\[SECURITY-RELEVANT:\\s*(?<security_note>[^\\]]+)\\])?$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action, severity, and message fields based on parsed status",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "status === 'SUCCESS' ? 'allowed' : 'blocked'"
+          },
+          {
+            "name": "severity",
+            "value": "security_note ? 'high' : (status === 'FAILED' ? 'medium' : 'low')"
+          },
+          {
+            "name": "message",
+            "value": "command + ' -- ' + status + (failure_reason ? (': ' + failure_reason.trim()) : '')"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Derive dst_ip when the host field is an IP/IPv6 address, and convert timestamp to epoch _time",
+      "conf": {
+        "add": [
+          {
+            "name": "dst_ip",
+            "value": "dst_host.match(/^[0-9a-fA-F:.]+$/) ? dst_host : null"
+          },
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          }
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "unstructured",
+      "keys": []
+    }
+  },
+  "report": null,
+  "wireFormat": "text"
+}
