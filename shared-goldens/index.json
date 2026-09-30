@@ -14609,6 +14609,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "nci_splk_nci_splk_nr_apps_data@json::__extraction__",
+      "sourcetype": "nci_splk_nci_splk_nr_apps_data@json",
+      "dest_format": "__extraction__",
+      "score": 100,
+      "part": "extraction",
+      "wireFormat": "json",
+      "author": "unknown",
+      "build": 831,
+      "updated_at": "2026-09-30T05:59:19.598Z",
+      "path": "shared-goldens/nci_splk_nci_splk_nr_apps_data@json____extraction__.json",
+      "report": {
+        "score": 100,
+        "band": "good"
+      }
     }
   ]
 }
