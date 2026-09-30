@@ -1,0 +1,121 @@
+{
+  "key": "nci_splk_nr_firewall_data@kvp::__extraction__",
+  "sourcetype": "nci_splk_nr_firewall_data@kvp",
+  "dest_format": "__extraction__",
+  "score": 100,
+  "part": "extraction",
+  "author": "unknown",
+  "build": 831,
+  "updated_at": "2026-09-30T05:59:14.744Z",
+  "functions": [
+    {
+      "id": "regex_extract",
+      "filter": "true",
+      "disabled": false,
+      "description": "Split leading ISO8601 timestamp from the space-delimited key=value payload",
+      "conf": {
+        "source": "_raw",
+        "regex": "/^(?<timestamp>\\S+)\\s+(?<__kvp_rest>.+)$/",
+        "iterations": 1,
+        "overwrite": false
+      }
+    },
+    {
+      "id": "serde",
+      "filter": "true",
+      "disabled": false,
+      "description": "Extract key=value pairs (host, action, proto, src, spt, dst, dpt, zone_src, zone_dst, rule_id, bytes, duration, reason, attempts, severity, user, geo) from the KVP payload",
+      "conf": {
+        "mode": "extract",
+        "type": "kvp",
+        "srcField": "__kvp_rest",
+        "cleanFields": true
+      }
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "disabled": false,
+      "description": "Normalize action/protocol casing, map src/dst IP and port fields, derive traffic direction, and default missing severity",
+      "conf": {
+        "add": [
+          {
+            "name": "vendor_action",
+            "value": "action || undefined"
+          },
+          {
+            "name": "action",
+            "value": "action ? action.toLowerCase() : action"
+          },
+          {
+            "name": "protocol",
+            "value": "proto ? proto.toUpperCase() : proto"
+          },
+          {
+            "name": "src_ip",
+            "value": "src"
+          },
+          {
+            "name": "dst_ip",
+            "value": "dst"
+          },
+          {
+            "name": "dst_port",
+            "value": "dpt"
+          },
+          {
+            "name": "vendor_severity",
+            "value": "severity || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "severity ? severity : 'info'"
+          },
+          {
+            "name": "direction",
+            "value": "zone_src === 'inside' && zone_dst === 'outside' ? 'outbound' : (zone_src === 'outside' && zone_dst === 'inside' ? 'inbound' : 'internal')"
+          },
+          {
+            "name": "message",
+            "value": "reason ? reason : (action + ' ' + protocol + ' ' + src_ip + ':' + spt + ' -> ' + dst_ip + ':' + dst_port)"
+          }
+        ],
+        "remove": [
+          "__kvp_rest",
+          "proto",
+          "dpt",
+          "src",
+          "dst"
+        ]
+      }
+    }
+  ],
+  "recipe": {
+    "fingerprint": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "attempts",
+        "bytes",
+        "dpt",
+        "dst",
+        "duration",
+        "geo",
+        "host",
+        "note",
+        "proto",
+        "reason",
+        "rule_id",
+        "severity",
+        "spt",
+        "src",
+        "threat_name",
+        "user",
+        "zone_dst",
+        "zone_src"
+      ]
+    }
+  },
+  "report": null,
+  "wireFormat": "kvp"
+}
