@@ -14641,6 +14641,22 @@
         "score": 88,
         "band": "good"
       }
+    },
+    {
+      "key": "sap_audit::ocsf#authentication::__mapping__",
+      "sourcetype": "sap_audit",
+      "dest_format": "ocsf#authentication::__mapping__",
+      "score": 89,
+      "part": "mapping",
+      "wireFormat": "kvp",
+      "author": "unknown",
+      "build": 854,
+      "updated_at": "2026-10-02T13:04:17.622Z",
+      "path": "shared-goldens/sap_audit__ocsf#authentication____mapping__.json",
+      "report": {
+        "score": 89,
+        "band": "good"
+      }
     }
   ]
 }
