@@ -14625,6 +14625,22 @@
         "score": 100,
         "band": "good"
       }
+    },
+    {
+      "key": "cisco_asa::ocsf#network::__mapping__",
+      "sourcetype": "cisco_asa",
+      "dest_format": "ocsf#network::__mapping__",
+      "score": 88,
+      "part": "mapping",
+      "wireFormat": "text",
+      "author": "unknown",
+      "build": 854,
+      "updated_at": "2026-10-02T13:00:03.158Z",
+      "path": "shared-goldens/cisco_asa__ocsf#network____mapping__.json",
+      "report": {
+        "score": 88,
+        "band": "good"
+      }
     }
   ]
 }
