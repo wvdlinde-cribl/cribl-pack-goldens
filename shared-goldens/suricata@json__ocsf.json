@@ -1,0 +1,555 @@
+{
+  "key": "suricata@json::ocsf",
+  "sourcetype": "suricata@json",
+  "dest_format": "ocsf",
+  "score": 90,
+  "part": null,
+  "author": "wlinde@cribl.io",
+  "build": 0,
+  "updated_at": "2026-10-09T18:28:58.943Z",
+  "functions": [
+    {
+      "id": "comment",
+      "filter": "true",
+      "conf": {
+        "comment": "suricata to OCSF#NETWORK pipeline.\nParses events, drops noise, maps to OCSF#NETWORK schema, and outputs compact JSON."
+      },
+      "disabled": false
+    },
+    {
+      "id": "comment",
+      "filter": "true",
+      "conf": {
+        "comment": "--- STEP 1: Parse raw events ---"
+      },
+      "disabled": false
+    },
+    {
+      "id": "serde",
+      "filter": "true",
+      "conf": {
+        "mode": "extract",
+        "type": "json",
+        "srcField": "_raw"
+      },
+      "disabled": false,
+      "description": "Parse Suricata EVE JSON log into structured fields"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "Date.parse(timestamp)/1000"
+          },
+          {
+            "name": "dst_ip",
+            "value": "dest_ip"
+          },
+          {
+            "name": "dst_port",
+            "value": "dest_port"
+          },
+          {
+            "name": "protocol",
+            "value": "proto ? proto.toLowerCase() : proto"
+          }
+        ],
+        "remove": [
+          "dest_ip",
+          "dest_port"
+        ]
+      },
+      "disabled": false,
+      "description": "Normalize timestamp, protocol, and network address field names"
+    },
+    {
+      "id": "eval",
+      "filter": "event_type === 'dns'",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "dns.type === 'query' ? 'dns_query' : 'dns_answer'"
+          },
+          {
+            "name": "dst_host",
+            "value": "dns.rrname"
+          },
+          {
+            "name": "message",
+            "value": "'DNS ' + dns.type + ' ' + dns.rrtype + ' ' + dns.rrname"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Derive action, dst_host, and message fields for DNS events"
+    },
+    {
+      "id": "eval",
+      "filter": "event_type !== 'dns'",
+      "conf": {
+        "add": [
+          {
+            "name": "action",
+            "value": "event_type"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Set action for non-DNS Suricata event types"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "log_time",
+            "value": "_time || undefined"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Alias captured timestamp field(s) to log_time (_time) so _time reflects the source event, not pipeline processing time"
+    },
+    {
+      "id": "comment",
+      "filter": "true",
+      "conf": {
+        "comment": "--- STEP 2: Map fields to OCSF#NETWORK schema ---"
+      },
+      "disabled": false
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "src_ip",
+            "value": "src_ip || source__ip || client__ip || srcaddr || srcip || id_orig_h"
+          },
+          {
+            "name": "dest_ip",
+            "value": "dest_ip || dst_ip || destination__ip || server__ip || dstaddr || dstip || id_resp_h"
+          },
+          {
+            "name": "src_port",
+            "value": "src_port || source__port || spt || srcport || sport || id_orig_p"
+          },
+          {
+            "name": "dest_port",
+            "value": "dest_port || dst_port || destination__port || dpt || dstport || dport || id_resp_p"
+          },
+          {
+            "name": "protocol",
+            "value": "protocol || transport || network__transport || proto"
+          },
+          {
+            "name": "transport",
+            "value": "transport || protocol || network__transport || proto"
+          },
+          {
+            "name": "action",
+            "value": "action || event__outcome || act"
+          },
+          {
+            "name": "application",
+            "value": "application || app || network__application || service"
+          },
+          {
+            "name": "bytes_in",
+            "value": "bytes_in || destination__bytes || rcvd_bytes || rcvdbyte || bytes_received || received_bytes || rcvd_octets || resp_bytes"
+          },
+          {
+            "name": "bytes_out",
+            "value": "bytes_out || source__bytes || sent_bytes || sentbyte || bytes_sent || sent_octets || orig_bytes"
+          },
+          {
+            "name": "packets_in",
+            "value": "packets_in || destination__packets || rcvd_pkts || rcvdpkt || resp_pkts"
+          },
+          {
+            "name": "packets_out",
+            "value": "packets_out || source__packets || sent_pkts || sentpkt || orig_pkts"
+          },
+          {
+            "name": "session_id",
+            "value": "session_id || uid || sessionid || session__id"
+          },
+          {
+            "name": "community_id",
+            "value": "community_id || network__community_id || communityid"
+          },
+          {
+            "name": "duration",
+            "value": "duration || event__duration"
+          },
+          {
+            "name": "rule_name",
+            "value": "rule_name || rule__name || policy_name || policyname"
+          },
+          {
+            "name": "src_zone",
+            "value": "src_zone || observer__ingress__zone"
+          },
+          {
+            "name": "dest_zone",
+            "value": "dest_zone || dst_zone || observer__egress__zone || observer__egress_zone"
+          },
+          {
+            "name": "host",
+            "value": "host || observer__hostname || hostname || device_hostname || device_name || dvchost || devname"
+          },
+          {
+            "name": "log_time",
+            "value": "log_time || generated_time || receive_time || start_time || event__created || timestamp || event__start || time || event_time || datetime || logtime"
+          },
+          {
+            "name": "request_method",
+            "value": "request_method || method || http_method || httpmethod || requestmethod || cs_method || verb || http_verb"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Alias Copilot/schematizer OCSF-style fields to canonical names"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "_time",
+            "value": "(typeof log_time != 'undefined' && log_time) ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time).replace(/^(\\d{1,2})\\/([A-Za-z]{3})\\/(\\d{4}):(\\d{2}:\\d{2}:\\d{2})\\s*([+-]\\d{4})?$/, '$2 $1 $3 $4 $5')).getTime()) / 1000 : _time"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Set _time from the parsed timestamp (log_time), if one was captured"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "connection_info",
+            "value": "connection_info && typeof connection_info == 'object' && !Array.isArray(connection_info) ? connection_info : {}"
+          },
+          {
+            "name": "dst_endpoint",
+            "value": "dst_endpoint && typeof dst_endpoint == 'object' && !Array.isArray(dst_endpoint) ? dst_endpoint : {}"
+          },
+          {
+            "name": "metadata",
+            "value": "metadata && typeof metadata == 'object' && !Array.isArray(metadata) ? metadata : {}"
+          },
+          {
+            "name": "src_endpoint",
+            "value": "src_endpoint && typeof src_endpoint == 'object' && !Array.isArray(src_endpoint) ? src_endpoint : {}"
+          },
+          {
+            "name": "metadata.product",
+            "value": "metadata && metadata.product && typeof metadata.product == 'object' && !Array.isArray(metadata.product) ? metadata.product : {}"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Create OCSF parent objects (dotted names need an existing parent)"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "category_uid",
+            "value": "4"
+          },
+          {
+            "name": "event_type",
+            "value": "'Network Activity: DNS'"
+          },
+          {
+            "name": "time",
+            "value": "timestamp ? new Date(timestamp).getTime() : undefined"
+          },
+          {
+            "name": "metadata.original_time",
+            "value": "timestamp"
+          },
+          {
+            "name": "metadata.event_code",
+            "value": "event_type"
+          },
+          {
+            "name": "src_endpoint.ip",
+            "value": "src_ip"
+          },
+          {
+            "name": "src_endpoint.port",
+            "value": "src_port ? Number(src_port) : undefined"
+          },
+          {
+            "name": "dst_endpoint.ip",
+            "value": "dest_ip"
+          },
+          {
+            "name": "dst_endpoint.port",
+            "value": "dest_port ? Number(dest_port) : undefined"
+          },
+          {
+            "name": "connection_info.protocol_name",
+            "value": "(proto || '').toUpperCase()"
+          },
+          {
+            "name": "connection_info.uid",
+            "value": "flow_id ? String(flow_id) : undefined"
+          },
+          {
+            "name": "app_name",
+            "value": "'dns'"
+          },
+          {
+            "name": "status_detail",
+            "value": "dns && dns.rcode ? dns.rcode : undefined"
+          },
+          {
+            "name": "activity_id",
+            "value": "dns && dns.type == 'query' ? 1 : 2"
+          },
+          {
+            "name": "type_uid",
+            "value": "dns && dns.type == 'query' ? 400101 : 400102"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Map fields to destination schema"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "class_uid",
+            "value": "4001"
+          },
+          {
+            "name": "category_uid",
+            "value": "4"
+          },
+          {
+            "name": "severity_id",
+            "value": "1"
+          },
+          {
+            "name": "metadata.version",
+            "value": "'1.9.0'"
+          },
+          {
+            "name": "metadata.product.name",
+            "value": "'Suricata'"
+          },
+          {
+            "name": "metadata.product.vendor_name",
+            "value": "'Open Information Security Foundation'"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Map fields (continued 16-21)"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "connection_info.protocol_name",
+            "value": "connection_info && connection_info.protocol_name === '' ? undefined : (connection_info && connection_info.protocol_name)"
+          },
+          {
+            "name": "metadata.product",
+            "value": "metadata && metadata.product && typeof metadata.product == 'object' && !Array.isArray(metadata.product) && JSON.stringify(metadata.product) == '{}' ? undefined : metadata.product"
+          },
+          {
+            "name": "src_endpoint",
+            "value": "src_endpoint && typeof src_endpoint == 'object' && !Array.isArray(src_endpoint) && JSON.stringify(src_endpoint) == '{}' ? undefined : src_endpoint"
+          },
+          {
+            "name": "metadata",
+            "value": "metadata && typeof metadata == 'object' && !Array.isArray(metadata) && JSON.stringify(metadata) == '{}' ? undefined : metadata"
+          },
+          {
+            "name": "dst_endpoint",
+            "value": "dst_endpoint && typeof dst_endpoint == 'object' && !Array.isArray(dst_endpoint) && JSON.stringify(dst_endpoint) == '{}' ? undefined : dst_endpoint"
+          },
+          {
+            "name": "connection_info",
+            "value": "connection_info && typeof connection_info == 'object' && !Array.isArray(connection_info) && JSON.stringify(connection_info) == '{}' ? undefined : connection_info"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Drop OCSF objects that stayed empty"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "class_uid",
+            "value": "class_uid != null && class_uid !== '' && Number.isFinite(Number(class_uid)) ? Number(class_uid) : class_uid"
+          },
+          {
+            "name": "activity_id",
+            "value": "activity_id != null && activity_id !== '' && Number.isFinite(Number(activity_id)) ? Number(activity_id) : activity_id"
+          },
+          {
+            "name": "severity_id",
+            "value": "class_uid != null && class_uid !== '' ? (severity_id != null && severity_id !== '' && Number.isFinite(Number(severity_id)) ? Number(severity_id) : 0) : severity_id"
+          },
+          {
+            "name": "category_uid",
+            "value": "class_uid != null && Number(class_uid) < 100000 ? Math.floor(Number(class_uid) / 1000) : category_uid"
+          },
+          {
+            "name": "type_uid",
+            "value": "class_uid != null && activity_id != null ? Number(class_uid) * 100 + Number(activity_id) : type_uid"
+          },
+          {
+            "name": "metadata",
+            "value": "class_uid != null && class_uid !== '' ? (metadata && typeof metadata == 'object' ? metadata : {}) : metadata"
+          },
+          {
+            "name": "metadata.version",
+            "value": "class_uid != null && class_uid !== '' ? '1.9.0' : (metadata && metadata.version)"
+          },
+          {
+            "name": "metadata.product",
+            "value": "class_uid != null && class_uid !== '' ? (metadata.product && typeof metadata.product == 'object' ? metadata.product : {}) : (metadata && metadata.product)"
+          },
+          {
+            "name": "metadata.product.name",
+            "value": "metadata && metadata.product ? (metadata.product.name || 'suricata') : undefined"
+          },
+          {
+            "name": "time",
+            "value": "class_uid != null && class_uid !== '' ? (typeof time == 'number' && Number.isFinite(time) && time > 0 ? (time < 100000000000 ? Math.round(time * 1000) : Math.round(time)) : (time != null && time !== '' && Number.isFinite(Number(time)) && Number(time) > 0 ? (Number(time) < 100000000000 ? Math.round(Number(time) * 1000) : Math.round(Number(time))) : (time != null && time !== '' && typeof time != 'number' && Number.isFinite(new Date(String(time)).getTime()) ? new Date(String(time)).getTime() : (_time != null && Number(_time) > 0 ? Math.round(Number(_time) * 1000) : time)))) : time"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "OCSF schema grounding (P3): derive ids, create metadata, stamp metadata.version=1.9.0, normalise time"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "sourcetype",
+            "value": "'suricata'"
+          }
+        ]
+      },
+      "disabled": false,
+      "description": "Set source-native sourcetype"
+    },
+    {
+      "id": "comment",
+      "filter": "true",
+      "conf": {
+        "comment": "--- STEP 3: Build compact output ---"
+      },
+      "disabled": false
+    },
+    {
+      "id": "serialize",
+      "filter": "true",
+      "conf": {
+        "type": "json",
+        "dstField": "_raw"
+      },
+      "disabled": false,
+      "description": "Serialize to compact JSON"
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "remove": [
+          "__*"
+        ],
+        "keep": [
+          "_raw",
+          "_time",
+          "index",
+          "host",
+          "source",
+          "sourcetype"
+        ]
+      },
+      "disabled": false,
+      "description": "Remove null/empty fields"
+    },
+    {
+      "id": "comment",
+      "filter": "true",
+      "conf": {
+        "comment": "--- STEP 4: Final cleanup ---"
+      },
+      "disabled": false
+    },
+    {
+      "id": "eval",
+      "filter": "true",
+      "conf": {
+        "add": [
+          {
+            "name": "sourcetype",
+            "value": "'suricata'"
+          }
+        ],
+        "remove": [
+          "__parsed",
+          "__*"
+        ],
+        "keep": [
+          "_raw",
+          "_time",
+          "index",
+          "host",
+          "source",
+          "sourcetype"
+        ]
+      },
+      "disabled": false,
+      "description": "Final cleanup - remove all fields except routing fields"
+    }
+  ],
+  "recipe": null,
+  "report": {
+    "band": "fail",
+    "scoreSource": "golden-spec",
+    "findings": [
+      {
+        "severity": "high",
+        "field": "class_uid",
+        "issue": "17 attribute(s) not in the network_activity (4001) schema: timestamp, flow_id, pcap_cnt, event_type, src_ip, src_port… — carry vendor-specific data under `unmapped`.",
+        "pointImpact": 0
+      }
+    ],
+    "missingFields": [],
+    "emptyFields": [],
+    "summary": "Deterministic live preview completed."
+  },
+  "wireFormat": "json"
+}
