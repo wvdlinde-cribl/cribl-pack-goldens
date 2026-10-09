@@ -14597,6 +14597,22 @@
         "score": 89,
         "band": "good"
       }
+    },
+    {
+      "key": "suricata@json::ocsf",
+      "sourcetype": "suricata@json",
+      "dest_format": "ocsf",
+      "score": 90,
+      "part": null,
+      "wireFormat": "json",
+      "author": "wlinde@cribl.io",
+      "build": 0,
+      "updated_at": "2026-10-09T18:28:58.943Z",
+      "path": "shared-goldens/suricata@json__ocsf.json",
+      "report": {
+        "score": 90,
+        "band": "good"
+      }
     }
   ]
 }
