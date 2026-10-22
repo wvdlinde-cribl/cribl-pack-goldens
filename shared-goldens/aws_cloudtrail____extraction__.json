@@ -4,169 +4,286 @@
   "dest_format": "__extraction__",
   "score": 100,
   "part": "extraction",
-  "author": "extraction-golden-migration",
-  "build": 0,
-  "updated_at": "2026-07-15T17:24:41.657Z",
+  "author": "push",
+  "build": 931,
+  "updated_at": "2026-10-22T08:20:39.669Z",
   "functions": [
     {
       "id": "serde",
-      "filter": "true",
-      "disabled": false,
+      "description": "Extract CloudTrail JSON fields",
       "conf": {
         "mode": "extract",
         "type": "json",
         "srcField": "_raw"
-      },
-      "description": "Parse CloudTrail JSON from _raw into top-level fields"
-    },
-    {
-      "id": "regex_extract",
-      "filter": "true",
-      "disabled": false,
-      "conf": {
-        "source": "_raw",
-        "regex": "/\"userIdentity\":\\{[^}]*\"type\":\"(?<user_identity_type>[^\"]+)\"[^}]*(?:\"userName\":\"(?<user>[^\"]+)\")?/",
-        "iterations": 1,
-        "overwrite": false
-      },
-      "description": "Extract nested userIdentity fields via regex from _raw"
-    },
-    {
-      "id": "regex_extract",
-      "filter": "true",
-      "disabled": false,
-      "conf": {
-        "source": "_raw",
-        "regex": "/\"userIdentity\":\\{[^}]*\"arn\":\"(?<user_arn>[^\"]+)\"[^}]*\"accountId\":\"(?<account_id>[^\"]+)\"/",
-        "iterations": 1,
-        "overwrite": false
-      },
-      "description": "Extract userIdentity ARN and accountId from _raw"
-    },
-    {
-      "id": "regex_extract",
-      "filter": "true",
-      "disabled": false,
-      "conf": {
-        "source": "_raw",
-        "regex": "/\"invokedBy\":\"(?<invoked_by>[^\"]+)\"/",
-        "iterations": 1,
-        "overwrite": false
-      },
-      "description": "Extract invokedBy for AWSService identity types"
+      }
     },
     {
       "id": "eval",
-      "filter": "true",
-      "disabled": false,
+      "description": "Promote CloudTrail nested fields to canonical audit model",
       "conf": {
         "add": [
           {
-            "name": "timestamp",
-            "value": "eventTime"
+            "name": "api_operation",
+            "value": "eventName || undefined"
           },
           {
-            "name": "src_ip",
-            "value": "sourceIPAddress"
+            "name": "event_code",
+            "value": "eventName || undefined"
           },
           {
-            "name": "event_source",
-            "value": "eventSource"
+            "name": "cloud_service",
+            "value": "eventSource || undefined"
           },
           {
-            "name": "event_name",
-            "value": "eventName"
+            "name": "cloud_region",
+            "value": "awsRegion || undefined"
           },
           {
-            "name": "event_type",
-            "value": "eventType"
-          },
-          {
-            "name": "aws_region",
-            "value": "awsRegion"
-          },
-          {
-            "name": "read_only",
-            "value": "readOnly"
+            "name": "cloud_account",
+            "value": "recipientAccountId || undefined"
           },
           {
             "name": "request_id",
-            "value": "requestID"
+            "value": "requestID || undefined"
           },
           {
-            "name": "event_id",
-            "value": "eventID"
+            "name": "event_uid",
+            "value": "eventID || undefined"
           },
           {
-            "name": "event_version",
-            "value": "eventVersion"
+            "name": "error_code",
+            "value": "errorCode || undefined"
           },
           {
-            "name": "recipient_account_id",
-            "value": "recipientAccountId"
+            "name": "error_message",
+            "value": "errorMessage || undefined"
           },
           {
             "name": "user_agent",
-            "value": "userAgent"
+            "value": "userAgent || undefined"
+          },
+          {
+            "name": "user_type",
+            "value": "userIdentity && userIdentity.type || undefined"
+          },
+          {
+            "name": "user_uid",
+            "value": "userIdentity && userIdentity.principalId || undefined"
+          },
+          {
+            "name": "user_account",
+            "value": "userIdentity && userIdentity.accountId || undefined"
+          },
+          {
+            "name": "credential_uid",
+            "value": "userIdentity && userIdentity.accessKeyId || undefined"
+          },
+          {
+            "name": "user_arn",
+            "value": "userIdentity && userIdentity.arn || undefined"
           },
           {
             "name": "user",
-            "value": "user != undefined ? user : (user_identity_type != undefined ? user_identity_type : 'unknown')"
+            "value": "userIdentity && userIdentity.type === 'AssumedRole' ? (userIdentity.sessionContext && userIdentity.sessionContext.sessionIssuer && userIdentity.sessionContext.sessionIssuer.userName || (userIdentity.arn && String(userIdentity.arn).split('/').pop())) : (userIdentity && (userIdentity.userName || userIdentity.arn || userIdentity.principalId)) || undefined"
           },
           {
-            "name": "action",
-            "value": "eventName != undefined ? eventName : 'unknown'"
+            "name": "src_user",
+            "value": "userIdentity && userIdentity.type === 'AssumedRole' && userIdentity.sessionContext && userIdentity.sessionContext.sessionIssuer ? userIdentity.sessionContext.sessionIssuer.userName : undefined"
           },
           {
-            "name": "category",
-            "value": "eventSource == 's3.amazonaws.com' ? 'S3' : eventSource == 'iam.amazonaws.com' ? 'IAM' : eventSource == 'ec2.amazonaws.com' ? 'EC2' : eventSource == 'signin.amazonaws.com' ? 'Authentication' : eventSource == 'lambda.amazonaws.com' ? 'Lambda' : eventSource == 'rds.amazonaws.com' ? 'RDS' : eventSource == 'sns.amazonaws.com' ? 'SNS' : eventSource == 'cloudwatch.amazonaws.com' ? 'CloudWatch' : eventSource == 'cloudformation.amazonaws.com' ? 'CloudFormation' : 'Other'"
+            "name": "mfa_used",
+            "value": "userIdentity && userIdentity.sessionContext && userIdentity.sessionContext.attributes && userIdentity.sessionContext.attributes.mfaAuthenticated === 'true' ? true : undefined"
           },
           {
-            "name": "severity",
-            "value": "eventName == 'ConsoleLogin' ? 'medium' : eventName == 'CreateUser' || eventName == 'DeleteObject' || eventName == 'TerminateInstances' || eventName == 'CreateStack' ? 'high' : readOnly == true ? 'low' : 'medium'"
+            "name": "src_ip",
+            "value": "sourceIPAddress && String(sourceIPAddress).match(/^(\\d{1,3}\\.){3}\\d{1,3}$|:/) ? sourceIPAddress : undefined"
+          },
+          {
+            "name": "src_host",
+            "value": "sourceIPAddress && !String(sourceIPAddress).match(/^(\\d{1,3}\\.){3}\\d{1,3}$|:/) ? sourceIPAddress : undefined"
+          },
+          {
+            "name": "dest_host",
+            "value": "eventSource || undefined"
+          },
+          {
+            "name": "object_target",
+            "value": "requestParameters && requestParameters.roleArn ? requestParameters.roleArn : (requestParameters && requestParameters.userName ? requestParameters.userName : (responseElements && responseElements.user && responseElements.user.userName ? responseElements.user.userName : undefined))"
+          },
+          {
+            "name": "resource_name",
+            "value": "object_target || (resources && resources[0] && resources[0]['ARN']) || undefined"
+          },
+          {
+            "name": "resource_type",
+            "value": "resources && resources[0] && resources[0]['type'] || undefined"
           },
           {
             "name": "is_read_only",
-            "value": "readOnly == true ? 'true' : 'false'"
-          }
-        ],
-        "remove": [
-          "eventTime",
-          "sourceIPAddress",
-          "eventSource",
-          "eventName",
-          "eventType",
-          "awsRegion",
-          "readOnly",
-          "requestID",
-          "eventID",
-          "eventVersion",
-          "recipientAccountId",
-          "userAgent",
-          "userIdentity"
-        ]
-      },
-      "description": "Map CloudTrail fields to normalized field names and derive action/severity/category"
-    },
-    {
-      "id": "eval",
-      "filter": "true",
-      "disabled": false,
-      "conf": {
-        "add": [
+            "value": "readOnly === true ? true : readOnly === false ? false : undefined"
+          },
+          {
+            "name": "outcome",
+            "value": "errorCode || errorMessage || (responseElements && responseElements.ConsoleLogin === 'Failure') ? 'failure' : 'success'"
+          },
+          {
+            "name": "auth_action",
+            "value": "eventName === 'ConsoleLogin' ? (responseElements && responseElements.ConsoleLogin === 'Failure' ? 'failure' : 'success') : undefined"
+          },
+          {
+            "name": "message",
+            "value": "eventName ? String(eventName) + ' on ' + String(eventSource || '') : undefined"
+          },
           {
             "name": "log_time",
-            "value": "timestamp || undefined"
+            "value": "eventTime || undefined"
+          },
+          {
+            "name": "severity",
+            "value": "errorCode || errorMessage ? 3 : 6"
           }
         ]
-      },
-      "description": "Alias captured timestamp field(s) to log_time (timestamp) so _time reflects the source event, not pipeline processing time"
+      }
     }
   ],
-  "recipe": null,
+  "recipe": {
+    "fingerprint": {
+      "format": "json",
+      "keys": [
+        "additionaleventdata",
+        "awsregion",
+        "eventid",
+        "eventname",
+        "eventsource",
+        "eventtime",
+        "eventtype",
+        "eventversion",
+        "readonly",
+        "recipientaccountid",
+        "requestid",
+        "requestparameters",
+        "resources",
+        "responseelements",
+        "sourceipaddress",
+        "useragent",
+        "useridentity"
+      ]
+    }
+  },
   "report": {
     "band": "good",
     "summary": "Extraction migrated from aws_cloudtrail::cim: 82/82 source values reach output.",
     "scoreSource": "valueCoverage"
-  }
+  },
+  "wireFormat": "json",
+  "functionsHash": "ff7317c622q2",
+  "evidence": {
+    "score": 100,
+    "scoreSource": "stage-extraction",
+    "real": true,
+    "band": "good",
+    "sampleFp": {
+      "format": "json",
+      "keys": [
+        "additionaleventdata",
+        "awsregion",
+        "eventid",
+        "eventname",
+        "eventsource",
+        "eventtime",
+        "eventtype",
+        "eventversion",
+        "readonly",
+        "recipientaccountid",
+        "requestid",
+        "requestparameters",
+        "resources",
+        "responseelements",
+        "sourceipaddress",
+        "useragent",
+        "useridentity"
+      ]
+    },
+    "sampleEventCount": 20,
+    "denominatorSize": 82,
+    "sampleTier": "vendor",
+    "syntheticCount": 0,
+    "sparse": false,
+    "capsApplied": [],
+    "build": 931,
+    "at": "2026-10-19T09:51:59.070Z"
+  },
+  "observations": [
+    {
+      "score": 100,
+      "scoreSource": "holdout-emulated",
+      "real": true,
+      "band": "good",
+      "sampleFp": {
+        "format": "json",
+        "keys": [
+          "awsregion",
+          "eventcategory",
+          "eventid",
+          "eventname",
+          "eventsource",
+          "eventtime",
+          "eventtype",
+          "eventversion",
+          "managementevent",
+          "readonly",
+          "recipientaccountid",
+          "requestid",
+          "requestparameters",
+          "responseelements",
+          "sourceipaddress",
+          "useragent",
+          "useridentity"
+        ]
+      },
+      "sampleEventCount": 8,
+      "denominatorSize": 47,
+      "sampleTier": "vendor",
+      "syntheticCount": 0,
+      "sparse": false,
+      "capsApplied": [],
+      "build": 931,
+      "at": "2026-10-19T09:52:01.477Z",
+      "recordedScore": 100
+    },
+    {
+      "score": 100,
+      "scoreSource": "holdout-emulated",
+      "real": true,
+      "band": "good",
+      "sampleFp": {
+        "format": "json",
+        "keys": [
+          "awsregion",
+          "eventid",
+          "eventname",
+          "eventsource",
+          "eventtime",
+          "eventtype",
+          "eventversion",
+          "recipientaccountid",
+          "requestid",
+          "requestparameters",
+          "responseelements",
+          "sourceipaddress",
+          "useragent",
+          "useridentity"
+        ]
+      },
+      "sampleEventCount": 20,
+      "denominatorSize": 27,
+      "sampleTier": "vendor",
+      "syntheticCount": 0,
+      "sparse": false,
+      "capsApplied": [],
+      "build": 931,
+      "at": "2026-10-19T09:52:01.477Z",
+      "recordedScore": 100
+    }
+  ]
 }
