@@ -2,11 +2,11 @@
   "key": "fortinet_fortigate::ocsf#network::__mapping__",
   "sourcetype": "fortinet_fortigate",
   "dest_format": "ocsf#network::__mapping__",
-  "score": 90,
+  "score": 82,
   "part": "mapping",
-  "author": "unknown",
-  "build": 644,
-  "updated_at": "2026-08-28T13:31:02.535Z",
+  "author": "push",
+  "build": 931,
+  "updated_at": "2026-10-22T08:20:44.513Z",
   "functions": [
     {
       "id": "eval",
@@ -15,19 +15,19 @@
         "add": [
           {
             "name": "src_ip",
-            "value": "src_ip || source__ip || client__ip || srcaddr || srcip"
+            "value": "src_ip || source__ip || client__ip || srcaddr || srcip || id_orig_h"
           },
           {
             "name": "dest_ip",
-            "value": "dest_ip || dst_ip || destination__ip || server__ip || dstaddr || dstip"
+            "value": "dest_ip || dst_ip || destination__ip || server__ip || dstaddr || dstip || id_resp_h"
           },
           {
             "name": "src_port",
-            "value": "src_port || source__port || spt || srcport || sport"
+            "value": "src_port || source__port || spt || srcport || sport || id_orig_p"
           },
           {
             "name": "dest_port",
-            "value": "dest_port || dst_port || destination__port || dpt || dstport || dport"
+            "value": "dest_port || dst_port || destination__port || dpt || dstport || dport || id_resp_p"
           },
           {
             "name": "protocol",
@@ -47,11 +47,27 @@
           },
           {
             "name": "bytes_in",
-            "value": "bytes_in || destination__bytes || rcvd_bytes || rcvdbyte"
+            "value": "bytes_in || destination__bytes || rcvd_bytes || rcvdbyte || bytes_received || received_bytes || rcvd_octets || resp_bytes"
           },
           {
             "name": "bytes_out",
-            "value": "bytes_out || source__bytes || sent_bytes || sentbyte"
+            "value": "bytes_out || source__bytes || sent_bytes || sentbyte || bytes_sent || sent_octets || orig_bytes"
+          },
+          {
+            "name": "packets_in",
+            "value": "packets_in || destination__packets || rcvd_pkts || rcvdpkt || resp_pkts"
+          },
+          {
+            "name": "packets_out",
+            "value": "packets_out || source__packets || sent_pkts || sentpkt || orig_pkts"
+          },
+          {
+            "name": "session_id",
+            "value": "session_id || uid || sessionid || session__id"
+          },
+          {
+            "name": "community_id",
+            "value": "community_id || network__community_id || communityid"
           },
           {
             "name": "duration",
@@ -71,11 +87,15 @@
           },
           {
             "name": "host",
-            "value": "host || observer__hostname || hostname"
+            "value": "host || observer__hostname || hostname || device_hostname || device_name || dvchost || devname"
           },
           {
             "name": "log_time",
-            "value": "log_time || generated_time || receive_time || start_time || event__created || timestamp || event__start"
+            "value": "log_time || generated_time || receive_time || start_time || event__created || timestamp || event__start || time || event_time || datetime || logtime"
+          },
+          {
+            "name": "request_method",
+            "value": "request_method || method || http_method || httpmethod || requestmethod || cs_method || verb || http_verb"
           }
         ]
       }
@@ -102,44 +122,56 @@
     },
     {
       "id": "eval",
-      "description": "Map canonical fields → OCSF 1.4",
+      "description": "Map canonical fields → OCSF 1.9",
       "conf": {
         "add": [
           {
             "name": "src_endpoint",
-            "value": "(((src_ip) != null && String(src_ip) != 'undefined' && String(src_ip) != 'null' && String(src_ip) != '-' && String(src_ip) != '') || ((src_port) != null && String(src_port) != 'undefined' && String(src_port) != 'null' && String(src_port) != '-' && String(src_port) != '')) ? {} : undefined"
+            "value": "(((src_ip) != null && !/^(?:|-|undefined|null)$/.test(String(src_ip))) || ((src_port) != null && !/^(?:|-|undefined|null)$/.test(String(src_port))) || ((src_zone) != null && !/^(?:|-|undefined|null)$/.test(String(src_zone))) || ((src_interface || inbound_if) != null && !/^(?:|-|undefined|null)$/.test(String(src_interface || inbound_if))) || ((src_mac) != null && !/^(?:|-|undefined|null)$/.test(String(src_mac))) || ((vpc_id || tgw_src_vpc_id) != null && !/^(?:|-|undefined|null)$/.test(String(vpc_id || tgw_src_vpc_id))) || ((subnet_id || tgw_src_subnet_id) != null && !/^(?:|-|undefined|null)$/.test(String(subnet_id || tgw_src_subnet_id))) || ((instance_id) != null && !/^(?:|-|undefined|null)$/.test(String(instance_id))) || ((interface_id || tgw_src_eni) != null && !/^(?:|-|undefined|null)$/.test(String(interface_id || tgw_src_eni))) || ((pkt_src_aws_service) != null && !/^(?:|-|undefined|null)$/.test(String(pkt_src_aws_service)))) ? {} : undefined"
           },
           {
             "name": "dst_endpoint",
-            "value": "(((dest_ip) != null && String(dest_ip) != 'undefined' && String(dest_ip) != 'null' && String(dest_ip) != '-' && String(dest_ip) != '') || ((dest_port) != null && String(dest_port) != 'undefined' && String(dest_port) != 'null' && String(dest_port) != '-' && String(dest_port) != '')) ? {} : undefined"
+            "value": "(((dest_ip) != null && !/^(?:|-|undefined|null)$/.test(String(dest_ip))) || ((dest_port) != null && !/^(?:|-|undefined|null)$/.test(String(dest_port))) || ((dest_zone) != null && !/^(?:|-|undefined|null)$/.test(String(dest_zone))) || ((dest_interface || outbound_if) != null && !/^(?:|-|undefined|null)$/.test(String(dest_interface || outbound_if))) || ((dest_mac) != null && !/^(?:|-|undefined|null)$/.test(String(dest_mac))) || ((tgw_dst_vpc_id) != null && !/^(?:|-|undefined|null)$/.test(String(tgw_dst_vpc_id))) || ((tgw_dst_subnet_id) != null && !/^(?:|-|undefined|null)$/.test(String(tgw_dst_subnet_id))) || ((tgw_dst_eni) != null && !/^(?:|-|undefined|null)$/.test(String(tgw_dst_eni))) || ((pkt_dst_aws_service) != null && !/^(?:|-|undefined|null)$/.test(String(pkt_dst_aws_service)))) ? {} : undefined"
           },
           {
             "name": "connection_info",
-            "value": "(((transport || protocol) != null && String(transport || protocol) != 'undefined' && String(transport || protocol) != 'null' && String(transport || protocol) != '-' && String(transport || protocol) != '')) ? {} : undefined"
+            "value": "(((transport || protocol) != null && !/^(?:|-|undefined|null)$/.test(String(transport || protocol))) || ((/^\\d+$/.test(String(tcp_flags)) ? Number(tcp_flags) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/^\\d+$/.test(String(tcp_flags)) ? Number(tcp_flags) : undefined))) || ((/^\\d+$/.test(String(ip_protocol)) ? Number(ip_protocol) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/^\\d+$/.test(String(ip_protocol)) ? Number(ip_protocol) : undefined))) || ((/^in/i.test(String(direction)) ? 1 : /^out/i.test(String(direction)) ? 2 : /^(lateral|internal)/i.test(String(direction)) ? 3 : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/^in/i.test(String(direction)) ? 1 : /^out/i.test(String(direction)) ? 2 : /^(lateral|internal)/i.test(String(direction)) ? 3 : undefined))) || ((session_id || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(session_id || undefined))) || ((community_id) != null && !/^(?:|-|undefined|null)$/.test(String(community_id)))) ? {} : undefined"
           },
           {
             "name": "traffic",
-            "value": "(((bytes_in) != null && String(bytes_in) != 'undefined' && String(bytes_in) != 'null' && String(bytes_in) != '-' && String(bytes_in) != '') || ((bytes_out) != null && String(bytes_out) != 'undefined' && String(bytes_out) != 'null' && String(bytes_out) != '-' && String(bytes_out) != '')) ? {} : undefined"
+            "value": "(((bytes_in) != null && !/^(?:|-|undefined|null)$/.test(String(bytes_in))) || ((bytes_out) != null && !/^(?:|-|undefined|null)$/.test(String(bytes_out))) || ((packets_in) != null && !/^(?:|-|undefined|null)$/.test(String(packets_in))) || ((packets_out) != null && !/^(?:|-|undefined|null)$/.test(String(packets_out))) || ((bytes) != null && !/^(?:|-|undefined|null)$/.test(String(bytes))) || ((packets) != null && !/^(?:|-|undefined|null)$/.test(String(packets)))) ? {} : undefined"
           },
           {
             "name": "actor",
-            "value": "(((user || src_user) != null && String(user || src_user) != 'undefined' && String(user || src_user) != 'null' && String(user || src_user) != '-' && String(user || src_user) != '')) ? {} : undefined"
+            "value": "(((user || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(user || undefined)))) ? {} : undefined"
           },
           {
             "name": "actor.user",
-            "value": "(((user || src_user) != null && String(user || src_user) != 'undefined' && String(user || src_user) != 'null' && String(user || src_user) != '-' && String(user || src_user) != '')) ? {} : undefined"
+            "value": "(((user || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(user || undefined)))) ? {} : undefined"
           },
           {
             "name": "device",
-            "value": "(((host) != null && String(host) != 'undefined' && String(host) != 'null' && String(host) != '-' && String(host) != '')) ? {} : undefined"
+            "value": "(((host) != null && !/^(?:|-|undefined|null)$/.test(String(host)))) ? {} : undefined"
+          },
+          {
+            "name": "cloud",
+            "value": "(((cloud_provider) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_provider))) || ((cloud_account_id) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_account_id))) || ((cloud_region) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_region))) || ((cloud_zone) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_zone)))) ? {} : undefined"
+          },
+          {
+            "name": "cloud.account",
+            "value": "(((cloud_account_id) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_account_id)))) ? {} : undefined"
+          },
+          {
+            "name": "firewall_rule",
+            "value": "(((policy_name) != null && !/^(?:|-|undefined|null)$/.test(String(policy_name))) || ((policy_id) != null && !/^(?:|-|undefined|null)$/.test(String(policy_id)))) ? {} : undefined"
           },
           {
             "name": "metadata",
-            "value": "((('1.9.0') != null && String('1.9.0') != 'undefined' && String('1.9.0') != 'null' && String('1.9.0') != '-' && String('1.9.0') != '') || ((product) != null && String(product) != 'undefined' && String(product) != 'null' && String(product) != '-' && String(product) != '') || ((vendor) != null && String(vendor) != 'undefined' && String(vendor) != 'null' && String(vendor) != '-' && String(vendor) != '')) ? {} : undefined"
+            "value": "(((event_code || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(event_code || undefined))) || ((Channel || _path || log_type) != null && !/^(?:|-|undefined|null)$/.test(String(Channel || _path || log_type))) || ((log_time != null ? String(log_time) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(log_time != null ? String(log_time) : undefined))) || (('1.9.0') != null && !/^(?:|-|undefined|null)$/.test(String('1.9.0'))) || ((product) != null && !/^(?:|-|undefined|null)$/.test(String(product))) || ((vendor) != null && !/^(?:|-|undefined|null)$/.test(String(vendor)))) ? {} : undefined"
           },
           {
             "name": "metadata.product",
-            "value": "(((product) != null && String(product) != 'undefined' && String(product) != 'null' && String(product) != '-' && String(product) != '') || ((vendor) != null && String(vendor) != 'undefined' && String(vendor) != 'null' && String(vendor) != '-' && String(vendor) != '')) ? {} : undefined"
+            "value": "(((product) != null && !/^(?:|-|undefined|null)$/.test(String(product))) || ((vendor) != null && !/^(?:|-|undefined|null)$/.test(String(vendor)))) ? {} : undefined"
           },
           {
             "name": "class_uid",
@@ -151,19 +183,7 @@
           },
           {
             "name": "activity_id",
-            "value": "(/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1) != null && String(/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1) != 'undefined' && String(/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1) != 'null' && String(/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1) != '-' && String(/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1) != '' ? Number(/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1) : undefined"
-          },
-          {
-            "name": "type_uid",
-            "value": "(400100 + (/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1)) != null && String(400100 + (/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1)) != 'undefined' && String(400100 + (/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1)) != 'null' && String(400100 + (/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1)) != '-' && String(400100 + (/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1)) != '' ? Number(400100 + (/teardown|close|end|denied|deny/i.test(String(action)) ? 2 : 1)) : undefined"
-          },
-          {
-            "name": "severity_id",
-            "value": "(severity != null && severity !== '' ? Math.max(1, Math.min(6, Math.round(Number(severity) * 0.85))) : 1) != null && String(severity != null && severity !== '' ? Math.max(1, Math.min(6, Math.round(Number(severity) * 0.85))) : 1) != 'undefined' && String(severity != null && severity !== '' ? Math.max(1, Math.min(6, Math.round(Number(severity) * 0.85))) : 1) != 'null' && String(severity != null && severity !== '' ? Math.max(1, Math.min(6, Math.round(Number(severity) * 0.85))) : 1) != '-' && String(severity != null && severity !== '' ? Math.max(1, Math.min(6, Math.round(Number(severity) * 0.85))) : 1) != '' ? Number(severity != null && severity !== '' ? Math.max(1, Math.min(6, Math.round(Number(severity) * 0.85))) : 1) : undefined"
-          },
-          {
-            "name": "src_endpoint.ip",
-            "value": "(src_ip) != null && String(src_ip) != 'undefined' && String(src_ip) != 'null' && String(src_ip) != '-' && String(src_ip) != '' ? (src_ip) : undefined"
+            "value": "(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 5 : /reset|rst/i.test(String(action) + ' ' + String(session_end_reason)) ? 3 : /teardown|close|end|timeout/i.test(String(action)) || /^end$/i.test(String(threat_content_type || subtype)) ? 2 : start != null && end != null ? 6 : 1) != null && !/^(?:|-|undefined|null)$/.test(String(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 5 : /reset|rst/i.test(String(action) + ' ' + String(session_end_reason)) ? 3 : /teardown|close|end|timeout/i.test(String(action)) || /^end$/i.test(String(threat_content_type || subtype)) ? 2 : start != null && end != null ? 6 : 1)) ? Number(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 5 : /reset|rst/i.test(String(action) + ' ' + String(session_end_reason)) ? 3 : /teardown|close|end|timeout/i.test(String(action)) || /^end$/i.test(String(threat_content_type || subtype)) ? 2 : start != null && end != null ? 6 : 1) : undefined"
           }
         ]
       }
@@ -174,52 +194,252 @@
       "conf": {
         "add": [
           {
+            "name": "type_uid",
+            "value": "(400100 + (/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 5 : /reset|rst/i.test(String(action) + ' ' + String(session_end_reason)) ? 3 : /teardown|close|end|timeout/i.test(String(action)) || /^end$/i.test(String(threat_content_type || subtype)) ? 2 : start != null && end != null ? 6 : 1)) != null && !/^(?:|-|undefined|null)$/.test(String(400100 + (/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 5 : /reset|rst/i.test(String(action) + ' ' + String(session_end_reason)) ? 3 : /teardown|close|end|timeout/i.test(String(action)) || /^end$/i.test(String(threat_content_type || subtype)) ? 2 : start != null && end != null ? 6 : 1))) ? Number(400100 + (/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 5 : /reset|rst/i.test(String(action) + ' ' + String(session_end_reason)) ? 3 : /teardown|close|end|timeout/i.test(String(action)) || /^end$/i.test(String(threat_content_type || subtype)) ? 2 : start != null && end != null ? 6 : 1)) : undefined"
+          },
+          {
+            "name": "severity_id",
+            "value": "(severity == null || severity === '' ? 1 : /^[0-7]$/.test(String(severity)) ? [6, 5, 5, 4, 3, 2, 1, 1][Number(severity)] : /fatal|emerg/i.test(String(severity)) ? 6 : /crit/i.test(String(severity)) ? 5 : /high|err|alert|severe/i.test(String(severity)) ? 4 : /med|warn/i.test(String(severity)) ? 3 : /low|notice/i.test(String(severity)) ? 2 : 1) != null && !/^(?:|-|undefined|null)$/.test(String(severity == null || severity === '' ? 1 : /^[0-7]$/.test(String(severity)) ? [6, 5, 5, 4, 3, 2, 1, 1][Number(severity)] : /fatal|emerg/i.test(String(severity)) ? 6 : /crit/i.test(String(severity)) ? 5 : /high|err|alert|severe/i.test(String(severity)) ? 4 : /med|warn/i.test(String(severity)) ? 3 : /low|notice/i.test(String(severity)) ? 2 : 1)) ? Number(severity == null || severity === '' ? 1 : /^[0-7]$/.test(String(severity)) ? [6, 5, 5, 4, 3, 2, 1, 1][Number(severity)] : /fatal|emerg/i.test(String(severity)) ? 6 : /crit/i.test(String(severity)) ? 5 : /high|err|alert|severe/i.test(String(severity)) ? 4 : /med|warn/i.test(String(severity)) ? 3 : /low|notice/i.test(String(severity)) ? 2 : 1) : undefined"
+          },
+          {
+            "name": "src_endpoint.ip",
+            "value": "(src_ip) != null && !/^(?:|-|undefined|null)$/.test(String(src_ip)) ? (src_ip) : undefined"
+          },
+          {
             "name": "src_endpoint.port",
-            "value": "(src_port) != null && String(src_port) != 'undefined' && String(src_port) != 'null' && String(src_port) != '-' && String(src_port) != '' ? Number(src_port) : undefined"
+            "value": "(src_port) != null && !/^(?:|-|undefined|null)$/.test(String(src_port)) ? Number(src_port) : undefined"
           },
           {
             "name": "dst_endpoint.ip",
-            "value": "(dest_ip) != null && String(dest_ip) != 'undefined' && String(dest_ip) != 'null' && String(dest_ip) != '-' && String(dest_ip) != '' ? (dest_ip) : undefined"
+            "value": "(dest_ip) != null && !/^(?:|-|undefined|null)$/.test(String(dest_ip)) ? (dest_ip) : undefined"
           },
           {
             "name": "dst_endpoint.port",
-            "value": "(dest_port) != null && String(dest_port) != 'undefined' && String(dest_port) != 'null' && String(dest_port) != '-' && String(dest_port) != '' ? Number(dest_port) : undefined"
+            "value": "(dest_port) != null && !/^(?:|-|undefined|null)$/.test(String(dest_port)) ? Number(dest_port) : undefined"
           },
           {
             "name": "connection_info.protocol_name",
-            "value": "(transport || protocol) != null && String(transport || protocol) != 'undefined' && String(transport || protocol) != 'null' && String(transport || protocol) != '-' && String(transport || protocol) != '' ? (transport || protocol) : undefined"
+            "value": "(transport || protocol) != null && !/^(?:|-|undefined|null)$/.test(String(transport || protocol)) ? (transport || protocol) : undefined"
           },
           {
             "name": "traffic.bytes_in",
-            "value": "(bytes_in) != null && String(bytes_in) != 'undefined' && String(bytes_in) != 'null' && String(bytes_in) != '-' && String(bytes_in) != '' ? Number(bytes_in) : undefined"
+            "value": "(bytes_in) != null && !/^(?:|-|undefined|null)$/.test(String(bytes_in)) ? Number(bytes_in) : undefined"
           },
           {
             "name": "traffic.bytes_out",
-            "value": "(bytes_out) != null && String(bytes_out) != 'undefined' && String(bytes_out) != 'null' && String(bytes_out) != '-' && String(bytes_out) != '' ? Number(bytes_out) : undefined"
+            "value": "(bytes_out) != null && !/^(?:|-|undefined|null)$/.test(String(bytes_out)) ? Number(bytes_out) : undefined"
           },
           {
             "name": "actor.user.name",
-            "value": "(user || src_user) != null && String(user || src_user) != 'undefined' && String(user || src_user) != 'null' && String(user || src_user) != '-' && String(user || src_user) != '' ? (user || src_user) : undefined"
+            "value": "(user || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(user || undefined)) ? (user || undefined) : undefined"
           },
           {
             "name": "device.hostname",
-            "value": "(host) != null && String(host) != 'undefined' && String(host) != 'null' && String(host) != '-' && String(host) != '' ? (host) : undefined"
+            "value": "(host) != null && !/^(?:|-|undefined|null)$/.test(String(host)) ? (host) : undefined"
+          },
+          {
+            "name": "action_id",
+            "value": "(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 2 : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 1 : (action == null || action === '' ? undefined : 99)) != null && !/^(?:|-|undefined|null)$/.test(String(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 2 : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 1 : (action == null || action === '' ? undefined : 99))) ? Number(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 2 : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 1 : (action == null || action === '' ? undefined : 99)) : undefined"
+          },
+          {
+            "name": "disposition_id",
+            "value": "(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 2 : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 1 : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 2 : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 1 : undefined)) ? Number(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 2 : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 1 : undefined) : undefined"
+          },
+          {
+            "name": "src_endpoint.zone",
+            "value": "(src_zone) != null && !/^(?:|-|undefined|null)$/.test(String(src_zone)) ? (src_zone) : undefined"
+          },
+          {
+            "name": "dst_endpoint.zone",
+            "value": "(dest_zone) != null && !/^(?:|-|undefined|null)$/.test(String(dest_zone)) ? (dest_zone) : undefined"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Map (cont. 31)",
+      "conf": {
+        "add": [
+          {
+            "name": "src_endpoint.interface_name",
+            "value": "(src_interface || inbound_if) != null && !/^(?:|-|undefined|null)$/.test(String(src_interface || inbound_if)) ? (src_interface || inbound_if) : undefined"
+          },
+          {
+            "name": "dst_endpoint.interface_name",
+            "value": "(dest_interface || outbound_if) != null && !/^(?:|-|undefined|null)$/.test(String(dest_interface || outbound_if)) ? (dest_interface || outbound_if) : undefined"
+          },
+          {
+            "name": "src_endpoint.mac",
+            "value": "(src_mac) != null && !/^(?:|-|undefined|null)$/.test(String(src_mac)) ? (src_mac) : undefined"
+          },
+          {
+            "name": "dst_endpoint.mac",
+            "value": "(dest_mac) != null && !/^(?:|-|undefined|null)$/.test(String(dest_mac)) ? (dest_mac) : undefined"
+          },
+          {
+            "name": "cloud.provider",
+            "value": "(cloud_provider) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_provider)) ? (cloud_provider) : undefined"
+          },
+          {
+            "name": "cloud.account.uid",
+            "value": "(cloud_account_id) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_account_id)) ? (cloud_account_id) : undefined"
+          },
+          {
+            "name": "cloud.region",
+            "value": "(cloud_region) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_region)) ? (cloud_region) : undefined"
+          },
+          {
+            "name": "cloud.zone",
+            "value": "(cloud_zone) != null && !/^(?:|-|undefined|null)$/.test(String(cloud_zone)) ? (cloud_zone) : undefined"
+          },
+          {
+            "name": "src_endpoint.vpc_uid",
+            "value": "(vpc_id || tgw_src_vpc_id) != null && !/^(?:|-|undefined|null)$/.test(String(vpc_id || tgw_src_vpc_id)) ? (vpc_id || tgw_src_vpc_id) : undefined"
+          },
+          {
+            "name": "dst_endpoint.vpc_uid",
+            "value": "(tgw_dst_vpc_id) != null && !/^(?:|-|undefined|null)$/.test(String(tgw_dst_vpc_id)) ? (tgw_dst_vpc_id) : undefined"
+          },
+          {
+            "name": "src_endpoint.subnet_uid",
+            "value": "(subnet_id || tgw_src_subnet_id) != null && !/^(?:|-|undefined|null)$/.test(String(subnet_id || tgw_src_subnet_id)) ? (subnet_id || tgw_src_subnet_id) : undefined"
+          },
+          {
+            "name": "dst_endpoint.subnet_uid",
+            "value": "(tgw_dst_subnet_id) != null && !/^(?:|-|undefined|null)$/.test(String(tgw_dst_subnet_id)) ? (tgw_dst_subnet_id) : undefined"
+          },
+          {
+            "name": "src_endpoint.instance_uid",
+            "value": "(instance_id) != null && !/^(?:|-|undefined|null)$/.test(String(instance_id)) ? (instance_id) : undefined"
+          },
+          {
+            "name": "src_endpoint.interface_uid",
+            "value": "(interface_id || tgw_src_eni) != null && !/^(?:|-|undefined|null)$/.test(String(interface_id || tgw_src_eni)) ? (interface_id || tgw_src_eni) : undefined"
+          },
+          {
+            "name": "dst_endpoint.interface_uid",
+            "value": "(tgw_dst_eni) != null && !/^(?:|-|undefined|null)$/.test(String(tgw_dst_eni)) ? (tgw_dst_eni) : undefined"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Map (cont. 46)",
+      "conf": {
+        "add": [
+          {
+            "name": "src_endpoint.svc_name",
+            "value": "(pkt_src_aws_service) != null && !/^(?:|-|undefined|null)$/.test(String(pkt_src_aws_service)) ? (pkt_src_aws_service) : undefined"
+          },
+          {
+            "name": "dst_endpoint.svc_name",
+            "value": "(pkt_dst_aws_service) != null && !/^(?:|-|undefined|null)$/.test(String(pkt_dst_aws_service)) ? (pkt_dst_aws_service) : undefined"
+          },
+          {
+            "name": "connection_info.tcp_flags",
+            "value": "(/^\\d+$/.test(String(tcp_flags)) ? Number(tcp_flags) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/^\\d+$/.test(String(tcp_flags)) ? Number(tcp_flags) : undefined)) ? Number(/^\\d+$/.test(String(tcp_flags)) ? Number(tcp_flags) : undefined) : undefined"
+          },
+          {
+            "name": "connection_info.protocol_num",
+            "value": "(/^\\d+$/.test(String(ip_protocol)) ? Number(ip_protocol) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/^\\d+$/.test(String(ip_protocol)) ? Number(ip_protocol) : undefined)) ? Number(/^\\d+$/.test(String(ip_protocol)) ? Number(ip_protocol) : undefined) : undefined"
+          },
+          {
+            "name": "connection_info.direction_id",
+            "value": "(/^in/i.test(String(direction)) ? 1 : /^out/i.test(String(direction)) ? 2 : /^(lateral|internal)/i.test(String(direction)) ? 3 : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(/^in/i.test(String(direction)) ? 1 : /^out/i.test(String(direction)) ? 2 : /^(lateral|internal)/i.test(String(direction)) ? 3 : undefined)) ? Number(/^in/i.test(String(direction)) ? 1 : /^out/i.test(String(direction)) ? 2 : /^(lateral|internal)/i.test(String(direction)) ? 3 : undefined) : undefined"
+          },
+          {
+            "name": "connection_info.uid",
+            "value": "(session_id || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(session_id || undefined)) ? (session_id || undefined) : undefined"
+          },
+          {
+            "name": "connection_info.community_uid",
+            "value": "(community_id) != null && !/^(?:|-|undefined|null)$/.test(String(community_id)) ? (community_id) : undefined"
+          },
+          {
+            "name": "traffic.packets_in",
+            "value": "(packets_in) != null && !/^(?:|-|undefined|null)$/.test(String(packets_in)) ? Number(packets_in) : undefined"
+          },
+          {
+            "name": "traffic.packets_out",
+            "value": "(packets_out) != null && !/^(?:|-|undefined|null)$/.test(String(packets_out)) ? Number(packets_out) : undefined"
+          },
+          {
+            "name": "traffic.bytes",
+            "value": "(bytes) != null && !/^(?:|-|undefined|null)$/.test(String(bytes)) ? Number(bytes) : undefined"
+          },
+          {
+            "name": "traffic.packets",
+            "value": "(packets) != null && !/^(?:|-|undefined|null)$/.test(String(packets)) ? Number(packets) : undefined"
+          },
+          {
+            "name": "duration",
+            "value": "(duration == null || duration === '' ? undefined : /^\\d+:\\d{2}:\\d{2}$/.test(String(duration)) ? Number(String(duration).split(':')[0]) * 3600000 + Number(String(duration).split(':')[1]) * 60000 + Number(String(duration).split(':')[2]) * 1000 : Number.isFinite(Number(duration)) ? Math.round(Number(duration) * 1000) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(duration == null || duration === '' ? undefined : /^\\d+:\\d{2}:\\d{2}$/.test(String(duration)) ? Number(String(duration).split(':')[0]) * 3600000 + Number(String(duration).split(':')[1]) * 60000 + Number(String(duration).split(':')[2]) * 1000 : Number.isFinite(Number(duration)) ? Math.round(Number(duration) * 1000) : undefined)) ? Number(duration == null || duration === '' ? undefined : /^\\d+:\\d{2}:\\d{2}$/.test(String(duration)) ? Number(String(duration).split(':')[0]) * 3600000 + Number(String(duration).split(':')[1]) * 60000 + Number(String(duration).split(':')[2]) * 1000 : Number.isFinite(Number(duration)) ? Math.round(Number(duration) * 1000) : undefined) : undefined"
+          },
+          {
+            "name": "start_time",
+            "value": "(start != null && /^\\d{10}$/.test(String(start)) ? Number(start) * 1000 : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(start != null && /^\\d{10}$/.test(String(start)) ? Number(start) * 1000 : undefined)) ? Number(start != null && /^\\d{10}$/.test(String(start)) ? Number(start) * 1000 : undefined) : undefined"
+          },
+          {
+            "name": "end_time",
+            "value": "(end != null && /^\\d{10}$/.test(String(end)) ? Number(end) * 1000 : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(end != null && /^\\d{10}$/.test(String(end)) ? Number(end) * 1000 : undefined)) ? Number(end != null && /^\\d{10}$/.test(String(end)) ? Number(end) * 1000 : undefined) : undefined"
+          },
+          {
+            "name": "app_name",
+            "value": "(application || app) != null && !/^(?:|-|undefined|null)$/.test(String(application || app)) ? (application || app) : undefined"
+          }
+        ]
+      }
+    },
+    {
+      "id": "eval",
+      "description": "Map (cont. 61)",
+      "conf": {
+        "add": [
+          {
+            "name": "firewall_rule.name",
+            "value": "(policy_name) != null && !/^(?:|-|undefined|null)$/.test(String(policy_name)) ? (policy_name) : undefined"
+          },
+          {
+            "name": "firewall_rule.uid",
+            "value": "(policy_id) != null && !/^(?:|-|undefined|null)$/.test(String(policy_id)) ? (policy_id) : undefined"
+          },
+          {
+            "name": "status_detail",
+            "value": "(conn_state || session_end_reason || reason) != null && !/^(?:|-|undefined|null)$/.test(String(conn_state || session_end_reason || reason)) ? (conn_state || session_end_reason || reason) : undefined"
+          },
+          {
+            "name": "metadata.event_code",
+            "value": "(event_code || undefined) != null && !/^(?:|-|undefined|null)$/.test(String(event_code || undefined)) ? (event_code || undefined) : undefined"
+          },
+          {
+            "name": "metadata.log_name",
+            "value": "(Channel || _path || log_type) != null && !/^(?:|-|undefined|null)$/.test(String(Channel || _path || log_type)) ? (Channel || _path || log_type) : undefined"
+          },
+          {
+            "name": "metadata.original_time",
+            "value": "(log_time != null ? String(log_time) : undefined) != null && !/^(?:|-|undefined|null)$/.test(String(log_time != null ? String(log_time) : undefined)) ? (log_time != null ? String(log_time) : undefined) : undefined"
           },
           {
             "name": "metadata.version",
-            "value": "('1.9.0') != null && String('1.9.0') != 'undefined' && String('1.9.0') != 'null' && String('1.9.0') != '-' && String('1.9.0') != '' ? ('1.9.0') : undefined"
+            "value": "('1.9.0') != null && !/^(?:|-|undefined|null)$/.test(String('1.9.0')) ? ('1.9.0') : undefined"
           },
           {
             "name": "metadata.product.name",
-            "value": "(product) != null && String(product) != 'undefined' && String(product) != 'null' && String(product) != '-' && String(product) != '' ? (product) : undefined"
+            "value": "(product) != null && !/^(?:|-|undefined|null)$/.test(String(product)) ? (product) : undefined"
           },
           {
             "name": "metadata.product.vendor_name",
-            "value": "(vendor) != null && String(vendor) != 'undefined' && String(vendor) != 'null' && String(vendor) != '-' && String(vendor) != '' ? (vendor) : undefined"
+            "value": "(vendor) != null && !/^(?:|-|undefined|null)$/.test(String(vendor)) ? (vendor) : undefined"
           },
           {
             "name": "time",
-            "value": "(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : undefined) != null && String(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : undefined) != 'undefined' && String(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : undefined) != 'null' && String(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : undefined) != '-' && String(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : undefined) != '' ? Number(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : undefined) : undefined"
+            "value": "(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : (start != null && /^\\d{10}$/.test(String(start)) ? Number(start) * 1000 : undefined)) != null && !/^(?:|-|undefined|null)$/.test(String(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : (start != null && /^\\d{10}$/.test(String(start)) ? Number(start) * 1000 : undefined))) ? Number(log_time != null && log_time !== '' ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) : (start != null && /^\\d{10}$/.test(String(start)) ? Number(start) * 1000 : undefined)) : undefined"
+          },
+          {
+            "name": "action",
+            "value": "(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 'Denied' : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 'Allowed' : (action == null || action === '' ? undefined : 'Other')) != null && !/^(?:|-|undefined|null)$/.test(String(/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 'Denied' : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 'Allowed' : (action == null || action === '' ? undefined : 'Other'))) ? (/deny|denied|drop|block|reject|refuse/i.test(String(action)) ? 'Denied' : /allow|accept|permit|pass|built|teardown|close|success|\\bok\\b/i.test(String(action)) ? 'Allowed' : (action == null || action === '' ? undefined : 'Other')) : undefined"
           }
         ]
       }
@@ -231,11 +451,11 @@
         "add": [
           {
             "name": "sourcetype",
-            "value": "'fortinet_fortigate'"
+            "value": "'fortigate_utm'"
           },
           {
             "name": "_time",
-            "value": "(log_time) && (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) ? (/^\\d{13}$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}$/.test(String(log_time)) ? Number(log_time) * 1000 : /^\\d{13}\\.\\d+$/.test(String(log_time)) ? Number(log_time) : /^\\d{10}\\.\\d+$/.test(String(log_time)) ? Number(log_time) * 1000 : new Date(String(log_time)).getTime()) / 1000 : _time"
+            "value": "Number.isFinite(time) && time > 1e11 ? time / 1000 : _time"
           }
         ]
       }
@@ -317,5 +537,346 @@
       ]
     }
   },
-  "report": null
+  "report": null,
+  "wireFormat": "kvp",
+  "functionsHash": "f338ee08bjej",
+  "evidence": {
+    "score": 82,
+    "scoreSource": "stage-mapping",
+    "real": true,
+    "band": "warn",
+    "sampleFp": {
+      "format": "kvp",
+      "keys": [
+        "action",
+        "app",
+        "appcat",
+        "craction",
+        "crlevel",
+        "crscore",
+        "date",
+        "devid",
+        "devname",
+        "devtype",
+        "dstcountry",
+        "dstdevtype",
+        "dsthwvendor",
+        "dstintf",
+        "dstintfrole",
+        "dstip",
+        "dstmac",
+        "dstosname",
+        "dstport",
+        "dstserver",
+        "dstswversion",
+        "dstunauthuser",
+        "dstunauthusersource",
+        "duration",
+        "eventtime",
+        "lanin",
+        "lanout",
+        "level",
+        "logid",
+        "masterdstmac",
+        "mastersrcmac",
+        "osname",
+        "policyid",
+        "policyname",
+        "policytype",
+        "poluuid",
+        "proto",
+        "rcvdbyte",
+        "rcvddelta",
+        "rcvdpkt",
+        "sentbyte",
+        "sentdelta",
+        "sentpkt",
+        "service",
+        "sessionid",
+        "srccountry",
+        "srchwvendor",
+        "srcintf",
+        "srcintfrole",
+        "srcip",
+        "srcmac",
+        "srcname",
+        "srcport",
+        "srcserver",
+        "srcswversion",
+        "subtype",
+        "time",
+        "trandisp",
+        "tranip",
+        "tranport",
+        "transip",
+        "transport",
+        "type",
+        "tz",
+        "unauthuser",
+        "unauthusersource",
+        "vd",
+        "wanin",
+        "wanout"
+      ]
+    },
+    "sampleEventCount": 20,
+    "denominatorSize": 128,
+    "sampleTier": "vendor",
+    "syntheticCount": 0,
+    "sparse": false,
+    "capsApplied": [],
+    "build": 931,
+    "at": "2026-10-19T09:48:33.120Z"
+  },
+  "observations": [
+    {
+      "score": 81,
+      "scoreSource": "holdout-emulated",
+      "real": true,
+      "band": "warn",
+      "sampleFp": {
+        "format": "kvp",
+        "keys": [
+          "action",
+          "app",
+          "appact",
+          "appcat",
+          "appid",
+          "applist",
+          "apprisk",
+          "countapp",
+          "craction",
+          "crlevel",
+          "crscore",
+          "date",
+          "devid",
+          "devname",
+          "devtype",
+          "dstcountry",
+          "dstintf",
+          "dstintfrole",
+          "dstip",
+          "dstport",
+          "duration",
+          "eventtime",
+          "level",
+          "logid",
+          "mastersrcmac",
+          "osname",
+          "osversion",
+          "policyid",
+          "policytype",
+          "poluuid",
+          "proto",
+          "rcvdbyte",
+          "rcvdpkt",
+          "sentbyte",
+          "sentpkt",
+          "service",
+          "sessionid",
+          "srccountry",
+          "srcintf",
+          "srcintfrole",
+          "srcip",
+          "srcmac",
+          "srcport",
+          "subtype",
+          "time",
+          "trandisp",
+          "transip",
+          "transport",
+          "type",
+          "utmaction",
+          "vd"
+        ]
+      },
+      "sampleEventCount": 19,
+      "denominatorSize": 78,
+      "sampleTier": "vendor",
+      "syntheticCount": 0,
+      "sparse": false,
+      "capsApplied": [],
+      "build": 931,
+      "at": "2026-10-19T09:48:34.385Z",
+      "recordedScore": 82
+    },
+    {
+      "score": 76,
+      "scoreSource": "holdout-emulated",
+      "real": true,
+      "band": "warn",
+      "sampleFp": {
+        "format": "kvp",
+        "keys": [
+          "action",
+          "app",
+          "appcat",
+          "craction",
+          "crlevel",
+          "crscore",
+          "date",
+          "devid",
+          "devname",
+          "devtype",
+          "dstcountry",
+          "dstdevtype",
+          "dsthwvendor",
+          "dstintf",
+          "dstintfrole",
+          "dstip",
+          "dstmac",
+          "dstosname",
+          "dstport",
+          "dstserver",
+          "dstswversion",
+          "dstunauthuser",
+          "dstunauthusersource",
+          "duration",
+          "eventtime",
+          "lanin",
+          "lanout",
+          "level",
+          "logid",
+          "masterdstmac",
+          "mastersrcmac",
+          "osname",
+          "policyid",
+          "policyname",
+          "policytype",
+          "poluuid",
+          "proto",
+          "rcvdbyte",
+          "rcvddelta",
+          "rcvdpkt",
+          "sentbyte",
+          "sentdelta",
+          "sentpkt",
+          "service",
+          "sessionid",
+          "srccountry",
+          "srchwvendor",
+          "srcintf",
+          "srcintfrole",
+          "srcip",
+          "srcmac",
+          "srcname",
+          "srcport",
+          "srcserver",
+          "srcswversion",
+          "subtype",
+          "time",
+          "trandisp",
+          "tranip",
+          "tranport",
+          "transip",
+          "transport",
+          "type",
+          "tz",
+          "unauthuser",
+          "unauthusersource",
+          "vd",
+          "wanin",
+          "wanout"
+        ]
+      },
+      "sampleEventCount": 20,
+      "denominatorSize": 128,
+      "sampleTier": "vendor",
+      "syntheticCount": 0,
+      "sparse": false,
+      "capsApplied": [],
+      "build": 931,
+      "at": "2026-10-19T09:48:34.385Z",
+      "recordedScore": 82
+    },
+    {
+      "score": 82,
+      "scoreSource": "stage-mapping",
+      "real": true,
+      "band": "warn",
+      "sampleFp": {
+        "format": "kvp",
+        "keys": [
+          "action",
+          "app",
+          "appcat",
+          "craction",
+          "crlevel",
+          "crscore",
+          "date",
+          "devid",
+          "devname",
+          "devtype",
+          "dstcountry",
+          "dstdevtype",
+          "dsthwvendor",
+          "dstintf",
+          "dstintfrole",
+          "dstip",
+          "dstmac",
+          "dstosname",
+          "dstport",
+          "dstserver",
+          "dstswversion",
+          "dstunauthuser",
+          "dstunauthusersource",
+          "duration",
+          "eventtime",
+          "lanin",
+          "lanout",
+          "level",
+          "logid",
+          "masterdstmac",
+          "mastersrcmac",
+          "osname",
+          "policyid",
+          "policyname",
+          "policytype",
+          "poluuid",
+          "proto",
+          "rcvdbyte",
+          "rcvddelta",
+          "rcvdpkt",
+          "sentbyte",
+          "sentdelta",
+          "sentpkt",
+          "service",
+          "sessionid",
+          "srccountry",
+          "srchwvendor",
+          "srcintf",
+          "srcintfrole",
+          "srcip",
+          "srcmac",
+          "srcname",
+          "srcport",
+          "srcserver",
+          "srcswversion",
+          "subtype",
+          "time",
+          "trandisp",
+          "tranip",
+          "tranport",
+          "transip",
+          "transport",
+          "type",
+          "tz",
+          "unauthuser",
+          "unauthusersource",
+          "vd",
+          "wanin",
+          "wanout"
+        ]
+      },
+      "sampleEventCount": 20,
+      "denominatorSize": 128,
+      "sampleTier": "vendor",
+      "syntheticCount": 0,
+      "sparse": false,
+      "capsApplied": [],
+      "build": 931,
+      "at": "2026-10-19T09:49:57.687Z",
+      "recordedScore": 82
+    }
+  ]
 }
